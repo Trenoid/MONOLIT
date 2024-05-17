@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Название сайта -->
-    <title>Monotith</title>
+    <title>{{title}}</title>
     <!-- Файл со всеми стилями -->
     <link rel="stylesheet" href= {% static "css/main.css" %} />
   </head>
@@ -16,6 +16,7 @@
       <!-- Шапка -->
       <header class="header">
         <div class="header__inner container-header">
+            <a href="../index.html" class="hidden-mobile">
           <img
             width="52"
             height="57"
@@ -23,6 +24,7 @@
             alt="monolith"
             class="header__logo visible-mobile"
           />
+        </a>
           <img
             width="52"
             height="57"
@@ -164,7 +166,9 @@
       </header>
       <!-- Конец шапки -->
 
-    
+    {% block content %}
+    {% endblock content %}
+
       <!-- Подвал сайта (футер) -->
       <footer class="footer">
         <div class="footer__inner">
@@ -267,6 +271,6 @@
     </div>
     <!-- Скрипты -->
     <script src="{% static "script.js" %}"></script>
-    <script src="{% static "tabs.js" %}"></script>
+    {% block js %}{% endblock js %}
   </body>
 </html>

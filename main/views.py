@@ -5,7 +5,7 @@ from django.shortcuts import render
 
 def index(request):
     context = {
-        'title' : 'Home',
+        'title' : 'Monolith',
         'content' : "Content"
     }
 
@@ -13,7 +13,17 @@ def index(request):
 
 
 def about(request):
-    return render(request,"main/about-company.html")
+    context = {
+        'title' : 'О компании',
+        'content' : "Content"
+    }
+        
+    return render(request,"main/about-company.html",context)
 
 def services(request):
+    context = {
+        'title' : 'Услуги',
+        'content' : "Content"
+    }
+        
     return render(request, "main/services.html")
