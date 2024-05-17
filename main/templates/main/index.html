@@ -1,12 +1,1352 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
-</head>
-<body>
+{% load static %}
 
-    <p>{{ content }}</p>
-</body>
+<!DOCTYPE html>
+<html lang="rus">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Название сайта -->
+    <title>Monotith</title>
+    <!-- Файл со всеми стилями -->
+    <link rel="stylesheet" href= {% static "css/main.css" %} />
+  </head>
+  <body>
+    <!-- Обертка для сайта -->
+    <div class="wrapper">
+      <!-- Шапка -->
+      <header class="header">
+        <div class="header__inner container-header">
+          <img
+            width="52"
+            height="57"
+            src= {% static "source/icons/logo.svg" %}
+            alt="monolith"
+            class="header__logo visible-mobile"
+          />
+          <img
+            width="52"
+            height="57"
+            src= {% static "source/icons/logo.svg" %}
+            alt="monolith"
+            class="header__logo hidden-mobile"
+          />
+          <!-- Меню для шапки (на компьютере) -->
+          <nav class="header__menu menu hidden-mobile">
+            <ul class="menu__list">
+              <li class="menu__item">
+                <a href="./pages/catalog.html" class="menu__link"
+                  >Каталог проектов</a
+                >
+              </li>
+              <li class="menu__item">
+                <a href="./pages/about-company.html" class="menu__link"
+                  >О компании</a
+                >
+              </li>
+              <li class="menu__item">
+                <a href="./pages/services.html" class="menu__link">Услуги</a>
+              </li>
+              <li class="menu__item">
+                <a href="./pages/account.html" class="menu__link">Аккаунт</a>
+              </li>
+            </ul>
+          </nav>
+          <!-- Мобильное меню (на телефоне) -->
+          <nav class="header__menu mobile-bar visible-mobile translate-x">
+            <ul class="mobile-bar__list">
+              <li class="mobile-bar__item">
+                <a href="/" class="mobile-bar__link">
+                  <span class="mobile-bar__link-wrapper">
+                    <img
+                      width="27"
+                      height="27"
+                      src="{% static "source/icons/home.svg" %}"
+                      alt="home"
+                    />
+                  </span>
+                  <span class="mobile-bar__link-text">Главная</span>
+                </a>
+              </li>
+              <li class="mobile-bar__item">
+                <a href="./pages/about-company.html" class="mobile-bar__link">
+                  <span class="mobile-bar__link-wrapper">
+                    <img
+                      width="27"
+                      height="27"
+                      src="{% static "source/icons/document.svg" %}"
+                      alt="about company"
+                    />
+                  </span>
+                  <span class="mobile-bar__link-text">О компании</span>
+                </a>
+              </li>
+              <li class="mobile-bar__item">
+                <a href="./pages/services.html" class="mobile-bar__link">
+                  <span class="mobile-bar__link-wrapper">
+                    <img
+                      width="27"
+                      height="27"
+                      src="{% static "source/icons/actions.svg" %}"
+                      alt="actions"
+                    />
+                  </span>
+                  <span class="mobile-bar__link-text">Услуги</span>
+                </a>
+              </li>
+              <li class="mobile-bar__item">
+                <a href="./pages/catalog" class="mobile-bar__link">
+                  <span class="mobile-bar__link-wrapper">
+                    <img
+                      width="27"
+                      height="27"
+                      src="{% static "source/icons/projects.svg" %}"
+                      alt="projects"
+                    />
+                  </span>
+                  <span class="mobile-bar__link-text">Проекты</span>
+                </a>
+              </li>
+              <li class="mobile-bar__item">
+                <a href="./pages/basket" class="mobile-bar__link">
+                  <span class="mobile-bar__link-wrapper">
+                    <img
+                      width="27"
+                      height="27"
+                      src="{% static "source/icons/basket.svg" %}"
+                      alt="basket"
+                    />
+                  </span>
+                  <span class="mobile-bar__link-text">Корзина</span>
+                </a>
+              </li>
+              <li class="mobile-bar__item">
+                <a href="./pages/account" class="mobile-bar__link">
+                  <span class="mobile-bar__link-wrapper">
+                    <img
+                      width="27"
+                      height="27"
+                      src="{% static "source/icons/account.svg" %}"
+                      alt="account"
+                    />
+                  </span>
+                  <span class="mobile-bar__link-text">Аккаунт</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <!-- Кнопка для перехода в корзину (на компьютере) -->
+          <a
+            href="./pages/basket.html"
+            class="header__button button hidden-mobile"
+            type="button"
+          >
+            <svg
+              width="20.000000"
+              height="22.000000"
+              viewBox="0 0 20 22"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <defs />
+              <path
+                id="Icon"
+                d="M17.66 7.5L18.83 21.5L0.16 21.5L1.33 7.5L17.66 7.5ZM4.83 9.83L4.83 5.16C4.83 2.58 6.92 0.5 9.5 0.5C12.07 0.5 14.16 2.58 14.16 5.16L14.16 9.83"
+                stroke="#18181B"
+                stroke-opacity="1.000000"
+                stroke-width="1.000000"
+                stroke-linejoin="round"
+                stroke-linecap="round"
+              />
+            </svg>
+          </a>
+        </div>
+      </header>
+      <!-- Конец шапки -->
+
+      <!-- Главный контент -->
+      <main class="main">
+        <!-- Начало: Первая секция (баннер) -->
+        <section class="main-page">
+          <div class="main-page__wrapper container">
+            <h1 class="main-page__title">
+              Живите в доме, каждый сантиметр которого продуман для вас
+            </h1>
+            <p class="main-page__description">
+              Получи проект частного дома и узнай стоимость его строительства
+            </p>
+            <div class="main-page__actions">
+              <button
+                type="button"
+                class="main-page__button button button-show button--accent"
+              >
+                Посмотреть готовые проекты
+              </button>
+              <button
+                type="button"
+                class="main-page__button button button-order"
+              >
+                Заказать индивидуальный проект
+              </button>
+            </div>
+          </div>
+        </section>
+        <!-- Конец: Первая секция (баннер) -->
+
+        <!-- Начало: Секция каталог товаров -->
+        <section class="catalog">
+          <div class="catalog__inner container">
+            <h2 class="catalog__title">Каталог проектов:</h2>
+            <!-- Фильтр 1 -->
+            <ul class="catalog__filter">
+              <li class="catalog__filter-item">1 этажные</li>
+              <li class="catalog__filter-item">от 150м²</li>
+              <li class="catalog__filter-item">от 5 250 000</li>
+            </ul>
+            <!-- Каталог товаров для с фильтром 1 -->
+            <ul class="catalog__cards cards">
+              <li class="catalog__cards-item cards__item">
+                <!-- Карточка товара по БЭМ -->
+                <article class="catalog__card card">
+                  <!-- Фото товара -->
+                  <img
+                    width="669"
+                    height="509"
+                    src="{% static "source/images/a-17.jpg" %}"
+                    alt="a-17"
+                    class="card__image"
+                  />
+                  <!-- Информация о количестве этажей -->
+                  <span class="card__floor-information">Одноэтажные</span>
+                  <!-- Главная информация о товаре -->
+                  <div class="card__information">
+                    <h2 class="card__title">A-17</h2>
+                    <p class="card__price">40 000₽</p>
+                  </div>
+                  <!-- Описание товара -->
+                  <p class="card__description">
+                    Габариты: 23,2 х 11,8 Площадь: 263,68 м²
+                  </p>
+                  <!-- Кнопки -->
+                  <div class="card__actions">
+                    <button
+                      type="button"
+                      class="card__button button button-buy"
+                    >
+                      <img
+                        width="30"
+                        height="28"
+                        src="{% static "source/icons/buy.svg" %}"
+                        alt="buy"
+                      />
+                    </button>
+                    <button
+                      type="button"
+                      class="card__button button button-details button--accent"
+                    >
+                      Подробнее
+                    </button>
+                  </div>
+                </article>
+              </li>
+              <li class="catalog__cards-item cards__item">
+                <!-- Карточка товара по БЭМ -->
+                <article class="catalog__card card">
+                  <!-- Фото товара -->
+                  <img
+                    width="669"
+                    height="509"
+                    src="{% static "source/images/a-110.jpg" %}"
+                    alt="a-110"
+                    class="card__image"
+                  />
+                  <!-- Информация о количестве этажей -->
+                  <span class="card__floor-information">Одноэтажные</span>
+                  <!-- Главная информация о товаре -->
+                  <div class="card__information">
+                    <h2 class="card__title">A-110</h2>
+                    <p class="card__price">40 000₽</p>
+                  </div>
+                  <!-- Описание товара -->
+                  <p class="card__description">
+                    Габариты: 14,8 х 17,3 Площадь: 228.27 м²
+                  </p>
+                  <!-- Кнопки -->
+                  <div class="card__actions">
+                    <button
+                      width="30"
+                      height="28"
+                      type="button"
+                      class="card__button button button-buy"
+                    >
+                      <img src="{% static "source/icons/buy.svg" %}" alt="buy" />
+                    </button>
+                    <button
+                      type="button"
+                      class="card__button button button-details button--accent"
+                    >
+                      Подробнее
+                    </button>
+                  </div>
+                </article>
+              </li>
+            </ul>
+            <!-- Фильтр 2 -->
+            <ul class="catalog__filter">
+              <li class="catalog__filter-item">2 этажные</li>
+              <li class="catalog__filter-item">от 250м²</li>
+              <li class="catalog__filter-item">от 8 750 000</li>
+            </ul>
+            <!-- Каталог товаров для с фильтром 2 -->
+            <ul class="catalog__cards cards">
+              <li class="catalog__cards-item cards__item">
+                <!-- Карточка товара по БЭМ -->
+                <article class="catalog__card card">
+                  <!-- Фото товара -->
+                  <img
+                    width="669"
+                    height="509"
+                    src="{% static "source/images/b-22.jpg" %}"
+                    alt="b-22"
+                    class="card__image"
+                  />
+                  <!-- Информация о количестве этажей -->
+                  <span class="card__floor-information">Двухэтажные</span>
+                  <!-- Главная информация о товаре -->
+                  <div class="card__information">
+                    <h2 class="card__title">B-22</h2>
+                    <p class="card__price">40 000₽</p>
+                  </div>
+                  <!-- Описание товара -->
+                  <p class="card__description">Площадь: от 250 м²</p>
+                  <!-- Кнопки -->
+                  <div class="card__actions">
+                    <button
+                      type="button"
+                      class="card__button button button-buy"
+                    >
+                      <img src="{% static "source/icons/buy.svg" %}" alt="buy" />
+                    </button>
+                    <button
+                      type="button"
+                      class="card__button button button-details button--accent"
+                    >
+                      Подробнее
+                    </button>
+                  </div>
+                </article>
+              </li>
+              <li class="catalog__cards-item cards__item">
+                <!-- Карточка товара по БЭМ -->
+                <article class="catalog__card card">
+                  <!-- Фото товара -->
+                  <img
+                    width="669"
+                    height="509"
+                    src="{% static "source/images/b-109.jpg" %}"
+                    alt="b-109"
+                    class="card__image"
+                  />
+                  <!-- Информация о количестве этажей -->
+                  <span class="card__floor-information">Двухэтажные</span>
+                  <!-- Главная информация о товаре -->
+                  <div class="card__information">
+                    <h2 class="card__title">B-109</h2>
+                    <p class="card__price">40 000₽</p>
+                  </div>
+                  <!-- Описание товара -->
+                  <p class="card__description">
+                    Площадь : 449,22 м² Габариты: 16,7 х 19,5
+                  </p>
+                  <!-- Кнопки -->
+                  <div class="card__actions">
+                    <button
+                      type="button"
+                      class="card__button button button-buy"
+                    >
+                      <img src="{% static "source/icons/buy.svg" %}" alt="buy" />
+                    </button>
+                    <button
+                      type="button"
+                      class="card__button button button-details button--accent"
+                    >
+                      Подробнее
+                    </button>
+                  </div>
+                </article>
+              </li>
+            </ul>
+            <!-- Фильтр 3 -->
+            <ul class="catalog__filter">
+              <li class="catalog__filter-item">3 этажные</li>
+              <li class="catalog__filter-item">от 350м²</li>
+              <li class="catalog__filter-item">от 12 250 000</li>
+            </ul>
+            <!-- Каталог товаров для с фильтром 3 -->
+            <ul class="catalog__cards cards">
+              <li class="catalog__cards-item cards__item">
+                <!-- Карточка товара по БЭМ -->
+                <article class="catalog__card card">
+                  <!-- Фото товара -->
+                  <img
+                    width="669"
+                    height="509"
+                    src="{% static "source/images/c-115.jpg" %}"
+                    alt="c-116"
+                    class="card__image"
+                  />
+                  <!-- Информация о количестве этажей -->
+                  <span class="card__floor-information">Трехэтажные</span>
+                  <!-- Главная информация о товаре -->
+                  <div class="card__information">
+                    <h2 class="card__title">C-116</h2>
+                    <p class="card__price">40 000₽</p>
+                  </div>
+                  <!-- Описание товара -->
+                  <p class="card__description">Площадь: от 250 м²</p>
+                  <!-- Кнопки -->
+                  <div class="card__actions">
+                    <button
+                      type="button"
+                      class="card__button button button-buy"
+                    >
+                      <img src="{% static "source/icons/buy.svg" %}" alt="buy" />
+                    </button>
+                    <button
+                      type="button"
+                      class="card__button button button-details button--accent"
+                    >
+                      Подробнее
+                    </button>
+                  </div>
+                </article>
+              </li>
+              <li class="catalog__cards-item cards__item">
+                <!-- Карточка товара по БЭМ -->
+                <article class="catalog__card card">
+                  <!-- Фото товара -->
+                  <img
+                    width="669"
+                    height="509"
+                    src="{% static "source/images/c-116.jpg" %}"
+                    alt="c-115"
+                    class="card__image"
+                  />
+                  <!-- Информация о количестве этажей -->
+                  <span class="card__floor-information">Трехэтажные</span>
+                  <!-- Главная информация о товаре -->
+                  <div class="card__information">
+                    <h2 class="card__title">С-115</h2>
+                    <p class="card__price">40 000₽</p>
+                  </div>
+                  <!-- Описание товара -->
+                  <p class="card__description">
+                    Габариты: 18,7 х 15,0 Площадь: 426 м²
+                  </p>
+                  <!-- Кнопки -->
+                  <div class="card__actions">
+                    <button
+                      type="button"
+                      class="card__button button button-buy"
+                    >
+                      <img src="{% static "source/icons/buy.svg" %}" alt="buy" />
+                    </button>
+                    <button
+                      type="button"
+                      class="card__button button button-details button--accent"
+                    >
+                      Подробнее
+                    </button>
+                  </div>
+                </article>
+              </li>
+            </ul>
+            <div class="catalog__look-more-wrapper">
+              <a href="/" class="catalog__look-more-text"
+                >Посмотреть больше проектов</a
+              >
+            </div>
+          </div>
+        </section>
+        <!-- Конец: Секция каталог товаров -->
+
+        <!-- Начало: Секция "Что включает в себя проект дома?" -->
+        <section class="our-services container">
+          <header class="our-services__header">
+            <h2 class="our-services__header-title">
+              Что включает в себя проект дома?
+            </h2>
+          </header>
+          <div class="our-services__body">
+            <div class="our-services__text">
+              <p class="our-services__description">
+                Проект дома – это документ, по которому будет происходить
+                строительство дома. В нем содержатся чертежи и вся необходимая
+                информация о строительных конструкциях, используемых материалах,
+                <!-- коммуникациях и дизайне дома. <br /> -->
+                Среди них:
+              </p>
+              <div class="our-services__cards">
+                <article class="our-services__card">
+                  <div class="our-services__card-wrapper">
+                    <img
+                      width="26"
+                      height="27"
+                      src="{% static "source/icons/card-1.svg" %}"
+                      alt=""
+                    />
+                    <p class="our-services__card-description">
+                      Эскизный проект
+                    </p>
+                  </div>
+                </article>
+                <article class="our-services__card">
+                  <div class="our-services__card-wrapper">
+                    <img
+                      width="26"
+                      height="27"
+                      src="{% static "source/icons/card-2.svg" %}"
+                      alt=""
+                    />
+                    <p class="our-services__card-description">
+                      Расчет и подбор фундамента
+                    </p>
+                  </div>
+                </article>
+                <article class="our-services__card">
+                  <div class="our-services__card-wrapper">
+                    <img
+                      width="26"
+                      height="27"
+                      src="{% static "source/icons/card-3.svg" %}"
+                      alt=""
+                    />
+                    <p class="our-services__card-description">
+                      Архитектурное проектирование
+                    </p>
+                  </div>
+                </article>
+                <article class="our-services__card">
+                  <div class="our-services__card-wrapper">
+                    <img
+                      width="26"
+                      height="27"
+                      src="{% static "source/icons/card-4.svg" %}"
+                      alt=""
+                    />
+                    <p class="our-services__card-description">
+                      Расход и стоимость материалов
+                    </p>
+                  </div>
+                </article>
+                <article class="our-services__card">
+                  <div class="our-services__card-wrapper">
+                    <img
+                      width="26"
+                      height="27"
+                      src="{% static "source/icons/card-5.svg" %}"
+                      alt=""
+                    />
+                    <p class="our-services__card-description">
+                      Конструктивное проектирование
+                    </p>
+                  </div>
+                </article>
+                <article class="our-services__card">
+                  <div class="our-services__card-wrapper">
+                    <img
+                      width="26"
+                      height="27"
+                      src="{% static "source/icons/card-6.svg" %}"
+                      alt=""
+                    />
+                    <p class="our-services__card-description">
+                      Объем и стоимость работ
+                    </p>
+                  </div>
+                </article>
+              </div>
+            </div>
+            <div class="our-services__illustration">
+              <img
+                width="800"
+                height="592"
+                class="our-services__image"
+                src="{% static "source/images/background-1.jpeg" %}"
+                alt=""
+              />
+              <button
+                type="button"
+                class="our-services__button button button-look"
+              >
+                Посмотреть пример проекта
+              </button>
+            </div>
+          </div>
+        </section>
+        <!-- Конец: Секция "Что включает в себя проект дома?" -->
+
+        <!-- Начало: Секция "Индивидуальный проект" -->
+        <section class="special-project container" hidden>
+          <header class="special-project__header">
+            <h2 class="special-project__header-title">
+              Индивидуальный проект:
+            </h2>
+          </header>
+          <div class="special-project__body">
+            <div class="special-project__col-1 col-1">
+              <ul class="col-1__list">
+                <li class="col-1__list-item">
+                  Площадь дома создана под ваши пожелания
+                </li>
+                <li class="col-1__list-item">
+                  Проект создается под ваш бюджет
+                </li>
+                <li class="col-1__list-item">
+                  В проекте будут подходящие для вас материалы
+                </li>
+              </ul>
+              <img
+                class="special-project__image"
+                width="800"
+                height="400"
+                src="{% static "source/images/special-1.jpeg" %}"
+                alt=""
+              />
+            </div>
+            <div class="special-project__col-2">
+              <img
+                class="special-project__image"
+                width="757"
+                height="432"
+                src="{% static "source/images/special-2.jpeg" %}"
+                alt=""
+              />
+              <ul class="col-1__list">
+                <li class="col-1__list-item">
+                  Состав проекта устанавливаете вы
+                </li>
+                <li class="col-1__list-item">
+                  Проект создается с учетом рельефа вашего участка
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <!-- Конец: Секция "Индивидуальный проект" -->
+
+        <!-- Начало: Секция "Расчитайте стоимость проекта" -->
+        <section class="calculate-section calculate">
+          <header class="calculate-section__header">
+            <div class="calculate-section__inner calculate__inner container">
+              <h2 class="calculate__title calculate-section__title">
+                Рассчитайте стоимость <br />
+                проектирования <br />
+                за 1 минуту и получите дизайн-проект <br />
+                <b>в подарок</b>
+              </h2>
+            </div>
+          </header>
+          <div class="calculate-section__banner container">
+            <h3 class="calculate-section__banner-title">Вы получите:</h3>
+            <div class="calculate-section__cards">
+              <article class="calculate-section__card">
+                <div class="calculate-section__card-wrapper">
+                  <img
+                    width="64"
+                    height="61"
+                    src="{% static "source/icons/calc-1.svg" %}"
+                    alt=""
+                    class="calculate-section__card-image"
+                  />
+                  <h4 class="calculate-section__card-title">
+                    Оптимизация затрат на строительство
+                  </h4>
+                  <p class="calculate-section__card-description">
+                    Сократите расходы
+                  </p>
+                </div>
+              </article>
+              <article class="calculate-section__card">
+                <div class="calculate-section__card-wrapper">
+                  <img
+                    width="64"
+                    height="61"
+                    src="{% static "source/icons/calc-2.svg" %}"
+                    alt=""
+                    class="calculate-section__card-image"
+                  />
+                  <h4 class="calculate-section__card-title">
+                    Эксклюзивный дизайн
+                  </h4>
+                  <p class="calculate-section__card-description">
+                    Который делает дом комфортным, и функциональным именно для
+                    Вас
+                  </p>
+                </div>
+              </article>
+              <article class="calculate-section__card">
+                <div class="calculate-section__card-wrapper">
+                  <img
+                    width="64"
+                    height="61"
+                    src="{% static "source/icons/calc-3.svg" %}"
+                    alt=""
+                    class="calculate-section__card-image"
+                  />
+                  <h4 class="calculate-section__card-title">Гарантия</h4>
+                  <p class="calculate-section__card-description">
+                    Что ваш дом будет соответствовать всем нормам и требованиям
+                  </p>
+                </div>
+              </article>
+              <article class="calculate-section__card">
+                <div class="calculate-section__card-wrapper">
+                  <img
+                    width="64"
+                    height="61"
+                    src="{% static "source/icons/calc-4.svg" %}"
+                    alt=""
+                    class="calculate-section__card-image"
+                  />
+                  <h4 class="calculate-section__card-title">
+                    Сэкономленное время
+                  </h4>
+                  <p class="calculate-section__card-description">
+                    Ускорение всех этапов строительства и ввода объекта в
+                    эксплуатацию
+                  </p>
+                </div>
+              </article>
+            </div>
+            <div class="calculate-section__actions">
+              <button
+                type="button"
+                class="calculate-section__button button-price button--accent"
+              >
+                Узнать стоимость
+              </button>
+              <button
+                type="button"
+                class="calculate-section__button button-show"
+              >
+                Посмотреть готовые проекты
+              </button>
+            </div>
+          </div>
+        </section>
+        <!-- Конец: Секция "Расчитайте стоимость проекта"  -->
+
+        <!-- Начало: Секция "О нас в цифрах" -->
+        <section class="our-numbers" hidden>
+          <header class="our-numbers__header">
+            <h2 class="our-numbers__header-link">О нас в цифрах</h2>
+          </header>
+          <div class="our-numbers__body">
+            <!-- Карточки "О нас в цифрах" -->
+            <div class="our-numbers__cards">
+              <!-- Карточка "О нас в цифрах по БЭМ" -->
+              <article class="our-numbers__card">
+                <div class="our-numbers__card-wrapper">
+                  <!-- Содержимое карточки -->
+                  <h3 class="our-numbers__card-title">> 35 000 м²</h3>
+                  <p class="our-numbers__card-description">
+                    общей площади спроектировано
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+        <!-- Конец: Секция "О нас в цифрах"  -->
+
+        <!-- Начало: Секция "Часто задаваемые вопросы" -->
+        <section class="faq container">
+          <header class="faq__header">
+            <a href="/" class="faq__header-link">FAQ</a>
+            <h2 class="faq__header-title">Часто задаваемые вопросы</h2>
+          </header>
+          <ul class="faq__list">
+            <li class="faq__list-item">
+              <p class="faq__list-question">Зачем нужен проект дома?</p>
+              <button class="faq__list-button" data-action="open-faq">
+                <svg
+                  width="25.000000"
+                  height="26.000000"
+                  viewBox="0 0 25 26"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <defs />
+                  <path
+                    id="Icon"
+                    d="M23.56 14.74L11.88 24.08L0.2 14.74M11.88 24.08L11.88 0.08"
+                    stroke="#18181B"
+                    stroke-opacity="1.000000"
+                    stroke-width="2.000000"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </li>
+            <li class="faq__list-item visually-hidden">
+              <p class="faq__list-answer">Здесь будет ответ на вопрос выше!</p>
+              <button class="faq__list-button" data-action="close-faq">
+                <svg
+                  width="25.000000"
+                  height="26.000000"
+                  viewBox="0 0 25 26"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <desc>Created with Pixso.</desc>
+                  <defs />
+                  <path
+                    id="Icon"
+                    d="M0.7 9.42L12.04 0.08L23.38 9.42M12.04 0.08L12.04 24.08"
+                    stroke="#18181B"
+                    stroke-opacity="1.000000"
+                    stroke-width="2.000000"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </li>
+            <li class="faq__list-item">
+              <p class="faq__list-question">
+                Возможно ли внести изменения в уже существующий проект? Если да,
+                то сколько это стоит?
+              </p>
+              <button class="faq__list-button" data-action="open-faq">
+                <svg
+                  width="25.000000"
+                  height="26.000000"
+                  viewBox="0 0 25 26"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <defs />
+                  <path
+                    id="Icon"
+                    d="M23.56 14.74L11.88 24.08L0.2 14.74M11.88 24.08L11.88 0.08"
+                    stroke="#18181B"
+                    stroke-opacity="1.000000"
+                    stroke-width="2.000000"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </li>
+            <li class="faq__list-item visually-hidden">
+              <p class="faq__list-answer">Здесь будет ответ на вопрос выше!</p>
+              <button class="faq__list-button" data-action="close-faq">
+                <svg
+                  width="25.000000"
+                  height="26.000000"
+                  viewBox="0 0 25 26"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <desc>Created with Pixso.</desc>
+                  <defs />
+                  <path
+                    id="Icon"
+                    d="M0.7 9.42L12.04 0.08L23.38 9.42M12.04 0.08L12.04 24.08"
+                    stroke="#18181B"
+                    stroke-opacity="1.000000"
+                    stroke-width="2.000000"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </li>
+            <li class="faq__list-item">
+              <p class="faq__list-question">
+                Что такое Авторский надзор и нужен ли он?
+              </p>
+              <button class="faq__list-button" data-action="open-faq">
+                <svg
+                  width="25.000000"
+                  height="26.000000"
+                  viewBox="0 0 25 26"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <defs />
+                  <path
+                    id="Icon"
+                    d="M23.56 14.74L11.88 24.08L0.2 14.74M11.88 24.08L11.88 0.08"
+                    stroke="#18181B"
+                    stroke-opacity="1.000000"
+                    stroke-width="2.000000"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </li>
+            <li class="faq__list-item visually-hidden">
+              <p class="faq__list-answer">Здесь будет ответ на вопрос выше!</p>
+              <button class="faq__list-button" data-action="close-faq">
+                <svg
+                  width="25.000000"
+                  height="26.000000"
+                  viewBox="0 0 25 26"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <desc>Created with Pixso.</desc>
+                  <defs />
+                  <path
+                    id="Icon"
+                    d="M0.7 9.42L12.04 0.08L23.38 9.42M12.04 0.08L12.04 24.08"
+                    stroke="#18181B"
+                    stroke-opacity="1.000000"
+                    stroke-width="2.000000"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </li>
+            <li class="faq__list-item">
+              <p class="faq__list-question">
+                Лучше делать индивидуальный проект или купить готовый?
+              </p>
+              <button class="faq__list-button" data-action="open-faq">
+                <svg
+                  width="25.000000"
+                  height="26.000000"
+                  viewBox="0 0 25 26"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <defs />
+                  <path
+                    id="Icon"
+                    d="M23.56 14.74L11.88 24.08L0.2 14.74M11.88 24.08L11.88 0.08"
+                    stroke="#18181B"
+                    stroke-opacity="1.000000"
+                    stroke-width="2.000000"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </li>
+            <li class="faq__list-item visually-hidden">
+              <p class="faq__list-answer">Здесь будет ответ на вопрос выше!</p>
+              <button class="faq__list-button" data-action="close-faq">
+                <svg
+                  width="25.000000"
+                  height="26.000000"
+                  viewBox="0 0 25 26"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <desc>Created with Pixso.</desc>
+                  <defs />
+                  <path
+                    id="Icon"
+                    d="M0.7 9.42L12.04 0.08L23.38 9.42M12.04 0.08L12.04 24.08"
+                    stroke="#18181B"
+                    stroke-opacity="1.000000"
+                    stroke-width="2.000000"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </li>
+            <li class="faq__list-item">
+              <p class="faq__list-question">
+                В чем различие между эскизным и архитектурным проектом?
+              </p>
+              <button class="faq__list-button" data-action="open-faq">
+                <svg
+                  width="25.000000"
+                  height="26.000000"
+                  viewBox="0 0 25 26"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <defs />
+                  <path
+                    id="Icon"
+                    d="M23.56 14.74L11.88 24.08L0.2 14.74M11.88 24.08L11.88 0.08"
+                    stroke="#18181B"
+                    stroke-opacity="1.000000"
+                    stroke-width="2.000000"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </li>
+            <li class="faq__list-item visually-hidden">
+              <p class="faq__list-answer">Здесь будет ответ на вопрос выше!</p>
+              <button class="faq__list-button" data-action="close-faq">
+                <svg
+                  width="25.000000"
+                  height="26.000000"
+                  viewBox="0 0 25 26"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <desc>Created with Pixso.</desc>
+                  <defs />
+                  <path
+                    id="Icon"
+                    d="M0.7 9.42L12.04 0.08L23.38 9.42M12.04 0.08L12.04 24.08"
+                    stroke="#18181B"
+                    stroke-opacity="1.000000"
+                    stroke-width="2.000000"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </li>
+            <li class="faq__list-item">
+              <p class="faq__list-question">В каком формате я получу проект?</p>
+              <button class="faq__list-button" data-action="open-faq">
+                <svg
+                  width="25.000000"
+                  height="26.000000"
+                  viewBox="0 0 25 26"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <defs />
+                  <path
+                    id="Icon"
+                    d="M23.56 14.74L11.88 24.08L0.2 14.74M11.88 24.08L11.88 0.08"
+                    stroke="#18181B"
+                    stroke-opacity="1.000000"
+                    stroke-width="2.000000"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </li>
+            <li class="faq__list-item visually-hidden">
+              <p class="faq__list-answer">Здесь будет ответ на вопрос выше!</p>
+              <button class="faq__list-button" data-action="close-faq">
+                <svg
+                  width="25.000000"
+                  height="26.000000"
+                  viewBox="0 0 25 26"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <desc>Created with Pixso.</desc>
+                  <defs />
+                  <path
+                    id="Icon"
+                    d="M0.7 9.42L12.04 0.08L23.38 9.42M12.04 0.08L12.04 24.08"
+                    stroke="#18181B"
+                    stroke-opacity="1.000000"
+                    stroke-width="2.000000"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </li>
+            <li class="faq__list-item">
+              <p class="faq__list-question">Как купить?</p>
+              <button class="faq__list-button" data-action="open-faq">
+                <svg
+                  width="25.000000"
+                  height="26.000000"
+                  viewBox="0 0 25 26"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <defs />
+                  <path
+                    id="Icon"
+                    d="M23.56 14.74L11.88 24.08L0.2 14.74M11.88 24.08L11.88 0.08"
+                    stroke="#18181B"
+                    stroke-opacity="1.000000"
+                    stroke-width="2.000000"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </li>
+            <li class="faq__list-item visually-hidden">
+              <p class="faq__list-answer">Здесь будет ответ на вопрос выше!</p>
+              <button class="faq__list-button" data-action="close-faq">
+                <svg
+                  width="25.000000"
+                  height="26.000000"
+                  viewBox="0 0 25 26"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <desc>Created with Pixso.</desc>
+                  <defs />
+                  <path
+                    id="Icon"
+                    d="M0.7 9.42L12.04 0.08L23.38 9.42M12.04 0.08L12.04 24.08"
+                    stroke="#18181B"
+                    stroke-opacity="1.000000"
+                    stroke-width="2.000000"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </li>
+          </ul>
+        </section>
+        <!-- Конец: Секция "Часто задаваемые вопросы"  -->
+
+        <!-- Начало: Секция "Форма" -->
+        <section class="form-section">
+          <div class="form-section__inner container">
+            <img
+              width="800"
+              height="800"
+              src="{% static "source/images/form-image.jpeg" %}"
+              alt=""
+              class="form-section__img"
+            />
+            <!-- Форма -->
+            <form action="" method="" class="form form__main-page">
+              <fieldset class="form__fieldset">
+                <legend class="form__legend">
+                  <h2 class="form__title">Остались вопросы?</h2>
+                </legend>
+                <p class="form__description">
+                  Оставьте ваш номер телефона и мы вам перезвоним!
+                </p>
+                <ul class="form__list">
+                  <li class="form__list-item">
+                    <label for="name" class="form__label"></label>
+                    <!-- Поле ИМЯ -->
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      class="form__input"
+                      placeholder="Имя"
+                      required
+                    />
+                  </li>
+                  <li class="form__list-item">
+                    <label for="phone-number" class="form__label"></label>
+                    <!-- Поле НОМЕР ТЕЛЕФОНА -->
+                    <input
+                      type="tel"
+                      id="phone-number"
+                      name="phone-number"
+                      class="form__input"
+                      placeholder="+ (   ) -- -- -- --"
+                      required
+                    />
+                  </li>
+                  <li class="form__list-item">
+                    <label for="city" class="form__label"></label>
+                    <!-- Поле ГОРОД -->
+                    <input
+                      type="text"
+                      id="city"
+                      name="city"
+                      class="form__input"
+                      placeholder="Город"
+                      required
+                    />
+                  </li>
+                </ul>
+                <!-- Кнопка отправить -->
+                <button
+                  type="submit"
+                  class="button button-submit button--accent form__button"
+                >
+                  Отправить
+                </button>
+                <p class="form__notification">
+                  Нажимая кнопку «отправить» вы соглашаетесь на обработку
+                  персональных данных
+                </p>
+              </fieldset>
+            </form>
+          </div>
+        </section>
+        <!-- Конец: Секция "Форма"  -->
+
+        <!-- Начало: Секция "Партнеры" -->
+        <section class="partners">
+          <header class="partners__header container">
+            <h2 class="partners__header-title">Партнеры</h2>
+          </header>
+          <div class="partners__body">
+            <div class="partners__images container">
+              <img
+                class="partners__image"
+                src="{% static "source/icons/hoff.svg" %}"
+                alt=""
+              />
+              <img
+                class="partners__image"
+                src="{% static "source/icons/zanussi.svg" %}"
+                alt=""
+              />
+              <img class="partners__image" src="./source/icons/lm.svg" alt="" />
+              <img
+                class="partners__image"
+                src="{% static "source/icons/absh.svg" %}"
+                alt=""
+              />
+              <img class="partners__image" src="./source/icons/vb.svg" alt="" />
+              <img
+                class="partners__image"
+                src="{% static "source/icons/bork.svg" %}"
+                alt=""
+              />
+              <img
+                class="partners__image"
+                src="{% static "source/icons/tdes.svg" %}"
+                alt=""
+              />
+            </div>
+          </div>
+        </section>
+        <!-- Конец: Секция "Партнеры"  -->
+
+        <!-- Начало: Секция "Способы оплаты" -->
+        <section class="payments">
+          <header class="payments__header container">
+            <h2 class="payments__header-title">Способы оплаты</h2>
+          </header>
+          <div class="payments__body">
+            <div class="payments__images container">
+              <img
+                src="{% static "source/icons/visa.svg" %}"
+                alt=""
+                class="payments__image"
+              />
+              <img src="./source/icons/mc.svg" alt="" class="payments__image" />
+              <img
+                src="{% static "source/icons/sbp.svg" %}"
+                alt=""
+                class="payments__image"
+              />
+            </div>
+          </div>
+        </section>
+        <!-- Конец: Секция "Способы оплаты"  -->
+      </main>
+      <!-- Подвал сайта (футер) -->
+      <footer class="footer">
+        <div class="footer__inner">
+          <div class="footer__body">
+            <div class="footer__body-content container">
+              <div class="footer__logo-wrapper">
+                <img
+                  width="104"
+                  height="116"
+                  src="{% static "source/icons/logo.svg" %}"
+                  alt=""
+                  class="footer__logo"
+                />
+                <p class="footer__logo-description">
+                  Современное жилье созданное специально для Вас
+                </p>
+              </div>
+              <nav class="footer__nav">
+                <ul class="footer__list">
+                  <li class="footer__list-item">Разделы</li>
+                  <li class="footer__list-item">
+                    <a href="/" class="footer__list-link">Главная страница</a>
+                  </li>
+                  <li class="footer__list-item">
+                    <a href="../pages/catalog.html" class="footer__list-link"
+                      >Каталог проектов</a
+                    >
+                  </li>
+                  <li class="footer__list-item">
+                    <a
+                      href="../pages/about-company.html"
+                      class="footer__list-link"
+                      >О компании</a
+                    >
+                  </li>
+                  <li class="footer__list-item">
+                    <a href="../pages/basket.html" class="footer__list-link"
+                      >Корзина</a
+                    >
+                  </li>
+                  <li class="footer__list-item">
+                    <a href="../pages/services.html" class="footer__list-link"
+                      >Услуги</a
+                    >
+                  </li>
+                </ul>
+              </nav>
+              <nav class="footer__nav">
+                <ul class="footer__list">
+                  <li class="footer__list-item">Как с нами связаться</li>
+                  <li class="footer__list-item">
+                    <a href="#" class="footer__list-link" title="Phone-number"
+                      >+7 (967) 770 66 88</a
+                    >
+                  </li>
+                  <li class="footer__list-item">
+                    <a href="#" class="footer__list-link" title="Gmail"
+                      >m550ae@gmail.com</a
+                    >
+                  </li>
+                  <li class="footer__list-item">
+                    <a href="#" class="footer__list-link" title="Vkontakte"
+                      >Вконтакте</a
+                    >
+                  </li>
+                  <li class="footer__list-item">
+                    <a href="#" class="footer__list-link" title="Instagram"
+                      >Instagram</a
+                    >
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <div class="footer__bottom">
+            <div class="footer__bottom-content container">
+              <p class="footer__copyright">
+                Copyright © 2023 Все права защищены
+              </p>
+              <div class="footer__links">
+                <a href="" class="footer__link">
+                  <img
+                    class="footer__link-icon"
+                    src="{% static "source/icons/in-icon.svg" %}"
+                    alt="in"
+                  />
+                </a>
+                <a href="" class="footer__link">
+                  <img
+                    class="footer__link-icon"
+                    src="{% static "source/icons/vk-icon.svg" %}"
+                    alt="vk"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <!-- Скрипты -->
+    <script src="{% static "script.js" %}"></script>
+    <script src="{% static "tabs.js" %}"></script>
+  </body>
 </html>
