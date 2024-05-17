@@ -1,0 +1,583 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="rus">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Название сайта -->
+    <link rel="stylesheet" href="../css/main.css" />
+    <title>Услуги</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Шапка -->
+      <header class="header">
+        <div class="header__inner container-header">
+          <a href="../index.html" class="hidden-mobile">
+            <img
+              width="52"
+              height="57"
+              src="../source/icons/logo.svg"
+              alt="monolith"
+              class="header__logo"
+            />
+          </a>
+          <img
+            width="52"
+            height="57"
+            src="../source/icons/logo.svg"
+            alt="monolith"
+            class="header__logo visible-mobile"
+          />
+          <!-- Меню для шапки (на компьютере) -->
+          <nav class="header__menu menu hidden-mobile">
+            <ul class="menu__list">
+              <li class="menu__item">
+                <a href="./catalog.html" class="menu__link">Каталог проектов</a>
+              </li>
+              <li class="menu__item">
+                <a href="./about-company.html" class="menu__link">О компании</a>
+              </li>
+              <li class="menu__item">
+                <a href="#" class="menu__link">Услуги</a>
+              </li>
+              <li class="menu__item">
+                <a href="./account.html" class="menu__link">Аккаунт</a>
+              </li>
+            </ul>
+          </nav>
+          <!-- Мобильное меню (на телефоне) -->
+          <nav class="header__menu mobile-bar visible-mobile translate-x">
+            <ul class="mobile-bar__list">
+              <li class="mobile-bar__item">
+                <a href="../index.html" class="mobile-bar__link">
+                  <span class="mobile-bar__link-wrapper">
+                    <img
+                      width="27"
+                      height="27"
+                      src="../source/icons/home.svg"
+                      alt="home"
+                    />
+                  </span>
+                  <span class="mobile-bar__link-text">Главная</span>
+                </a>
+              </li>
+              <li class="mobile-bar__item">
+                <a href="./about-company.html" class="mobile-bar__link">
+                  <span class="mobile-bar__link-wrapper">
+                    <img
+                      width="27"
+                      height="27"
+                      src="../source/icons/document.svg"
+                      alt="about company"
+                    />
+                  </span>
+                  <span class="mobile-bar__link-text">О компании</span>
+                </a>
+              </li>
+              <li class="mobile-bar__item">
+                <a href="#" class="mobile-bar__link">
+                  <span class="mobile-bar__link-wrapper">
+                    <img
+                      width="27"
+                      height="27"
+                      src="../source/icons/actions.svg"
+                      alt="actions"
+                    />
+                  </span>
+                  <span class="mobile-bar__link-text">Услуги</span>
+                </a>
+              </li>
+              <li class="mobile-bar__item">
+                <a href="./catalog" class="mobile-bar__link">
+                  <span class="mobile-bar__link-wrapper">
+                    <img
+                      width="27"
+                      height="27"
+                      src="../source/icons/projects.svg"
+                      alt="projects"
+                    />
+                  </span>
+                  <span class="mobile-bar__link-text">Проекты</span>
+                </a>
+              </li>
+              <li class="mobile-bar__item">
+                <a href="./basket" class="mobile-bar__link">
+                  <span class="mobile-bar__link-wrapper">
+                    <img
+                      width="27"
+                      height="27"
+                      src="../source/icons/basket.svg"
+                      alt="basket"
+                    />
+                  </span>
+                  <span class="mobile-bar__link-text">Корзина</span>
+                </a>
+              </li>
+              <li class="mobile-bar__item">
+                <a href="./account" class="mobile-bar__link">
+                  <span class="mobile-bar__link-wrapper">
+                    <img
+                      width="27"
+                      height="27"
+                      src="../source/icons/account.svg"
+                      alt="account"
+                    />
+                  </span>
+                  <span class="mobile-bar__link-text">Аккаунт</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <!-- Кнопка для перехода в корзину (на компьютере) -->
+          <a href="./pages/basket" class="header__button button hidden-mobile">
+            <svg
+              width="20.000000"
+              height="22.000000"
+              viewBox="0 0 20 22"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <defs />
+              <path
+                id="Icon"
+                d="M17.66 7.5L18.83 21.5L0.16 21.5L1.33 7.5L17.66 7.5ZM4.83 9.83L4.83 5.16C4.83 2.58 6.92 0.5 9.5 0.5C12.07 0.5 14.16 2.58 14.16 5.16L14.16 9.83"
+                stroke="#18181B"
+                stroke-opacity="1.000000"
+                stroke-width="1.000000"
+                stroke-linejoin="round"
+                stroke-linecap="round"
+              />
+            </svg>
+          </a>
+        </div>
+      </header>
+      <!-- Конец шапки -->
+      <main class="services-page">
+        <div class="services">
+          <div class="container">
+            <h1 class="services__title">Услуги</h1>
+            <div class="services__blocks">
+              <div class="services__space-block">
+                <div class="services__space-bg"></div>
+                <div class="services__space-content margin-left">
+                  <div class="services__space-top">
+                    <h2 class="services__space-title space-title">
+                      Измение площади
+                    </h2>
+                    <p class="services__space-discr">
+                      Площадь любого проекта можно корректировать под ваши
+                      пожелания и бюджет. Проект дома можно сделать более
+                      компактным, что уменьшит его стоимость, а так же добавить
+                      комнаты и свободное пространство.
+                    </p>
+                  </div>
+                  <p class="services__space-price price_title">От 300₽/м²</p>
+                </div>
+              </div>
+              <div class="services__space-block">
+                <div class="services__space-bg material-bg"></div>
+                <div class="services__space-content margin-right">
+                  <div class="services__space-top">
+                    <h2 class="services__space-title space-title">
+                      Изменение материала стен
+                    </h2>
+                    <p class="services__space-discr">
+                      Материал стен вы можете выбрать сами исходя от бюджета и
+                      пожеланий. Наши специалисты всегда проконсультируют вас и
+                      подскажут лучшее решение.
+                    </p>
+                  </div>
+                  <p class="services__space-price price_title">От 300₽/м²</p>
+                </div>
+              </div>
+              <div class="services__space-block">
+                <div class="services__space-bg foundation-bg"></div>
+                <div class="services__space-content margin-left">
+                  <div class="services__space-top">
+                    <h2 class="services__space-title space-title">
+                      Расчёт фундамента
+                    </h2>
+                    <p class="services__space-discr">
+                      Подбор необходимого наиболее оптимального типа фундамента
+                      под строительство объекта. Используются только современные
+                      технологические приемы, надежные, неоднократно
+                      апробированные методики. Такие условия, большая
+                      подготовительная работа позволяют исполнять заказы даже
+                      самых больших масштабов в договорные сроки, в строгом
+                      соответствии с действующей законодательной базой.
+                    </p>
+                  </div>
+                  <p class="services__space-price price_title">от 30 000₽</p>
+                </div>
+              </div>
+              <div class="services__space-block">
+                <div class="services__space-bg project-bg"></div>
+                <div class="services__space-content margin-right">
+                  <div class="services__space-top">
+                    <h2 class="services__space-title space-title">
+                      Полный проект дизайна интерьера
+                    </h2>
+                    <p class="services__space-discr">
+                      Включает в себя все, что необходимо, чтобы спланировать
+                      будущий ремонт и создать свой идеальный интерьер. Полный
+                      проект включает 3d-визуализацию с реалистичным
+                      отображением размеров, конфигурации пространства,
+                      интерьера.
+                    </p>
+                  </div>
+                  <p class="services__space-price price_title">От 1900₽/м²</p>
+                </div>
+              </div>
+              <div class="services__space-block">
+                <div class="services__space-bg landscape-bg"></div>
+                <div class="services__space-content margin-left">
+                  <div class="services__space-top">
+                    <h2 class="services__space-title space-title">
+                      Полный проект ландшафтного дизайна
+                    </h2>
+                    <p class="services__space-discr">
+                      Важно продумать размещение всех объектов благоустройства,
+                      создать комфортную среду для отдыха. Проект сформирует
+                      понимание основной идеи архитектурно-пространственной
+                      природной среды и, с большой вероятностью, повлияет на
+                      расположение строительных.
+                    </p>
+                  </div>
+                  <p class="services__space-price price_title">От 160₽/м²</p>
+                </div>
+              </div>
+              <div class="services__space-block">
+                <div class="services__space-bg fitting-bg"></div>
+                <div class="services__space-content margin-right">
+                  <div class="services__space-top">
+                    <h2 class="services__space-title space-title">
+                      Подгонка стоимости реализации строительства к нужной сумме
+                    </h2>
+                    <p class="services__space-discr">
+                      Вы можете изменить материалы на более бюджетные, или на
+                      более премиальные. Мы точно сможем подобрать и
+                      усовершенствовать для вас проект, который будет идеально
+                      вписываться в заложенный бюджет.
+                    </p>
+                  </div>
+                  <p class="services__space-price price_title">От 300₽/м²</p>
+                </div>
+              </div>
+              <div class="services__space-block">
+                <div class="services__space-bg individual-bg"></div>
+                <div class="services__space-content margin-left">
+                  <div class="services__space-top">
+                    <h2 class="services__space-title space-title">
+                      Полное индивидуальное проектирование частного дома
+                    </h2>
+                    <p class="services__space-discr">
+                      Это процесс создания виртуального прототипа дома с нуля
+                      под конкретные требования. В ходе проектирования решается,
+                      каким будет дом, какие в нем будут использованы материалы,
+                      объемно-планировочные решения, как дом будет выглядеть
+                      снаружи и как будет расположен на участке.
+                    </p>
+                  </div>
+                  <p class="services__space-price price_title">От 500₽/м²</p>
+                </div>
+              </div>
+              <div class="services__space-block">
+                <div class="services__space-bg finishing-bg"></div>
+                <div class="services__space-content margin-right">
+                  <div class="services__space-top">
+                    <h2 class="services__space-title space-title">
+                      Изменение материалов отделки
+                    </h2>
+                    <p class="services__space-discr">
+                      Услуга представляет возможность изменить заложенную в
+                      проекте отделку на другие варианты исходящие от ваших
+                      пожеланий и бюджету. Наши специалисты проконсультируют вас
+                      и помогут подобрать подходящий вариант.
+                    </p>
+                  </div>
+                  <p class="services__space-price price_title">От 300₽/м²</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Начало: Секция "Расчитайте стоимость проекта" -->
+        <section class="calculate-section calculate">
+          <header class="calculate-section__header">
+            <div class="calculate-section__inner calculate__inner container">
+              <h2 class="calculate__title calculate-section__title">
+                Рассчитайте стоимость <br />
+                проектирования <br />
+                за 1 минуту и получите дизайн-проект <br />
+                <b>в подарок</b>
+              </h2>
+            </div>
+          </header>
+          <div class="calculate-section__banner container">
+            <h3 class="calculate-section__banner-title">Вы получите:</h3>
+            <div class="calculate-section__cards">
+              <article class="calculate-section__card">
+                <div class="calculate-section__card-wrapper">
+                  <img
+                    width="64"
+                    height="61"
+                    src="../source/icons/calc-1.svg"
+                    alt=""
+                    class="calculate-section__card-image"
+                  />
+                  <h4 class="calculate-section__card-title">
+                    Оптимизация затрат на строительство
+                  </h4>
+                  <p class="calculate-section__card-description">
+                    Сократите расходы
+                  </p>
+                </div>
+              </article>
+              <article class="calculate-section__card">
+                <div class="calculate-section__card-wrapper">
+                  <img
+                    width="64"
+                    height="61"
+                    src="../source/icons/calc-2.svg"
+                    alt=""
+                    class="calculate-section__card-image"
+                  />
+                  <h4 class="calculate-section__card-title">
+                    Эксклюзивный дизайн
+                  </h4>
+                  <p class="calculate-section__card-description">
+                    Который делает дом комфортным, и функциональным именно для
+                    Вас
+                  </p>
+                </div>
+              </article>
+              <article class="calculate-section__card">
+                <div class="calculate-section__card-wrapper">
+                  <img
+                    width="64"
+                    height="61"
+                    src="../source/icons/calc-3.svg"
+                    alt=""
+                    class="calculate-section__card-image"
+                  />
+                  <h4 class="calculate-section__card-title">Гарантия</h4>
+                  <p class="calculate-section__card-description">
+                    Что ваш дом будет соответствовать всем нормам и требованиям
+                  </p>
+                </div>
+              </article>
+              <article class="calculate-section__card">
+                <div class="calculate-section__card-wrapper">
+                  <img
+                    width="64"
+                    height="61"
+                    src="../source/icons/calc-4.svg"
+                    alt=""
+                    class="calculate-section__card-image"
+                  />
+                  <h4 class="calculate-section__card-title">
+                    Сэкономленное время
+                  </h4>
+                  <p class="calculate-section__card-description">
+                    Ускорение всех этапов строительства и ввода объекта в
+                    эксплуатацию
+                  </p>
+                </div>
+              </article>
+            </div>
+            <div class="calculate-section__actions">
+              <button
+                type="button"
+                class="calculate-section__button button-price button--accent"
+              >
+                Узнать стоимость
+              </button>
+              <button
+                type="button"
+                class="calculate-section__button button-show"
+              >
+                Посмотреть готовые проекты
+              </button>
+            </div>
+          </div>
+        </section>
+        <!-- Конец: Секция "Расчитайте стоимость проекта"  -->
+        <!-- Начало: Секция "Форма" -->
+        <section class="form-section">
+          <div class="form-section__inner container">
+            <img
+              width="800"
+              height="800"
+              src="../source/images/form-image.jpeg"
+              alt=""
+              class="form-section__img"
+            />
+            <!-- Форма -->
+            <form action="" method="" class="form form__main-page">
+              <fieldset class="form__fieldset">
+                <legend class="form__legend">
+                  <h2 class="form__title">Остались вопросы?</h2>
+                </legend>
+                <p class="form__description">
+                  Оставьте ваш номер телефона и мы вам перезвоним!
+                </p>
+                <ul class="form__list">
+                  <li class="form__list-item">
+                    <label for="name" class="form__label"></label>
+                    <!-- Поле ИМЯ -->
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      class="form__input"
+                      placeholder="Имя"
+                      required
+                    />
+                  </li>
+                  <li class="form__list-item">
+                    <label for="phone-number" class="form__label"></label>
+                    <!-- Поле НОМЕР ТЕЛЕФОНА -->
+                    <input
+                      type="tel"
+                      id="phone-number"
+                      name="phone-number"
+                      class="form__input"
+                      placeholder="+ (   ) -- -- -- --"
+                      required
+                    />
+                  </li>
+                  <li class="form__list-item">
+                    <label for="city" class="form__label"></label>
+                    <!-- Поле ГОРОД -->
+                    <input
+                      type="text"
+                      id="city"
+                      name="city"
+                      class="form__input"
+                      placeholder="Город"
+                      required
+                    />
+                  </li>
+                </ul>
+                <!-- Кнопка отправить -->
+                <button
+                  type="submit"
+                  class="button button-submit button--accent form__button"
+                >
+                  Отправить
+                </button>
+                <p class="form__notification">
+                  Нажимая кнопку «отправить» вы соглашаетесь на обработку
+                  персональных данных
+                </p>
+              </fieldset>
+            </form>
+          </div>
+        </section>
+        <!-- Конец: Секция "Форма"  -->
+      </main>
+      <footer class="footer">
+        <div class="footer__inner">
+          <div class="footer__body">
+            <div class="footer__body-content container">
+              <div class="footer__logo-wrapper">
+                <img
+                  width="104"
+                  height="116"
+                  src="../source/icons/logo.svg"
+                  alt=""
+                  class="footer__logo"
+                />
+                <p class="footer__logo-description">
+                  Современное жилье созданное специально для Вас
+                </p>
+              </div>
+              <nav class="footer__nav">
+                <ul class="footer__list">
+                  <li class="footer__list-item">Разделы</li>
+                  <li class="footer__list-item">
+                    <a href="../index.html" class="footer__list-link"
+                      >Главная страница</a
+                    >
+                  </li>
+                  <li class="footer__list-item">
+                    <a href="./catalog.html" class="footer__list-link"
+                      >Каталог проектов</a
+                    >
+                  </li>
+                  <li class="footer__list-item">
+                    <a href="./about-company.html" class="footer__list-link"
+                      >О компании</a
+                    >
+                  </li>
+                  <li class="footer__list-item">
+                    <a href="./basket.html" class="footer__list-link"
+                      >Корзина</a
+                    >
+                  </li>
+                  <li class="footer__list-item">
+                    <a href="./services.html" class="footer__list-link"
+                      >Услуги</a
+                    >
+                  </li>
+                </ul>
+              </nav>
+              <nav class="footer__nav">
+                <ul class="footer__list">
+                  <li class="footer__list-item">Как с нами связаться</li>
+                  <li class="footer__list-item">
+                    <a href="#" class="footer__list-link" title="Phone-number"
+                      >+7 (967) 770 66 88</a
+                    >
+                  </li>
+                  <li class="footer__list-item">
+                    <a href="#" class="footer__list-link" title="Gmail"
+                      >m550ae@gmail.com</a
+                    >
+                  </li>
+                  <li class="footer__list-item">
+                    <a href="#" class="footer__list-link" title="Vkontakte"
+                      >Вконтакте</a
+                    >
+                  </li>
+                  <li class="footer__list-item">
+                    <a href="#" class="footer__list-link" title="Instagram"
+                      >Instagram</a
+                    >
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <div class="footer__bottom">
+            <div class="footer__bottom-content container">
+              <p class="footer__copyright">
+                Copyright © 2023 Все права защищены
+              </p>
+              <div class="footer__links">
+                <a href="#" class="footer__link">
+                  <img
+                    class="footer__link-icon"
+                    src="../source/icons/in-icon.svg"
+                    alt="in"
+                  />
+                </a>
+                <a href="#" class="footer__link">
+                  <img
+                    class="footer__link-icon"
+                    src="../source/icons/vk-icon.svg"
+                    alt="vk"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="../script.js"></script>
+  </body>
+</html>
