@@ -6,7 +6,6 @@ from django.shortcuts import render
 def index(request):
     context = {
         'title' : 'Monolith',
-        'content' : "Content"
     }
 
     return render(request,'main/index.html',context)
@@ -15,7 +14,6 @@ def index(request):
 def about(request):
     context = {
         'title' : 'О компании',
-        'content' : "Content"
     }
         
     return render(request,"main/about-company.html",context)
@@ -23,7 +21,6 @@ def about(request):
 def services(request):
     context = {
         'title' : 'Услуги',
-        'content' : "Content"
     }
         
     return render(request, "main/services.html")

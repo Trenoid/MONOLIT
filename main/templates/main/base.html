@@ -16,7 +16,7 @@
       <!-- Шапка -->
       <header class="header">
         <div class="header__inner container-header">
-            <a href="../index.html" class="hidden-mobile">
+          <a href="{% url "main:index" %}" class="hidden-mobile">
           <img
             width="52"
             height="57"
@@ -25,6 +25,7 @@
             class="header__logo visible-mobile"
           />
         </a>
+        <a href="{% url "main:index" %}" class="hidden-mobile">
           <img
             width="52"
             height="57"
@@ -32,6 +33,7 @@
             alt="monolith"
             class="header__logo hidden-mobile"
           />
+        </a>
           <!-- Меню для шапки (на компьютере) -->
           <nav class="header__menu menu hidden-mobile">
             <ul class="menu__list">
@@ -41,12 +43,12 @@
                 >
               </li>
               <li class="menu__item">
-                <a href="./pages/about-company.html" class="menu__link"
+                <a href="{% url "main:about" %}" class="menu__link"
                   >О компании</a
                 >
               </li>
               <li class="menu__item">
-                <a href="./pages/services.html" class="menu__link">Услуги</a>
+                <a href="{% url "main:services" %}" class="menu__link">Услуги</a>
               </li>
               <li class="menu__item">
                 <a href="./pages/account.html" class="menu__link">Аккаунт</a>
