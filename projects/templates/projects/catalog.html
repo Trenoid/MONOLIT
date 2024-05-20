@@ -14,6 +14,8 @@
           </ul>
           <!-- Каталог товаров для с фильтром 1 -->
           <ul class="catalog__cards cards">
+
+            {% for  project in catalog  %}
             <li class="catalog__cards-item cards__item">
               <!-- Карточка товара по БЭМ -->
               <article class="catalog__card card">
@@ -21,20 +23,20 @@
                 <img
                   width="669"
                   height="509"
-                  src="../source/images/a-17.jpg"
+                  src="{% static project.image %}"
                   alt="a-17"
                   class="card__image"
                 />
                 <!-- Информация о количестве этажей -->
-                <span class="card__floor-information">Одноэтажные</span>
+                <span class="card__floor-information">{{project.floor}}</span>
                 <!-- Главная информация о товаре -->
                 <div class="card__information">
-                  <h2 class="card__title">A-17</h2>
-                  <p class="card__price">40 000₽</p>
+                  <h2 class="card__title">{{project.index}}</h2>
+                  <p class="card__price">{{project.price}}</p>
                 </div>
                 <!-- Описание товара -->
                 <p class="card__description">
-                  Габариты: 23,2 х 11,8 Площадь: 263,68 м²
+                  {{project.description}}
                 </p>
                 <!-- Кнопки -->
                 <div class="card__actions">
@@ -42,7 +44,7 @@
                     <img
                       width="30"
                       height="28"
-                      src="../source/icons/buy.svg"
+                      src="{% static "source/icons/buy.svg" %}"
                       alt="buy"
                     />
                   </button>
@@ -55,47 +57,8 @@
                 </div>
               </article>
             </li>
-            <li class="catalog__cards-item cards__item">
-              <!-- Карточка товара по БЭМ -->
-              <article class="catalog__card card">
-                <!-- Фото товара -->
-                <img
-                  width="669"
-                  height="509"
-                  src="../source/images/a-110.jpg"
-                  alt="a-110"
-                  class="card__image"
-                />
-                <!-- Информация о количестве этажей -->
-                <span class="card__floor-information">Одноэтажные</span>
-                <!-- Главная информация о товаре -->
-                <div class="card__information">
-                  <h2 class="card__title">A-110</h2>
-                  <p class="card__price">40 000₽</p>
-                </div>
-                <!-- Описание товара -->
-                <p class="card__description">
-                  Габариты: 14,8 х 17,3 Площадь: 228.27 м²
-                </p>
-                <!-- Кнопки -->
-                <div class="card__actions">
-                  <button
-                    width="30"
-                    height="28"
-                    type="button"
-                    class="card__button button button-buy"
-                  >
-                    <img src="../source/icons/buy.svg" alt="buy" />
-                  </button>
-                  <button
-                    type="button"
-                    class="card__button button button-details button--accent"
-                  >
-                    Подробнее
-                  </button>
-                </div>
-              </article>
-            </li>
+            {% endfor %}
+
           </ul>
           <!-- Фильтр 2 -->
           <ul class="catalog__filter">
@@ -105,76 +68,6 @@
           </ul>
           <!-- Каталог товаров для с фильтром 2 -->
           <ul class="catalog__cards cards">
-            <li class="catalog__cards-item cards__item">
-              <!-- Карточка товара по БЭМ -->
-              <article class="catalog__card card">
-                <!-- Фото товара -->
-                <img
-                  width="669"
-                  height="509"
-                  src="../source/images/b-22.jpg"
-                  alt="b-22"
-                  class="card__image"
-                />
-                <!-- Информация о количестве этажей -->
-                <span class="card__floor-information">Двухэтажные</span>
-                <!-- Главная информация о товаре -->
-                <div class="card__information">
-                  <h2 class="card__title">B-22</h2>
-                  <p class="card__price">40 000₽</p>
-                </div>
-                <!-- Описание товара -->
-                <p class="card__description">Площадь: от 250 м²</p>
-                <!-- Кнопки -->
-                <div class="card__actions">
-                  <button type="button" class="card__button button button-buy">
-                    <img src="../source/icons/buy.svg" alt="buy" />
-                  </button>
-                  <button
-                    type="button"
-                    class="card__button button button-details button--accent"
-                  >
-                    Подробнее
-                  </button>
-                </div>
-              </article>
-            </li>
-            <li class="catalog__cards-item cards__item">
-              <!-- Карточка товара по БЭМ -->
-              <article class="catalog__card card">
-                <!-- Фото товара -->
-                <img
-                  width="669"
-                  height="509"
-                  src="../source/images/b-109.jpg"
-                  alt="b-109"
-                  class="card__image"
-                />
-                <!-- Информация о количестве этажей -->
-                <span class="card__floor-information">Двухэтажные</span>
-                <!-- Главная информация о товаре -->
-                <div class="card__information">
-                  <h2 class="card__title">B-109</h2>
-                  <p class="card__price">40 000₽</p>
-                </div>
-                <!-- Описание товара -->
-                <p class="card__description">
-                  Площадь : 449,22 м² Габариты: 16,7 х 19,5
-                </p>
-                <!-- Кнопки -->
-                <div class="card__actions">
-                  <button type="button" class="card__button button button-buy">
-                    <img src="../source/icons/buy.svg" alt="buy" />
-                  </button>
-                  <button
-                    type="button"
-                    class="card__button button button-details button--accent"
-                  >
-                    Подробнее
-                  </button>
-                </div>
-              </article>
-            </li>
           </ul>
           <!-- Фильтр 3 -->
           <ul class="catalog__filter">
@@ -184,76 +77,6 @@
           </ul>
           <!-- Каталог товаров для с фильтром 3 -->
           <ul class="catalog__cards cards">
-            <li class="catalog__cards-item cards__item">
-              <!-- Карточка товара по БЭМ -->
-              <article class="catalog__card card">
-                <!-- Фото товара -->
-                <img
-                  width="669"
-                  height="509"
-                  src="../source/images/c-115.jpg"
-                  alt="c-116"
-                  class="card__image"
-                />
-                <!-- Информация о количестве этажей -->
-                <span class="card__floor-information">Трехэтажные</span>
-                <!-- Главная информация о товаре -->
-                <div class="card__information">
-                  <h2 class="card__title">C-116</h2>
-                  <p class="card__price">40 000₽</p>
-                </div>
-                <!-- Описание товара -->
-                <p class="card__description">Площадь: от 250 м²</p>
-                <!-- Кнопки -->
-                <div class="card__actions">
-                  <button type="button" class="card__button button button-buy">
-                    <img src="../source/icons/buy.svg" alt="buy" />
-                  </button>
-                  <button
-                    type="button"
-                    class="card__button button button-details button--accent"
-                  >
-                    Подробнее
-                  </button>
-                </div>
-              </article>
-            </li>
-            <li class="catalog__cards-item cards__item">
-              <!-- Карточка товара по БЭМ -->
-              <article class="catalog__card card">
-                <!-- Фото товара -->
-                <img
-                  width="669"
-                  height="509"
-                  src="../source/images/c-116.jpg"
-                  alt="c-115"
-                  class="card__image"
-                />
-                <!-- Информация о количестве этажей -->
-                <span class="card__floor-information">Трехэтажные</span>
-                <!-- Главная информация о товаре -->
-                <div class="card__information">
-                  <h2 class="card__title">С-115</h2>
-                  <p class="card__price">40 000₽</p>
-                </div>
-                <!-- Описание товара -->
-                <p class="card__description">
-                  Габариты: 18,7 х 15,0 Площадь: 426 м²
-                </p>
-                <!-- Кнопки -->
-                <div class="card__actions">
-                  <button type="button" class="card__button button button-buy">
-                    <img src="../source/icons/buy.svg" alt="buy" />
-                  </button>
-                  <button
-                    type="button"
-                    class="card__button button button-details button--accent"
-                  >
-                    Подробнее
-                  </button>
-                </div>
-              </article>
-            </li>
           </ul>
           <!-- <div class="catalog__look-more-wrapper">
             <a href="/" class="catalog__look-more-text"
