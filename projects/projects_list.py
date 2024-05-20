@@ -41,3 +41,33 @@ projects = [
      "description" : "Габариты: 18,7 х 15,0 Площадь: 426 м²",
     },
 ]
+
+
+"""
+Class project:
+
+	index = B-113
+	images = [link,link]
+	foundation = (фундамент)
+	wall material = (материал стен)
+	overlap = {перекрытие)
+	type_of_roof = (тип кровли)
+	roofing material = (кровельн материал)
+	exterior decoration = (наружная отделка)
+	floors = этажность
+	dimensions = габариты
+	the_area = площадь дома
+	the_cost_of _construction = стоимость строительства
+
+Class composition_project
+	index = B-113
+	architectural project = архитектурный проект
+	preliminary design = эскизный проект
+	3D visualization = 3д виулзция
+	3d model = 3д модель
+	the foundation is monolithic = фундамент монолитный
+	construction section = конструктивный раздел
+	construction estimates = смета на строительство 
+	full price = полный проект
+
+"""
