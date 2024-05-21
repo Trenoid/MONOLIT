@@ -70,4 +70,7 @@ Class composition_project
 	construction estimates = смета на строительство 
 	full price = полный проект
 
+Class category
+    floors = этажность
+
 """
