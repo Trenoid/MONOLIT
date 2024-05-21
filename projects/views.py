@@ -1,9 +1,11 @@
 from django.shortcuts import render
-
+from projects.models import Categories
 
 def catalog(request):
+    categories = Categories.objects.all()
     context = {
         "title": "Каталог проектов",
+        "categories" : categories,
         "catalog": [
             {
                 "image": "source/images/a-17.jpg",

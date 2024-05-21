@@ -1,9 +1,12 @@
 from unicodedata import category
 from django.db import models
+from traitlets import default
 
 class Categories(models.Model):
-    floor  =   models.CharField(max_length=150,unique=True, verbose_name= "Этажность")
-    slug = models.SlugField(max_length=200,unique=True,blank=True,null = True, verbose_name="URL")
+    floor  =   models.CharField(max_length= 230,unique=True, verbose_name= "Этажность")
+    slug = models.SlugField(max_length=230,unique=True,blank=True,null = True, verbose_name="URL")
+    the_area_filter = models.PositiveIntegerField(default = 0,verbose_name="Начниается от скольки метров в квадрате")
+    price_filter = models.DecimalField(default=0,max_digits = 15,decimal_places=0, verbose_name="Начиная от какой суммы")
 
     class Meta:
         db_table = "category"
@@ -11,25 +14,25 @@ class Categories(models.Model):
         verbose_name_plural = "Категории"
 
     def __str__(self) -> str:
-        return self.floor
+        return f"{self.floor}"
 
 
 class Projects(models.Model):
     name = models.CharField(max_length=150,unique=True, verbose_name= "Название")
     slug = models.SlugField(max_length=200,unique=True,blank=True,null = True, verbose_name="URL")
-    price_project = models.DecimalField(default=40000.00,max_digits=10,decimal_places=2,verbose_name="Цена проекта")
+    price_project = models.DecimalField(default=39900,max_digits=10,decimal_places=2,verbose_name="Цена проекта")
     image = models.ImageField(upload_to="projects_images",blank=True,null=True,verbose_name="Изображение")
-    discount = models.DecimalField(default=40000.00,max_digits=10,decimal_places=2,verbose_name="Скидка в %")
+    discount = models.DecimalField(default=0,max_digits=10,decimal_places=2,verbose_name="Скидка в %")
     floor = models.ForeignKey(to = Categories,on_delete=models.PROTECT,verbose_name="Этажность")
 
     foundation = models.CharField(max_length=10000,verbose_name= "Фундамент")
     wall_material = models.CharField(max_length=10000, verbose_name="Материал стен")
-    overlap = models.CharField(max_length=10000, verbose_name="Покрытие стен")
+    overlap = models.CharField(max_length=10000, verbose_name="Перекрытие")
     tupe_of_roof = models.CharField(max_length=10000,verbose_name="Тип кровли")
     roofing_material = models.CharField(max_length=10000,verbose_name="Кровельный материал")
     exterior_decoration = models.CharField(max_length=10000,verbose_name="Наружная отделка")
     dimension = models.CharField(max_length=10000,verbose_name="Габариты")
-    the_area = models.CharField(max_length=10000,verbose_name="Площадь")
+    the_area = models.PositiveIntegerField(default = 0, verbose_name="Площадь")
     the_cost_of_construction = models.DecimalField(default= 0.00, max_digits=20,decimal_places=2,verbose_name="Стоимость строительства")
 
     price_arhitectural_project = models.DecimalField(default = 16000, max_digits = 7, decimal_places = 2, verbose_name = "Цена Архитектурный проект")
