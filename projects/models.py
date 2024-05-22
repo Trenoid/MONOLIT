@@ -20,7 +20,7 @@ class Categories(models.Model):
 class Projects(models.Model):
     name = models.CharField(max_length=150,unique=True, verbose_name= "Название")
     slug = models.SlugField(max_length=200,unique=True,blank=True,null = True, verbose_name="URL")
-    price_project = models.DecimalField(default=39900,max_digits=10,decimal_places=2,verbose_name="Цена проекта")
+    price_project = models.DecimalField(default=39900,max_digits=10,decimal_places=0,verbose_name="Цена проекта")
     image = models.ImageField(upload_to="projects_images",blank=True,null=True,verbose_name="Изображение")
     discount = models.DecimalField(default=0,max_digits=10,decimal_places=2,verbose_name="Скидка в %")
     floor = models.ForeignKey(to = Categories,on_delete=models.PROTECT,verbose_name="Этажность")

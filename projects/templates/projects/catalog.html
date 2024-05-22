@@ -26,7 +26,11 @@
                 <img
                   width="669"
                   height="400"
-                  src="{% static project.image %}"
+                  {% if project.image %}
+                  src="{{project.image.url}}"
+                  {% else %}
+                  src="{% static "source/images/404_not_found.jpg"%}"
+                  {% endif %}
                   alt="a-17"
                   class="card__image"
                 />
@@ -34,12 +38,12 @@
                 <span class="card__floor-information">{{project.floor}}</span>
                 <!-- Главная информация о товаре -->
                 <div class="card__information">
-                  <h2 class="card__title">{{project.index}}</h2>
-                  <p class="card__price">{{project.price}}</p>
+                  <h2 class="card__title">{{project.name}}</h2>
+                  <p class="card__price">{{project.price_project}}</p>
                 </div>
                 <!-- Описание товара -->
                 <p class="card__description">
-                  {{project.description}}
+                  Габариты: {{project.dimension}} &nbsp;&nbsp; Площадь: {{project.the_area}}м²
                 </p>
                 <!-- Кнопки -->
                 <div class="card__actions">
