@@ -16,6 +16,13 @@ class Categories(models.Model):
     def __str__(self) -> str:
         return f"{self.floor}"
 
+    def format_number(self, value):
+        # Форматируем число с пробелами каждые три цифры
+        return '{:,.0f}'.format(value).replace(',', ' ')
+    
+    def sell_price(self):
+        return self.format_number(self.price_filter)
+
 
 class Projects(models.Model):
     name = models.CharField(max_length=150,unique=True, verbose_name= "Название")
@@ -54,12 +61,23 @@ class Projects(models.Model):
     def __str__(self) -> str:
         return self.name
     
-
+    def format_number(self, value):
+        # Форматируем число с пробелами каждые три цифры
+        return '{:,.0f}'.format(value).replace(',', ' ')
+    
     def sell_price_project(self):
         if self.discount:
-            return round(self.price_project - self.price_project*self.discount/100,2)
+            discounted_price = round(self.price_project - self.price_project * self.discount / 100, 2 )
+        else:
+            discounted_price = self.price_project
         
-        return self.price_project
+        return self.format_number(discounted_price)
+
+    #def sell_price_project(self):
+    #    if self.discount:
+    #        return round(self.price_project - self.price_project*self.discount/100,2)
+    #    
+    #    return self.price_project
     
 
     def sell_full_price(self):

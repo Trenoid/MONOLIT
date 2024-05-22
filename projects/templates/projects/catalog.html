@@ -16,7 +16,64 @@
           <ul class="catalog__filter">
             <li class="catalog__filter-item">{{category.floor}} этажные</li>
             <li class="catalog__filter-item">от {{category.the_area_filter}}м²</li>
-            <li class="catalog__filter-item">от {{category.price_filter}}</li>
+            <li class="catalog__filter-item">от {{category.sell_price}}</li>
+          </ul>
+          <!-- Каталог товаров для с фильтром 1 -->
+          <ul class="catalog__cards cards">
+
+            {% for  project in catalog  %}
+            <li class="catalog__cards-item cards__item">
+              <!-- Карточка товара по БЭМ -->
+              <article class="catalog__card card">
+                <!-- Фото товара -->
+                <img
+                  width="669"
+                  height="400"
+                  {% if project.image %}
+                  src="{{project.image.url}}"
+                  {% else %}
+                  src="{% static "source/images/404_not_found.jpg"%}"
+                  {% endif %}
+                  alt="Изображение проекта Дома"
+                  class="card__image"
+                />
+                <!-- Информация о количестве этажей -->
+                <span class="card__floor-information">{{project.floor}}</span>
+                <!-- Главная информация о товаре -->
+                <div class="card__information">
+                  <h2 class="card__title">{{project.name}}</h2>
+                  {% if project.discount %}
+                    <p calss = "card__price"><s> {{project.price_project}} </s></p>
+                    <p class="card__price" color = "#fa8e47" >{{project.sell_price_project}}</p>
+                  {% else %}
+                    <p class="card__price">{{project.sell_price_project}}</p>
+                  {% endif %}
+                </div>
+                <!-- Описание товара -->
+                <p class="card__description">
+                  Габариты: {{project.dimension}} &nbsp;&nbsp; Площадь: {{project.the_area}}м²
+                </p>
+                <!-- Кнопки -->
+                <div class="card__actions">
+                  <button type="button" class="card__button button button-buy">
+                    <img
+                      width="30"
+                      height="28"
+                      src="{% static "source/icons/buy.svg" %}"
+                      alt="buy"
+                    />
+                  </button>
+                  <button
+                    type="button"
+                    class="card__button button button-details button--accent"
+                  >
+                    Подробнее
+                  </button>
+                </div>
+              </article>
+            </li>
+            {% endfor %}
+
           </ul>
           {% endfor %}
 
