@@ -50,5 +50,20 @@ class Projects(models.Model):
         verbose_name = "Проект"
         verbose_name_plural = "Проекты"
 
+
     def __str__(self) -> str:
         return self.name
+    
+
+    def sell_price_project(self):
+        if self.discount:
+            return round(self.price_project - self.price_project*self.discount/100,2)
+        
+        return self.price_project
+    
+
+    def sell_full_price(self):
+        if self.discount:
+            return round(self.full_price - self.full_price*self.discount/100,2)
+        
+        return self.full_price

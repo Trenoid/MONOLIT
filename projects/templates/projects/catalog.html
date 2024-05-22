@@ -1,5 +1,6 @@
 {% extends "main/base.html" %}
 {% load static %}
+{% load categories_tag %}
 
 {% block content %}
       <!-- Начало: Секция каталог товаров -->
@@ -10,11 +11,15 @@
           <!-- {% for cetegory in categories  %}{% endfor %} -->
           
           <!-- Фильтр 1 -->
+          {%tag_categories as categories%}
+          {% for category in categories %}
           <ul class="catalog__filter">
-            <li class="catalog__filter-item">1 этажные</li>
-            <li class="catalog__filter-item">от 150м²</li>
-            <li class="catalog__filter-item">от 5 250 000</li>
+            <li class="catalog__filter-item">{{category.floor}} этажные</li>
+            <li class="catalog__filter-item">от {{category.the_area_filter}}м²</li>
+            <li class="catalog__filter-item">от {{category.price_filter}}</li>
           </ul>
+          {% endfor %}
+
           <!-- Каталог товаров для с фильтром 1 -->
           <ul class="catalog__cards cards">
 
@@ -31,7 +36,7 @@
                   {% else %}
                   src="{% static "source/images/404_not_found.jpg"%}"
                   {% endif %}
-                  alt="a-17"
+                  alt="Изображение проекта Дома"
                   class="card__image"
                 />
                 <!-- Информация о количестве этажей -->
@@ -39,7 +44,12 @@
                 <!-- Главная информация о товаре -->
                 <div class="card__information">
                   <h2 class="card__title">{{project.name}}</h2>
-                  <p class="card__price">{{project.price_project}}</p>
+                  {% if project.discount %}
+                    <p calss = "card__price"><s> {{project.price_project}} </s></p>
+                    <p class="card__price" color = "#fa8e47" >{{project.sell_price_project}}</p>
+                  {% else %}
+                    <p class="card__price">{{project.sell_price_project}}</p>
+                  {% endif %}
                 </div>
                 <!-- Описание товара -->
                 <p class="card__description">
