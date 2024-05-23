@@ -2,6 +2,7 @@
 {% load static %}
 {% load categories_tag %}
 
+
 {% block content %}
       <!-- Начало: Секция каталог товаров -->
       <section class="catalog">
@@ -43,7 +44,7 @@
                 <div class="card__information">
                   <h2 class="card__title">{{project.name}}</h2>
                   {% if project.discount %}
-                    <p calss = "card__price"><s> {{project.price_project}} </s></p>
+                    <p class = "card__price"><s> {{project.price_project}} </s></p>
                     <p class="card__price" color = "#fa8e47" >{{project.sell_price_project}}</p>
                   {% else %}
                     <p class="card__price">{{project.sell_price_project}}</p>
@@ -63,12 +64,14 @@
                       alt="buy"
                     />
                   </button>
-                  <button
-                    type="button"
+
+                  <a
+                    href="{% url "catalog:project" project.slug %}"
                     class="card__button button button-details button--accent"
                   >
                     Подробнее
                   </button>
+                </a>
                 </div>
               </article>
             </li>

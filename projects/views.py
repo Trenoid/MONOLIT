@@ -12,9 +12,12 @@ def catalog(request):
     return render(request, "projects/catalog.html", context)
 
 
-def project(request):
+def project(request,project_slug):
+
+    project = Projects.objects.get(slug = project_slug)
     context = {
         "title": "Проект",
+        "project" : project
     }
 
     return render(request, "projects/project.html", context)

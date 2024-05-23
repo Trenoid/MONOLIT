@@ -6,5 +6,6 @@ app_name = "projects"
 
 urlpatterns = [
     path('', catalog, name='index'),
-    path('project/', project, name='project'),
+    path('project/<slug:project_slug>/', project, name='project'),
+
 ]

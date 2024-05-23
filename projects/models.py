@@ -85,3 +85,36 @@ class Projects(models.Model):
             return round(self.full_price - self.full_price*self.discount/100,2)
         
         return self.full_price
+    
+
+    def sell_price_of_construction(self):
+        return self.format_number(self.the_cost_of_construction)
+    
+
+
+    def sell_price_arhitectural_project(self):
+        return self.format_number(self.price_arhitectural_project)
+    
+
+    def sell_price_pleliminary_design(self):
+        return self.format_number(self.price_pleliminary_design)
+    
+
+    def sell_price_3d_visualisation(self):
+        return self.format_number(self.price_3d_visualisation)
+    
+
+    def sell_price_3d_model(self):
+        return self.format_number(self.price_3d_model)
+    
+
+    def sell_price_the_foundation_monolithic(self):
+        return self.format_number(self.price_the_foundation_monolithic)
+    
+    
+    def sell_price_construction_section(self):
+        return self.format_number(self.price_construction_section)
+    
+    
+    def sell_price_construction_estimates(self):
+        return self.format_number(self.price_construction_estimates)
