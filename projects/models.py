@@ -13,6 +13,7 @@ class Categories(models.Model):
         verbose_name = "Категорию"
         verbose_name_plural = "Категории"
 
+
     def __str__(self) -> str:
         return f"{self.floor}"
 
@@ -22,6 +23,9 @@ class Categories(models.Model):
     
     def sell_price(self):
         return self.format_number(self.price_filter)
+    
+    def sell_projects(self):
+        return Projects.objects.filter(floor = self.floor).filter(the_area__gt = self.the_area_filter).filter(the_cost_of_construction__gt =self.price_filter )
 
 
 class Projects(models.Model):
@@ -56,6 +60,7 @@ class Projects(models.Model):
         db_table = "project"
         verbose_name = "Проект"
         verbose_name_plural = "Проекты"
+        ordering = ("id",)
 
 
     def __str__(self) -> str:

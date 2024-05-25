@@ -2291,3 +2291,69 @@ h4 {
   background-color: var(--color-white);
   box-shadow: var(--box-shadow-light);
 }/*# sourceMappingURL=main.css.map */
+
+
+
+.filter {
+  position: relative;
+  margin-top: 120px;
+  display: flex;
+  align-items: start;
+  gap: 10px;
+  color: var(--color-white);
+  font-size: clamp(16px, 1.3888888889vw, 20px);
+}
+@media (max-width: 767px) {
+  .filter {
+    margin-top: 150px;
+  }
+}
+.filter__form {
+  background-color: rgb(34, 23, 187);
+  padding-block: 20px;
+  padding-inline: 10px;
+}
+.filter__button-open {
+  padding: 10px;
+  color: var(--color-white);
+  border: none;
+}
+.filter__label {
+  white-space: nowrap;
+}
+.filter__fieldset {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 15px;
+}
+@media (max-width: 767px) {
+  .filter__fieldset {
+    flex-direction: column;
+    align-items: start;
+    row-gap: 15px;
+  }
+}
+.filter__input-wrapper {
+  display: flex;
+  column-gap: 15px;
+  row-gap: 10px;
+  flex-wrap: wrap;
+}
+@media (max-width: 767px) {
+  .filter__input-wrapper {
+    flex-direction: column;
+  }
+}
+.filter__input {
+  margin-right: 10px;
+}
+.filter__title {
+  margin-bottom: 20px;
+}
+.filter__button {
+  border: none;
+  color: var(--color-white);
+  padding: 5px;
+  height: 53px;
+}
