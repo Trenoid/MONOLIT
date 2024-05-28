@@ -6,141 +6,87 @@
 {% block content %}
 
 <section class="filter container">
-  <button
-    class="filter__button-open button--accent"
-    data-action="filter-open"
-  >
+  <button class="filter__button-open button--accent" data-action="filter-open">
     Фильтр
   </button>
-  <form id="filter-form" class="filter__form" action="" hidden>
+  <form id="filter-form" method="get" class="filter__form" action="{% url 'catalog:index' %}">
     <fieldset class="filter__fieldset">
-      <label class="filter__label" for="promotion">
-        <input
-          class="filter__input"
-          id="promotion"
-          name="promotion"
-          type="checkbox"
-        />Товары по акции</label
-      >
+      <label class="filter__label" for="flexCheckDefault">
+        <input class="filter__input" id="flexCheckDefault" name="on_sale" type="checkbox" value="on" {% if request.GET.on_sale == "on" %}checked{% endif %} />
+        Проекты по акции
+      </label>
       <legend class="filter__title">Сортировать:</legend>
       <div class="filter__input-wrapper">
-        <label class="filter__label" for="default">
-          <input class="filter__input" type="radio" name="default" />По
-          умолчанию</label
-        >
-        <label class="filter__label" for="cheap-expensive">
-          <input
-            class="filter__input"
-            type="radio"
-            name="cheap-expensive"
-          />От дешевых к дорогим</label
-        >
-
-        <label class="filter__label" for="expensive-cheap">
-          <input
-            class="filter__input"
-            type="radio"
-            name="expensive-cheap"
-          />От дорогих кдешевым</label
-        >
+        <label class="filter__label" for="flexRadioDefault1">
+          <input class="filter__input" type="radio" name="order_by" value="default" id="flexRadioDefault1"
+          {% if not request.GET.order_by or request.GET.order_by == 'default' %}checked{% endif %}  />
+          По умолчанию
+        </label>
+        <label class="filter__label" for="flexRadioDefault2">
+          <input class="filter__input" type="radio" name="order_by" value="the_cost_of_construction" id="flexRadioDefault2" 
+          {% if request.GET.order_by == "the_cost_of_construction" %}checked{% endif %}/>
+          От дешевых к дорогим
+        </label>
+        <label class="filter__label" for="flexRadioDefault3">
+          <input class="filter__input" type="radio" name="order_by" value="-the_cost_of_construction" id="flexRadioDefault3" 
+          {% if request.GET.order_by == "-the_cost_of_construction" %}checked{% endif %}/>
+          От дорогих к дешевым
+        </label>
       </div>
-
-      <button class="filter__button button--accent">Применить</button>
+      <button type="submit" class="filter__button button--accent">Применить</button>
     </fieldset>
   </form>
 </section>
 
 
 
+<section class="catalog">
+  <div class="catalog__inner container">
+    <h2 class="catalog__title">Проекты:</h2>
+    
+    {% for category in categories %}
+    <ul class="catalog__filter">
+      <li class="catalog__filter-item">{{ category.category.floor }} этажные</li>
+      <li class="catalog__filter-item">от {{ category.category.the_area_filter }}м²</li>
+      <li class="catalog__filter-item">от {{ category.category.sell_price }}</li>
+    </ul>
 
-      <!-- Начало: Секция каталог товаров -->
-      <section class="catalog">
-        <div class="catalog__inner container">
-          <h2 class="catalog__title">Проекты:</h2>
-
-          <!-- {% for cetegory in categories  %}{% endfor %} -->
-          
-          <!-- Фильтр  -->
-          {%tag_categories as categories%}
-          {% for category in categories %}
-          <ul class="catalog__filter">
-            <li class="catalog__filter-item">{{category.floor}} этажные</li>
-            <li class="catalog__filter-item">от {{category.the_area_filter}}м²</li>
-            <li class="catalog__filter-item">от {{category.sell_price}}</li>
-          </ul>
-          <!-- Каталог товаров для с фильтром n -->
-          <ul class="catalog__cards cards">
-
-            {% for  project in category.sell_projects  %}
-            <li class="catalog__cards-item cards__item">
-              <!-- Карточка товара по БЭМ -->
-              <article class="catalog__card card">
-                <!-- Фото товара -->
-                <img
-                  width="669"
-                  height="400"
-                  {% if project.image %}
-                  src="{{project.image.url}}"
-                  {% else %}
-                  src="{% static "source/images/404_not_found.jpg"%}"
-                  {% endif %}
-                  alt="Изображение проекта Дома"
-                  class="card__image"
-                />
-                <!-- Информация о количестве этажей -->
-                <span class="card__floor-information">{{project.floor}}</span>
-                <!-- Главная информация о товаре -->
-                <div class="card__information">
-                  <h2 class="card__title">{{project.name}}</h2>
-                  {% if project.discount %}
-                    <p class = "card__price"><s> {{project.price_project}} </s></p>
-                    <p class="card__price" color = "#fa8e47" >{{project.sell_price_project}}</p>
-                  {% else %}
-                    <p class="card__price">{{project.sell_price_project}}</p>
-                  {% endif %}
-                </div>
-                <!-- Описание товара -->
-                <p class="card__description">
-                  Габариты: {{project.dimension}} &nbsp;&nbsp; Площадь: {{project.the_area}}м²
-                </p>
-                <!-- Кнопки -->
-                <div class="card__actions">
-                  <button type="button" class="card__button button button-buy">
-                    <img
-                      width="30"
-                      height="28"
-                      src="{% static "source/icons/buy.svg" %}"
-                      alt="buy"
-                    />
-                  </button>
-
-                  <a
-                    href="{% url "catalog:project" project.slug %}"
-                    class="card__button button button-details button--accent"
-                  >
-                    Подробнее
-                  </button>
-                </a>
-                </div>
-              </article>
-            </li>
-            {% endfor %}
-
-          </ul>
-          {% endfor %}
-
- 
-
-          
-          <!-- <div class="catalog__look-more-wrapper">
-            <a href="/" class="catalog__look-more-text"
-              >Посмотреть больше проектов</a
-            >
-          </div> -->
-        </div>
-      </section>
-      <!-- Конец: Секция каталог товаров -->
-
+    <ul class="catalog__cards cards">
+      {% for project in category.projects %}
+      <li class="catalog__cards-item cards__item">
+        <article class="catalog__card card">
+          <img width="669" height="400"
+               {% if project.image %}
+               src="{{ project.image.url }}"
+               {% else %}
+               src="{% static "source/images/404_not_found.jpg" %}"
+               {% endif %}
+               alt="Изображение проекта Дома"
+               class="card__image" />
+          <span class="card__floor-information">{{ project.floor }}</span>
+          <div class="card__information">
+            <h2 class="card__title">{{ project.name }}</h2>
+            {% if project.discount %}
+            <p class="card__price"><s>{{ project.price_project }}</s></p>
+            <p class="card__price" style="color: #fa8e47;">{{ project.sell_price_project }}</p>
+            {% else %}
+            <p class="card__price">{{ project.sell_price_project }}</p>
+            {% endif %}
+          </div>
+          <p class="card__description">Габариты: {{ project.dimension }} &nbsp;&nbsp; Площадь: {{ project.the_area }}м²</p>
+          <div class="card__actions">
+            <button type="button" class="card__button button button-buy">
+              <img width="30" height="28" src="{% static "source/icons/buy.svg" %}" alt="buy" />
+            </button>
+            <a href="{% url "catalog:project" project.slug %}" class="card__button button button-details button--accent">Подробнее</a>
+          </div>
+        </article>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endfor %}
+  </div>
+</section>
 
 {% endblock content %}
 
