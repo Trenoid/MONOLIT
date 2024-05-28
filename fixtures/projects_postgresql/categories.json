@@ -1,0 +1,32 @@
+[
+    {
+        "model": "projects.categories",
+        "pk": 1,
+        "fields": {
+            "floor": "1",
+            "slug": "1-etaj",
+            "the_area_filter": 100,
+            "price_filter": "3250000"
+        }
+    },
+    {
+        "model": "projects.categories",
+        "pk": 2,
+        "fields": {
+            "floor": "2",
+            "slug": "2-etaj",
+            "the_area_filter": 200,
+            "price_filter": "5750000"
+        }
+    },
+    {
+        "model": "projects.categories",
+        "pk": 3,
+        "fields": {
+            "floor": "3",
+            "slug": "3-etaj",
+            "the_area_filter": 350,
+            "price_filter": "8000000"
+        }
+    }
+]
