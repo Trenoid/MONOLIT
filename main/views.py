@@ -1,11 +1,16 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from projects.models import Categories, Projects
 
-# Create your views here.
+from main.models import FAQ
 
 def index(request):
+
+    faqs = FAQ.objects.all()
+
     context = {
         'title' : 'Monolith',
+        'faqs' : faqs
     }
 
     return render(request,'main/index.html',context)
