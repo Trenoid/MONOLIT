@@ -12,3 +12,17 @@ class FAQ(models.Model):
         db_table = "questions"
         verbose_name = "Вопрос"
         verbose_name_plural = "Вопросы"
+
+
+class Contact_informations(models.Model):
+    instagramm = models.CharField(max_length=512,verbose_name="Инстаграмм")
+    vk = models.CharField(max_length=512,verbose_name="Вконтакте")
+    number = models.CharField(max_length=32, verbose_name = "Номер телефона")
+    mail_address = models.CharField(max_length=64, verbose_name="Почта")
+    telegramm = models.CharField(max_length=64, verbose_name="Почта")
+
+    mail_for_from = models.CharField(max_length=64, verbose_name="Почта для писем из формы")
+    
+    
+    def get_number(self):
+        return self.number

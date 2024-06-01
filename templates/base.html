@@ -53,7 +53,7 @@
                 <a href="{% url "main:services" %}" class="menu__link">Услуги</a>
               </li>
               <li class="menu__item">
-                <a href="./pages/account.html" class="menu__link">Аккаунт</a>
+                <a href="{% url "user:account" %}" class="menu__link">Аккаунт</a>
               </li>
             </ul>
           </nav>
@@ -172,7 +172,8 @@
 
     {% block content %}
     {% endblock content %}
-
+      {% if title == 'Восстановление' %}
+      {% else %}
       <!-- Подвал сайта (футер) -->
       <footer class="footer">
         <div class="footer__inner">
@@ -272,6 +273,7 @@
           </div>
         </div>
       </footer>
+      {% endif %}
     </div>
     <!-- Скрипты -->
     <script src="{% static "script.js" %}"></script>

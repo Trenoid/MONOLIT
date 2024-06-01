@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div class="wrapper">
+      <section class="recovery-section container">
+        <article class="recovery">
+          <div class="recovery__wrapper">
+            <div class="recovery__wrapper-top">
+              <h4>Выберите способ восстановления пароля</h4>
+            </div>
+            <div class="recovery__wrapper-bottom">
+              <form action="" class="recovery__form">
+                <div class="recovery__inputs">
+                  <div class="recovery__form-button">
+                    <input id="email" type="radio" name="radio" value="1" />
+                    <label for="email">E-mail</label>
+                  </div>
+
+                  <div class="recovery__form-button">
+                    <input id="phone" type="radio" name="radio" value="2" />
+                    <label for="phone">Номер телефона</label>
+                  </div>
+                </div>
+                <button
+                  class="recovery__button"
+                  type="button"
+                  id="recovery-type"
+                >
+                  Далее
+                </button>
+              </form>
+            </div>
+          </div>
+        </article>
+        <article class="recovery" id="recovery-email" hidden>
+          <div class="recovery__wrapper">
+            <div class="recovery__wrapper-top">
+              <h4>Введите адрес электронной почты для восстановления пароля</h4>
+            </div>
+            <div class="recovery__wrapper-bottom">
+              <input
+                type="text"
+                class="authorization__input recovery__input"
+                placeholder="E-mail"
+                required
+              />
+              <button class="recovery__button">Войти</button>
+            </div>
+          </div>
+        </article>
+        <article class="recovery" id="recovery-phone" hidden>
+          <div class="recovery__wrapper">
+            <div class="recovery__wrapper-top">
+              <h4>Введите номер телефона для восстановления пароля</h4>
+            </div>
+            <div class="recovery__wrapper-bottom">
+              <input
+                type="tel"
+                class="authorization__input recovery__input"
+                placeholder="+_(___)___-__-__"
+                required
+              />
+              <button class="recovery__button">Войти</button>
+            </div>
+          </div>
+        </article>
+        <arcticle class="recovery" id="code" hidden>
+          <div class="recovery__wrapper">
+            <div class="recovery__wrapper-top">
+              <h4>Введите код из сообщения:</h4>
+            </div>
+            <div class="recovery__wrapper-bottom">
+              <form class="recovery__form">
+                <div class="pin-code">
+                  <input
+                    class="recovery__input-number"
+                    type="number"
+                    maxlength="1"
+                    autofocus
+                  />
+                  <input
+                    class="recovery__input-number"
+                    type="number"
+                    maxlength="1"
+                  />
+                  <input
+                    class="recovery__input-number"
+                    type="number"
+                    maxlength="1"
+                  />
+                  <input
+                    class="recovery__input-number"
+                    type="number"
+                    maxlength="1"
+                  />
+                </div>
+
+                <button type="button" class="recovery__button-repeat">
+                  Отправить еще раз
+                </button>
+              </form>
+            </div>
+          </div>
+        </arcticle>
+        <article class="recovery" id="recovery-password" hidden>
+          <div class="recovery__wrapper">
+            <div class="recovery__wrapper-top">
+              <h4>Введите новый пароль:</h4>
+            </div>
+            <div class="recovery__wrapper-bottom">
+              <input
+                type="password"
+                class="authorization__input recovery__input"
+                placeholder="Пароль"
+                required
+              />
+              <input
+                type="password"
+                class="authorization__input recovery__input"
+                placeholder="Введите повторно"
+                required
+              />
+              <button class="recovery__button">Сохранить</button>
+            </div>
+          </div>
+        </article>
+      </section>
+    </div>
+    {% endblock content %}
+{% block js %}
+      <script src="{% static "recovery.js" %}"></script>
+{% endblock js %}
+      

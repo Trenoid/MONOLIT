@@ -1,0 +1,1 @@
+[{"model": "main.faq", "pk": 1, "fields": {"question": "Вопрос первый", "answer": "Ответ на первый вопрос"}}, {"model": "main.faq", "pk": 2, "fields": {"question": "Вопрос 2", "answer": "Ответ на вопрос 2"}}, {"model": "main.faq", "pk": 3, "fields": {"question": "Вопрос 3", "answer": "Ответ на вопрос 3"}}]
