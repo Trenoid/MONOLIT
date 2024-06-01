@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /**
-  Нормализация AAAAAAA блочной модели
+  Нормализация блочной модели
  */
 *,
 *::before,
@@ -563,6 +563,10 @@ h4 {
   .main-page__button:first-child {
     max-width: 250px;
   }
+}
+
+.button-white {
+  background-color: white;
 }
 
 .catalog {
@@ -1284,6 +1288,9 @@ h4 {
   padding-top: 35px;
   text-align: center;
 }
+.account__progress-image {
+  background-color: transparent;
+}
 .account__status-title {
   margin-inline: auto;
   max-width: 175px;
@@ -1401,12 +1408,10 @@ h4 {
   }
 }
 .account__progress-bottom {
+  background-color: transparent;
+  border-radius: 60%;
   display: flex;
   justify-content: center;
-  color: var(--color-accent);
-}
-.account__progress-bottom > svg {
-  fill: currentColor;
 }
 .account__promo {
   padding-block: 27px;
@@ -1902,6 +1907,14 @@ h4 {
 }
 .authorization__button-registration {
   padding-block: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.authorization__button-entrance {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .authorization__button--active {
   color: var(--color-white);

@@ -8,7 +8,7 @@ def login(request):
         "login_method" : "login",
     }
 
-    return render(request, "users/authorization.html", context)
+    return render(request, "users/authorization_login.html", context)
 
 
 def registration(request):
@@ -17,7 +17,7 @@ def registration(request):
         "login_method" : "register",
 
     }
-    return render(request, "users/authorization.html", context)
+    return render(request, "users/authorization_register.html", context)
 
 
 def account(request):
