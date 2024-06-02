@@ -31,10 +31,41 @@
               <!-- ФОРМА ДЛЯ РЕГИСТРАЦИИ -->
               <form action="{% url "user:login" %}" method= "post" class="authorization__form">
                 {% csrf_token %}
-                {{form}}
+                {% if form.non_field_errors %}
+                <p>{{form.non_field_errors}}</p>
+                {% endif %}
+                <!-- ПОЛЕ НОМЕР ТЕЛЕФОНА -->
+                <input
+                id = "id_username"
+                type="text"
+                class="authorization__input"
+                value = "{% if form.username.value %}{{form.username.value}}{% endif %}"
+                name = "username"
+                placeholder="Номер телефона или e-mail"
+                required
+              />
+              <!-- ПОЛЕ - ПАРОЛЬ -->
+              <input
+                id = "id_password"
+                type="password"
+                class="authorization__input"
+                name = "password"
+                placeholder="Пароль"
+                required
+              />
+
+
+
+
+                {% comment %} <!-- ПОЛЕ НОМЕР ТЕЛЕФОНА -->
+                {{form.username}}
+                  <!-- ПОЛЕ - ПАРОЛЬ -->
+                  {{form.password}} {% endcomment %}
+
                 {% comment %}
                   <!-- ПОЛЕ НОМЕР ТЕЛЕФОНА -->
                   <input
+                    id = "username"
                     type="text"
                     class="authorization__input"
                     placeholder="Номер телефона или e-mail"
@@ -42,12 +73,14 @@
                   />
                   <!-- ПОЛЕ - ПАРОЛЬ -->
                   <input
+                    id = "password"
                     type="password"
                     class="authorization__input"
                     placeholder="Пароль"
                     required
                   />
                   {% endcomment %}
+
                   <!-- Кнопка ВОЙТИ -->
                   <button class="authorization__button">Войти</button>
   
