@@ -29,28 +29,33 @@
             </div>
             <div class="authorization__wrapper-bottom">
               <!-- ФОРМА ДЛЯ РЕГИСТРАЦИИ -->
-              <form action="" class="authorization__form">
-                <!-- ПОЛЕ НОМЕР ТЕЛЕФОНА -->
-                <input
-                  type="text"
-                  class="authorization__input"
-                  placeholder="Номер телефона или e-mail"
-                  required
-                />
-                <!-- ПОЛЕ - ПАРОЛЬ -->
-                <input
-                  type="password"
-                  class="authorization__input"
-                  placeholder="Пароль"
-                  required
-                />
-                <!-- Кнопка ВОЙТИ -->
-                <button class="authorization__button">Войти</button>
-
-                <!-- Кнопка для ВОССТАНОВЛЕНИЯ ПАРОЛЯ -->
-                <a href="{% url "user:recovery_account" %}" class="authorization__link"
-                  >Восстановить пароль</a
-                >
+              <form action="{% url "user:login" %}" method= "post" class="authorization__form">
+                {% csrf_token %}
+                {{form}}
+                {% comment %}
+                  <!-- ПОЛЕ НОМЕР ТЕЛЕФОНА -->
+                  <input
+                    type="text"
+                    class="authorization__input"
+                    placeholder="Номер телефона или e-mail"
+                    required
+                  />
+                  <!-- ПОЛЕ - ПАРОЛЬ -->
+                  <input
+                    type="password"
+                    class="authorization__input"
+                    placeholder="Пароль"
+                    required
+                  />
+                  {% endcomment %}
+                  <!-- Кнопка ВОЙТИ -->
+                  <button class="authorization__button">Войти</button>
+  
+                  <!-- Кнопка для ВОССТАНОВЛЕНИЯ ПАРОЛЯ -->
+                  <a href="{% url "user:recovery_account" %}" class="authorization__link"
+                    >Восстановить пароль</a
+                  >
+      
               </form>
               <!-- Конец Формы -->
             </div>
