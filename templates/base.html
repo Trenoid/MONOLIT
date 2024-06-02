@@ -159,8 +159,9 @@
             </ul>
           </nav>
           <!-- Кнопка для перехода в корзину (на компьютере) -->
+          {% if user.is_authenticated %}
           <a
-            href="./pages/basket.html"
+            href="{% url "carts:cart" %}"
             class="header__button button hidden-mobile"
             type="button"
           >
@@ -184,6 +185,9 @@
               />
             </svg>
           </a>
+          {% else %}
+          <a></a>
+          {% endif %}
         </div>
       </header>
       <!-- Конец шапки -->
