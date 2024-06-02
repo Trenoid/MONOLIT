@@ -52,15 +52,27 @@
               <li class="menu__item">
                 <a href="{% url "main:services" %}" class="menu__link">Услуги</a>
               </li>
-              <li class="menu__item">
-                <a href="{% url "user:account" %}" class="menu__link">Аккаунт</a>
-              </li>
-              <li class="menu__item">
-                <a href="{% url "user:login" %}" class="menu__link">Войти</a>
-              </li>
-              <li class="menu__item">
-                <a href="{% url "admin:index" %}" class="menu__link">Админ-панель</a>
-              </li>
+              
+              {% if user.is_authenticated %}
+                <li class="menu__item">
+                  <a href="{% url "user:account" %}" class="menu__link">Аккаунт</a>
+                </li>
+                <li class="menu__item">
+                  <a href="{% url "user:logout" %}" class="menu__link">Выйти</a>
+                </li>
+                {% if user.is_admin or user.is_staff %}
+                  <li class="menu__item">
+                    <a href="{% url "admin:index" %}" class="menu__link">Админ-панель</a>
+                  </li>
+                {% endif %}
+              {% else %}
+                <li class="menu__item">
+                  <a href="{% url "user:login" %}" class="menu__link">Войти</a>
+                </li>
+              {% endif %}
+
+              
+
             </ul>
           </nav>
           <!-- Мобильное меню (на телефоне) -->
