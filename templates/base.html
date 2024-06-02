@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load custom_tags %}
 <!DOCTYPE html>
 <html lang="rus">
   <head>
@@ -213,27 +213,27 @@
                 <ul class="footer__list">
                   <li class="footer__list-item">Разделы</li>
                   <li class="footer__list-item">
-                    <a href="/" class="footer__list-link">Главная страница</a>
+                    <a href="{% url "main:index" %}" class="footer__list-link">Главная страница</a>
                   </li>
                   <li class="footer__list-item">
-                    <a href="../pages/catalog.html" class="footer__list-link"
+                    <a href="{% url "catalog:index" %}" class="footer__list-link"
                       >Каталог проектов</a
                     >
                   </li>
                   <li class="footer__list-item">
                     <a
-                      href="../pages/about-company.html"
+                      href="{% url "main:about" %}"
                       class="footer__list-link"
                       >О компании</a
                     >
                   </li>
                   <li class="footer__list-item">
-                    <a href="../pages/basket.html" class="footer__list-link"
+                    <a href="{% url "main:index" %}" class="footer__list-link"
                       >Корзина</a
                     >
                   </li>
                   <li class="footer__list-item">
-                    <a href="../pages/services.html" class="footer__list-link"
+                    <a href="{% url "main:services" %}" class="footer__list-link"
                       >Услуги</a
                     >
                   </li>
@@ -244,21 +244,21 @@
                   <li class="footer__list-item">Как с нами связаться</li>
                   <li class="footer__list-item">
                     <a href="#" class="footer__list-link" title="Phone-number"
-                      >+7 (967) 770 66 88</a
+                      >{%get_contact_info_number%}</a
                     >
                   </li>
                   <li class="footer__list-item">
                     <a href="#" class="footer__list-link" title="Gmail"
-                      >m550ae@gmail.com</a
+                      >{%get_contact_info_mail_address%}</a
                     >
                   </li>
                   <li class="footer__list-item">
-                    <a href="#" class="footer__list-link" title="Vkontakte"
+                    <a href="{% get_contact_info_vk %}" class="footer__list-link" title="Vkontakte"
                       >Вконтакте</a
                     >
                   </li>
                   <li class="footer__list-item">
-                    <a href="#" class="footer__list-link" title="Instagram"
+                    <a href="{%get_contact_info_inst%}" class="footer__list-link" title="Instagram"
                       >Instagram</a
                     >
                   </li>
@@ -272,14 +272,14 @@
                 Copyright © 2023 Все права защищены
               </p>
               <div class="footer__links">
-                <a href="" class="footer__link">
+                <a href="{%get_contact_info_inst%}" class="footer__link">
                   <img
                     class="footer__link-icon"
                     src="{% static "source/icons/in-icon.svg" %}"
                     alt="in"
                   />
                 </a>
-                <a href="" class="footer__link">
+                <a href="{% get_contact_info_vk %}" class="footer__link">
                   <img
                     class="footer__link-icon"
                     src="{% static "source/icons/vk-icon.svg" %}"

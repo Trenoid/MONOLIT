@@ -1,0 +1,11 @@
+<!-- main/contact_info.html -->
+{% load custom_tags %}
+<div>
+    <p>Как с нами связаться</p>
+    <p>{{ contact_info.number }}</p>
+    <p>{{ contact_info.mail_address }}</p>
+    <p><a href="{{ contact_info.vk }}" target="_blank">Вконтакте</a></p>
+    <p><a href="{{ contact_info.instagramm }}" target="_blank">Instagram</a></p>
+</div>
+
+{% get_contact_info %}

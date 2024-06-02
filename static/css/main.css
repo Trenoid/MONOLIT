@@ -1366,6 +1366,7 @@ h4 {
   background-color: var(--color-accent);
   padding-block: 23px;
   padding-inline: 20px;
+  cursor: pointer;
 }
 .account__download-button > svg {
   fill: currentColor;
