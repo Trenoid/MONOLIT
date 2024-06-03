@@ -28,9 +28,11 @@
             placeholder="Промокод"
           />
           <!-- Кнопка - ОФОРМИТЬ ПОКУПКУ -->
+          {% if carts %}
           <a href="#" class="order-price__button button--accent">
             Оформить покупку
           </a>
+          {% endif %}
         </div>
       </div>
     </div>

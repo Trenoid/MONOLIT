@@ -10,7 +10,7 @@
               <span class="basket__item-price">{{cart.project.sell_price_project}}₽</span>
             </div>
             <!-- ССЫЛКА - УДАЛИТЬ -->
-            <a href="{% url "cart:cart_remove" 1 %}" class="basket__button-delete" type="button">
+            <a href="{% url "cart:cart_remove" cart.id %}" class="basket__button-delete" type="button">
               <svg
                 width="20.000000"
                 height="21.000000"
