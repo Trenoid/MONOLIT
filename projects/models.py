@@ -1,5 +1,6 @@
 from unicodedata import category
 from django.db import models
+from django.urls import reverse
 from traitlets import default
 
 class Categories(models.Model):
@@ -131,3 +132,8 @@ class Projects(models.Model):
     
     def sell_price_construction_estimates(self):
         return self.format_number(self.price_construction_estimates)
+    
+
+    def get_absolute_url(self):
+        return reverse("catalog:project", kwargs={"project_slug": self.slug})
+    

@@ -35,7 +35,10 @@ class Cart(models.Model):
     objects = CartQuerySet().as_manager()
     
     def __str__(self) -> str:
-        return f"Корзина {self.user.username} | Проект {self.project.name} | "
+        if self.user:
+            return f"Корзина {self.user.username} | Проект {self.project.name} | "
+        return f"Анонимная корзина | Проект {self.project.name} | "
+        
     
     
     def projects_price(self):
