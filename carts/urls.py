@@ -8,4 +8,7 @@ urlpatterns = [
     path('cart_add/<slug:project_slug>/', cart_add, name='cart_add'),
     path('cart_change/<slug:project_slug>/', cart_change, name='cart_change'),
     path('cart_remove/<int:cart_id>/', cart_remove, name='cart_remove'),
+    # path('cart_add/', cart_add, name='cart_add'),
+    # path('cart_change/<slug:project_slug>/', cart_change, name='cart_change'),
+    # path('cart_remove/<int:cart_id>/', cart_remove, name='cart_remove'),
 ]

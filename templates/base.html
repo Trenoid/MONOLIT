@@ -161,7 +161,7 @@
             </ul>
           </nav>
           <!-- Кнопка для перехода в корзину (на компьютере) -->
-          {% if user.is_authenticated %}
+          {% comment %} {% if user.is_authenticated %} {% endcomment %}
           <a
             href="{% url "user:users_cart" %}"
             class="header__button button hidden-mobile"
@@ -187,11 +187,11 @@
                 stroke-linecap="round"
               />
             </svg>
-            {{carts.total_quantity}}
+            <span id="goods-in-cart-count">{{carts.total_quantity}}</span>
           </a>
-          {% else %}
+          {% comment %} {% else %}
           <a></a>
-          {% endif %}
+          {% endif %} {% endcomment %}
         </div>
       </header>
       <!-- Конец шапки -->
@@ -302,7 +302,9 @@
       {% endif %}
     </div>
     <!-- Скрипты -->
-    <script src="{% static "script.js" %}"></script>
-    {% block js %}{% endblock js %}
+    <script src = "{% static "script.js" %}"></script>
+    <script src = "{% static "jquery-ajax.js" %}"></script>
+    {% block js %}
+    {% endblock js %}
   </body>
 </html>
