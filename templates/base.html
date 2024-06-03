@@ -161,7 +161,7 @@
           <!-- Кнопка для перехода в корзину (на компьютере) -->
           {% if user.is_authenticated %}
           <a
-            href="{% url "carts:cart" %}"
+            href="{% url "user:users_cart" %}"
             class="header__button button hidden-mobile"
             type="button"
           >

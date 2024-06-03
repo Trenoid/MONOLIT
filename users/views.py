@@ -82,3 +82,5 @@ def recovery_account(request):
     return redirect(reverse("main:index"))
 
 
+def users_cart(requset):
+    return render(requset,"users/user_cart.html")

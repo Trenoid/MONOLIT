@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<main class="basket-page">
+  <!-- Начало: Секция "Корзина" -->
+  <section class="basket container">
+    <h2 class="basket__title">Корзина</h2>
+    <div class="basket__inner">
+      <!-- Начало: Разметка "Корзина" -->
+      {% include "carts/cart.html" %}
+      <!-- Конец: Разметка "Корзина" -->
+      <div class="order-price">
+        <div class="order-price__wrapper">
+          <p class="order-price__title"><b>Сумма заказа</b></p>
+          <div class="order-price__row-amount">
+            <span class="order-price__amount">4 товара на сумму</span>
+            <span class="order-price__amount-price">40 000 ₽</span>
+          </div>
+          <div class="order-price__row-total">
+            <span class="order-price__total-title">Итого</span>
+            <span class="order-price__total-price"><b>40 000 ₽</b></span>
+          </div>
+          <input
+            type="text"
+            class="order-price__promo"
+            placeholder="Промокод"
+          />
+          <!-- Кнопка - ОФОРМИТЬ ПОКУПКУ -->
+          <a href="#" class="order-price__button button--accent">
+            Оформить покупку
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Конец: Секция "Корзина"  -->
+
+  <!-- Начало: Секция "Добавьте в корзину" -->
+  <section class="add-to-basket"></section>
+  <!-- Конец: Секция "Добавьте в корзину"  -->
+
+  <!-- Начало: Секция "Форма" -->
+  {% include "main/includes/included_form.html" %}
+  <!-- Конец: Секция "Форма"  -->
+</main>
+ 
+{% endblock content %}
