@@ -77,6 +77,14 @@ class Projects(models.Model):
             discounted_price = self.price_project
         
         return self.format_number(discounted_price)
+    
+    def no_format_sell_price_project(self):
+        if self.discount:
+            discounted_price = round(self.price_project - self.price_project * self.discount / 100, 2 )
+        else:
+            discounted_price = self.price_project
+        
+        return self.discounted_price
 
     #def sell_price_project(self):
     #    if self.discount:

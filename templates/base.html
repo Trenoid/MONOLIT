@@ -1,5 +1,7 @@
 {% load static %}
 {% load custom_tags %}
+{% load carts_tag %}
+{% user_carts request as carts%}
 <!DOCTYPE html>
 <html lang="rus">
   <head>
@@ -172,6 +174,7 @@
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               xmlns:xlink="http://www.w3.org/1999/xlink"
+              
             >
               <defs />
               <path
@@ -184,6 +187,7 @@
                 stroke-linecap="round"
               />
             </svg>
+            {{carts.total_quantity}}
           </a>
           {% else %}
           <a></a>

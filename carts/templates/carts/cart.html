@@ -1,10 +1,13 @@
 {% load static %}
+{% load carts_tag %}
+{% user_carts request as carts%}
       <ul class="basket__list">
+        {% for cart in carts  %}
         <li class="basket__list-item">
           <div class="basket__list-item-wrapper">
-            <p class="basket__item-title">Архитектурный проект</p>
+            <p class="basket__item-title">{{cart.project.name}}</p>
             <div class="basket__item-price-wrapper">
-              <span class="basket__item-price">16 000₽</span>
+              <span class="basket__item-price">{{cart.project.sell_price_project}}₽</span>
             </div>
             <!-- ССЫЛКА - УДАЛИТЬ -->
             <a href="{% url "cart:cart_remove" 1 %}" class="basket__button-delete" type="button">
@@ -28,90 +31,6 @@
             </a>
           </div>
         </li>
-
-        <li class="basket__list-item">
-          <div class="basket__list-item-wrapper">
-            <p class="basket__item-title">Эскизный проект</p>
-            <div class="basket__item-price-wrapper">
-              <span class="basket__item-price">9 000₽</span>
-            </div>
-            <a href="#" class="basket__button-delete" type="button">
-              <svg
-                width="20.000000"
-                height="21.000000"
-                viewBox="0 0 20 21"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  id="Vector"
-                  d="M0.79 19L18.75 1.14M0.83 1L18.79 18.85"
-                  stroke="#18181B"
-                  stroke-opacity="1.000000"
-                  stroke-width="2.000000"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </a>
-          </div>
-        </li>
-
-        <li class="basket__list-item">
-          <div class="basket__list-item-wrapper">
-            <p class="basket__item-title">3D модель</p>
-            <div class="basket__item-price-wrapper">
-              <span class="basket__item-price">9 000₽</span>
-            </div>
-            <!-- ССЫЛКА - УДАЛИТЬ -->
-            <a href="#" class="basket__button-delete" type="button">
-              <svg
-                width="20.000000"
-                height="21.000000"
-                viewBox="0 0 20 21"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  id="Vector"
-                  d="M0.79 19L18.75 1.14M0.83 1L18.79 18.85"
-                  stroke="#18181B"
-                  stroke-opacity="1.000000"
-                  stroke-width="2.000000"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </a>
-          </div>
-        </li>
-
-        <li class="basket__list-item">
-          <div class="basket__list-item-wrapper">
-            <p class="basket__item-title">Фундамент монолитный</p>
-            <div class="basket__item-price-wrapper">
-              <span class="basket__item-price">6 000₽</span>
-            </div>
-            <!-- ССЫЛКА - УДАЛИТЬ -->
-            <a href="#" class="basket__button-delete" type="button">
-              <svg
-                width="20.000000"
-                height="21.000000"
-                viewBox="0 0 20 21"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  id="Vector"
-                  d="M0.79 19L18.75 1.14M0.83 1L18.79 18.85"
-                  stroke="#18181B"
-                  stroke-opacity="1.000000"
-                  stroke-width="2.000000"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </a>
-          </div>
-        </li>
+        {% endfor %}
+        
       </ul>

@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
+{% load carts_tag %}
 {% block content %}
+{% user_carts request as carts%}
 <main class="basket-page">
   <!-- Начало: Секция "Корзина" -->
   <section class="basket container">
@@ -13,12 +15,12 @@
         <div class="order-price__wrapper">
           <p class="order-price__title"><b>Сумма заказа</b></p>
           <div class="order-price__row-amount">
-            <span class="order-price__amount">4 товара на сумму</span>
-            <span class="order-price__amount-price">40 000 ₽</span>
+            <span class="order-price__amount">{{carts.total_quantity}} товара на сумму</span>
+            <span class="order-price__amount-price">{{carts.total_price}}₽</span>
           </div>
           <div class="order-price__row-total">
             <span class="order-price__total-title">Итого</span>
-            <span class="order-price__total-price"><b>40 000 ₽</b></span>
+            <span class="order-price__total-price"><b>{{carts.total_price}} ₽</b></span>
           </div>
           <input
             type="text"
