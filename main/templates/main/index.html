@@ -14,18 +14,18 @@
               Получи проект частного дома и узнай стоимость его строительства
             </p>
             <div class="main-page__actions">
-              <button
-                type="button"
-                class="main-page__button button button-show button--accent"
-              >
-                Посмотреть готовые проекты
-              </button>
-              <button
-                type="button"
-                class="main-page__button button button-order"
-              >
-                Заказать индивидуальный проект
-              </button>
+              <a
+              href="{% url "catalog:index" %}"
+              class="main-page__button button button-show button--accent"
+            >
+              Посмотреть готовые проекты
+            </a>
+            <a
+              href="./pages/quiz.html"
+              class="main-page__button button button-order button-white"
+            >
+              Заказать индивидуальный проект
+            </a>
             </div>
           </div>
         </section>
@@ -284,18 +284,18 @@
               </article>
             </div>
             <div class="calculate-section__actions">
-              <button
-                type="button"
-                class="calculate-section__button button-price button--accent"
-              >
-                Узнать стоимость
-              </button>
-              <button
-                type="button"
-                class="calculate-section__button button-show"
-              >
-                Посмотреть готовые проекты
-              </button>
+              <a
+              href="{% url "carts:cart" %}"
+              class="calculate-section__button button-price button--accent"
+            >
+              Узнать стоимость
+            </a>
+            <a
+              href="{% url "catalog:index" %}"
+              class="calculate-section__button button-show"
+            >
+              Посмотреть готовые проекты
+            </a>
             </div>
           </div>
         </section>
@@ -387,77 +387,7 @@
         <!-- Конец: Секция "Часто задаваемые вопросы"  -->
 
         <!-- Начало: Секция "Форма" -->
-        <section class="form-section">
-          <div class="form-section__inner container">
-            <img
-              width="800"
-              height="800"
-              src="{% static "source/images/form-image.jpeg" %}"
-              alt=""
-              class="form-section__img"
-            />
-            <!-- Форма -->
-            <form action="" method="" class="form form__main-page">
-              <fieldset class="form__fieldset">
-                <legend class="form__legend">
-                  <h2 class="form__title">Остались вопросы?</h2>
-                </legend>
-                <p class="form__description">
-                  Оставьте ваш номер телефона и мы вам перезвоним!
-                </p>
-                <ul class="form__list">
-                  <li class="form__list-item">
-                    <label for="name" class="form__label"></label>
-                    <!-- Поле ИМЯ -->
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      class="form__input"
-                      placeholder="Имя"
-                      required
-                    />
-                  </li>
-                  <li class="form__list-item">
-                    <label for="phone-number" class="form__label"></label>
-                    <!-- Поле НОМЕР ТЕЛЕФОНА -->
-                    <input
-                      type="tel"
-                      id="phone-number"
-                      name="phone-number"
-                      class="form__input"
-                      placeholder="+ (   ) -- -- -- --"
-                      required
-                    />
-                  </li>
-                  <li class="form__list-item">
-                    <label for="city" class="form__label"></label>
-                    <!-- Поле ГОРОД -->
-                    <input
-                      type="text"
-                      id="city"
-                      name="city"
-                      class="form__input"
-                      placeholder="Город"
-                      required
-                    />
-                  </li>
-                </ul>
-                <!-- Кнопка отправить -->
-                <button
-                  type="submit"
-                  class="button button-submit button--accent form__button"
-                >
-                  Отправить
-                </button>
-                <p class="form__notification">
-                  Нажимая кнопку «отправить» вы соглашаетесь на обработку
-                  персональных данных
-                </p>
-              </fieldset>
-            </form>
-          </div>
-        </section>
+        {% include "main/includes/included_form.html" %}
         <!-- Конец: Секция "Форма"  -->
 
         <!-- Начало: Секция "Партнеры" -->

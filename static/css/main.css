@@ -2468,6 +2468,7 @@ input::-webkit-inner-spin-button {
 .basket__list-item-wrapper {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 .basket__item-title {
   font-size: clamp(16px, 1.25vw, 18px);
@@ -2480,6 +2481,7 @@ input::-webkit-inner-spin-button {
   margin-inline: 45px;
   border: 1px solid rgb(197, 197, 197);
   padding: 21px 15px;
+  width: 92px;
 }
 @media (max-width: 767px) {
   .basket__item-price-wrapper {
@@ -2548,6 +2550,9 @@ input::-webkit-inner-spin-button {
   margin-bottom: 20px;
 }
 .order-price__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: none;
   padding-block: 15px;
   color: var(--color-white);

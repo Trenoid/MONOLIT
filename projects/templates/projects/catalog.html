@@ -75,9 +75,10 @@
           </div>
           <p class="card__description">Габариты: {{ project.dimension }} &nbsp;&nbsp; Площадь: {{ project.the_area }}м²</p>
           <div class="card__actions">
-            <button type="button" class="card__button button button-buy">
+            <!-- ССЫЛКА - В КОРЗИНУ -->
+            <a href="#" class="card__button button button-buy">
               <img width="30" height="28" src="{% static "source/icons/buy.svg" %}" alt="buy" />
-            </button>
+            </a>
             <a href="{% url "catalog:project" project.slug %}" class="card__button button button-details button--accent">Подробнее</a>
           </div>
         </article>
