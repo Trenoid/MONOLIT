@@ -187,7 +187,9 @@
                 stroke-linecap="round"
               />
             </svg>
-            <span id="goods-in-cart-count">{{carts.total_quantity}}</span>
+            {% comment %}
+              <span id="goods-in-cart-count">{{carts.total_quantity}}</span>
+            {% endcomment %}
           </a>
           {% comment %} {% else %}
           <a></a>
