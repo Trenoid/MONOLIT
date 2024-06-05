@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from sqlalchemy import ForeignKey
 from projects.models import Projects
+from django.core.mail import send_mail
 
 class User(AbstractUser):
 
@@ -37,6 +39,9 @@ class User(AbstractUser):
     referal_code = models.CharField(max_length=30,blank=True,null=True,verbose_name="Реферальный код")
     referal_code_used = models.PositiveIntegerField(default=0, verbose_name= "Число использований реферального кода пользователя")
 
+
+    is_verified_email = models.BooleanField(default=False)
+
     class Meta:
         db_table = "user"
         verbose_name = "Пользователя"
@@ -46,7 +51,23 @@ class User(AbstractUser):
         return self.username
     
 
+class EmailVerification(models.Model):
+    code = models.UUIDField(unique=True)
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE, blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True)
+    expiration = models.DateTimeField( )
 
+    def __str__(self) -> str:
+        return f"EmailVerification object for{self.user}"
+
+    def send_verification_email(self):
+        send_mail(
+    "Subject here",
+    "Here is the message.",
+    "from@example.com",
+    [self.user.email],
+    fail_silently=False,
+        )
 
 
 
@@ -99,3 +120,7 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f"Проект {self.name} | Заказ № {self.order.pk}"
+    
+
+
+

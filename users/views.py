@@ -1,11 +1,116 @@
+from re import template
 from django.contrib.auth.decorators import login_required
 from django.contrib import auth, messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
+from django.views.generic.edit import CreateView
+from django.views.generic import FormView, TemplateView
+from django.contrib.auth import login as auth_login
+from django.contrib.messages.views import SuccessMessageMixin
 
 from users.forms import UserLoginForm, UserRegistrationForm
 from carts.models import Cart
+from common.views import TitleMixin
+
+
+
+class LoginView(TitleMixin,FormView):
+    template_name = 'users/authorization_login.html'
+    form_class = UserLoginForm
+    title = "Авторизация"
+
+    def form_valid(self, form):
+        username = form.cleaned_data['username']
+        password = form.cleaned_data['password']
+        user = auth.authenticate(username=username, password=password)
+
+        session_key = self.request.session.session_key
+
+        if user:
+            auth_login(self.request, user)
+            messages.success(self.request, f"{username} Вы вошли в аккаунт")
+
+            if session_key:
+                Cart.objects.filter(session_key=session_key).update(user=user)
+
+            redirect_page = self.request.POST.get("next", None)
+            if redirect_page and redirect_page != reverse("user:logout"):
+                return HttpResponseRedirect(redirect_page)
+
+            return HttpResponseRedirect(reverse("main:index"))
+
+        return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # context['title'] = 'Авторизация'
+        context['login_method'] = 'login'
+        return context
+
+
+class RegistrationView(CreateView, SuccessMessageMixin):
+    template_name = 'users/authorization_register.html'
+    form_class = UserRegistrationForm
+    #success_url = reverse_lazy("main:index")
+    success_message = "Вы успешно зарегестрировались"
+
+    def form_valid(self, form):
+        user = form.save()
+        session_key = self.request.session.session_key
+
+        auth_login(self.request, user)
+
+        if session_key:
+            Cart.objects.filter(session_key=session_key).update(user=user)
+
+        messages.success(self.request, f"{user.username} Вы успешно зарегистрированы и вошли в аккаунт")
+        return HttpResponseRedirect(self.get_success_url())
+
+    def get_success_url(self):
+        return reverse("main:index")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Регистрация'
+        context['login_method'] = 'register'
+        return context
+
+   
+
+
+
+def registration(request):
+    if request.method == "POST":
+        form = UserRegistrationForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+
+            session_key = request.session.session_key
+
+            user = form.instance
+            auth.login(request,user)
+
+            if session_key:
+                    Cart.objects.filter(session_key=session_key).update(user=user)
+
+            messages.success(request,f"{user.username} Вы успешно зарегестрированны и вошли в аккаунт")
+            return HttpResponseRedirect(reverse("main:index"))
+    else:
+        form = UserRegistrationForm() 
+
+
+    context = {
+        'title' : 'Регистрация',
+        "login_method" : "register",
+        "form" : form
+
+    }
+    return render(request, "users/authorization_register.html", context)
+
+
+
+
 
 def login(request):
     if request.method == "POST":
@@ -43,33 +148,15 @@ def login(request):
     return render(request, "users/authorization_login.html", context)
 
 
-def registration(request):
-    if request.method == "POST":
-        form = UserRegistrationForm(data=request.POST)
-        if form.is_valid():
-            form.save()
 
-            session_key = request.session.session_key
+class AccountView(TemplateView):
+    template_name = "users/account.html"
 
-            user = form.instance
-            auth.login(request,user)
-
-            if session_key:
-                    Cart.objects.filter(session_key=session_key).update(user=user)
-
-            messages.success(request,f"{user.username} Вы успешно зарегестрированны и вошли в аккаунт")
-            return HttpResponseRedirect(reverse("main:index"))
-    else:
-        form = UserRegistrationForm() 
-
-
-    context = {
-        'title' : 'Регистрация',
-        "login_method" : "register",
-        "form" : form
-
-    }
-    return render(request, "users/authorization_register.html", context)
+    def get_context_data(self, **kwargs):
+        context =  super(AccountView,self).get_context_data()
+        context['title'] = 'Личный кабинет'
+        return context
+    
 
 
 @login_required
