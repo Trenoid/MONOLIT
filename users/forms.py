@@ -45,3 +45,18 @@ class UserRegistrationForm(UserCreationForm):
     phone = forms.CharField()
     password1 = forms.CharField()
     password2 = forms.CharField()
+
+
+
+class CreateOrderForm(forms.Form):
+    promo = forms.CharField(required=False)
+    
+    # promo = forms.CharField(
+    #     widget=forms.TextInput(
+    #         attrs={
+    #             "class": "form-comtrol",
+    #             "placeholder" : "Введите промокод",
+    #         }
+    #     )
+
+    # )

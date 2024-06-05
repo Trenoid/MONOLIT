@@ -254,9 +254,9 @@
               <p class="structure__discr">Конструктивный раздел</p>
               <div class="structure__row">
                 <div class="structure__price">{{project.sell_price_construction_section}}₽</div>
-                <button data-add href="#" class="structure__button-bag">
+                <a data-add href="#" class="structure__button-bag">
                   <img src="{% static "source/icons/korzinka.svg" %}" alt="korzinka" />
-                </button>
+                </a>
                 <button
                   data-tooltip="open"
                   type="button"
@@ -299,9 +299,9 @@
                 {% else %}
                 <div class="structure__price">{{project.sell_price_project}}₽</div>
                 {% endif %}
-                <button data-add href="#" class="structure__button-bag">
+                <a data-add href="{% url "cart:cart_add" project.slug %}" class="structure__button-bag">
                   <img src="{% static "source/icons/korzinka.svg" %}" alt="korzinka" />
-                </button>
+                </a>
                 <button
                   data-tooltip="open"
                   type="button"

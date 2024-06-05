@@ -6,6 +6,7 @@ from django.urls import reverse
 
 from users.forms import UserLoginForm, UserRegistrationForm
 from carts.models import Cart
+
 def login(request):
     if request.method == "POST":
         form = UserLoginForm(data=request.POST)
@@ -100,3 +101,8 @@ def recovery_account(request):
 
 def users_cart(requset):
     return render(requset,"users/user_cart.html")
+
+
+@login_required
+def create_order(request):
+    pass
