@@ -82,14 +82,14 @@
 
 
             <!-- ССЫЛКА - В КОРЗИНУ -->
-            <a href="{% url "cart:cart_add" project.slug %}" class="card__button button button-buy" data-project-id = "{{project.id}}">
+            {% comment %} <a href="{% url "cart:cart_add" project.slug %}" class="card__button button button-buy" data-project-id = "{{project.id}}">
               <img width="30" height="28" src="{% static "source/icons/buy.svg" %}" alt="buy" />
-            </a>
+            </a> {% endcomment %}
 
 
-          <form action="{% url 'cart:cart_add' project_slug=project.slug %}" method="post" class="add-to-cart">
+          <form  action="{% url 'cart:cart_add' project_slug=project.slug %}" method="post" class="add-to-cart form-row">
             {% csrf_token %}
-            <button type="submit">Добавить в корзину</button>
+            <button class="card__button button button-buy" type="submit"><img width="30" height="28" src="{% static "source/icons/buy.svg" %}" alt="buy" /></button>
         </form>
 
             <a href="{% url "catalog:project" project.slug %}" class="card__button button button-details button--accent">Подробнее</a>
@@ -108,48 +108,8 @@
 {% block js %}
 <script src="{% static "filter.js" %}"></script>
 {% csrf_token %}
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
-<script>
-  $(document).ready(function() {
-    $('form.add-to-cart').on('submit', function(e) {
-        e.preventDefault();
-        var $form = $(this);
-        var url = $form.attr('action');
-        $.ajax({
-            type: 'POST',
-            url: url,
-            data: $form.serialize(),
-            success: function(response) {
-                if (response.added) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Успех',
-                        text: 'Проект добавлен в корзину',
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'OK'
-                    });
-                } else {
-                    Swal.fire({
-                        icon: 'info',
-                        title: 'Информация',
-                        text: 'Проект уже в корзине',
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'OK'
-                    });
-                }
-            },
-            error: function(response) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Ошибка',
-                    text: 'Произошла ошибка. Попробуйте снова.',
-                    confirmButtonColor: '#d33',
-                    confirmButtonText: 'OK'
-                });
-            }
-        });
-    });
-});
-</script>
+<script src="{% static "cart_add.js" %}"></script>
 {% endblock js %}

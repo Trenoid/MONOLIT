@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 {% load carts_tag %}
+{% block src %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+{% endblock src %}
+
 {% block content %}
 {% user_carts request as carts%}
 <main class="basket-page">
@@ -49,3 +53,14 @@
 </main>
  
 {% endblock content %}
+
+{% block js %}
+<script src="{% static "copy.js" %}"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src = "{% static "cart_del.js" %}">
+
+</script>
+{% endblock js %}

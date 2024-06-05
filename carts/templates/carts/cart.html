@@ -1,5 +1,6 @@
 {% load static %}
 {% load carts_tag %}
+
 {% user_carts request as carts%}
       <ul class="basket__list">
         {% for cart in carts  %}
@@ -10,7 +11,13 @@
               <span class="basket__item-price">{{cart.project.sell_price_project}}₽</span>
             </div>
             <!-- ССЫЛКА - УДАЛИТЬ -->
-            <a href="{% url "cart:cart_remove" cart.id %}" class="basket__button-delete" type="button">
+            {% comment %}
+              <a href="{% url "cart:cart_remove" cart.id %}" class="basket__button-delete" type="button">
+            {% endcomment %}
+            <form action="{% url 'cart:cart_remove' cart_id=cart.id %}" method="post" class="remove-from-cart">
+            
+                {% csrf_token %}
+                <button type="submit">
               <svg
                 width="20.000000"
                 height="21.000000"
@@ -28,9 +35,15 @@
                   stroke-linejoin="round"
                 />
               </svg>
-            </a>
+            </button>
+          </form>
+            {% comment %}
+              </a>
+            {% endcomment %}
           </div>
         </li>
         {% endfor %}
         
       </ul>
+
+

@@ -2574,3 +2574,9 @@ input::-webkit-inner-spin-button {
   background-color: var(--color-white);
   box-shadow: var(--box-shadow-light);
 }/*# sourceMappingURL=main.css.map */
+
+.form-row {
+  gap: 15px;
+  display: grid;
+  grid-template-columns: minmax(100px,125px) minmax(100px,1fr);
+}

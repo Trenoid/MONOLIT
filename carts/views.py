@@ -34,6 +34,19 @@ class CartAddView(View):
         response_data = {'added': added}
         return JsonResponse(response_data)
     
+
+class CartRemoveView(View):
+    def post(self, request, cart_id):
+        cart = Cart.objects.get(id=cart_id)
+        cart.delete()
+
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            return JsonResponse({'deleted': True})
+
+        return redirect(request.META['HTTP_REFERER'])
+    
+
+    
 # class CartAddView(View):
 #     def post(self, request, project_slug):
 #         project = Projects.objects.get(slug=project_slug)
