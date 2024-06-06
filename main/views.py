@@ -1,6 +1,7 @@
 from typing import Any
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.template import context
 from projects.models import Categories, Projects
 from django.views.generic.base import TemplateView
 
@@ -45,4 +46,11 @@ def services(request):
         'title' : 'Услуги',
     }
         
-    return render(request, "main/services.html")
+    return render(request, "main/services.html",context)
+
+def quiz(request):
+    context={
+        'title' : "Квиз"
+    }
+
+    return render(request,"main/quiz.html",context)

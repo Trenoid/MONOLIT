@@ -12,6 +12,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from users.forms import UserLoginForm, UserRegistrationForm
 from carts.models import Cart
 from common.views import TitleMixin
+from users.models import User, EmailVerification
 
 
 
@@ -49,10 +50,10 @@ class LoginView(TitleMixin,FormView):
         return context
 
 
+
 class RegistrationView(CreateView, SuccessMessageMixin):
     template_name = 'users/authorization_register.html'
     form_class = UserRegistrationForm
-    #success_url = reverse_lazy("main:index")
     success_message = "Вы успешно зарегестрировались"
 
     def form_valid(self, form):
@@ -76,7 +77,31 @@ class RegistrationView(CreateView, SuccessMessageMixin):
         context['login_method'] = 'register'
         return context
 
-   
+class EmailVerificationView(TitleMixin, TemplateView):
+    title = "Подтверждение электронной почты"
+    template_name = "users/email_verification.html"
+
+    def get(self, request, *args, **kwargs) -> HttpResponse:
+        code = kwargs.get('code')
+        email = kwargs.get('email')
+        try:
+            user = User.objects.get(email=email)
+            email_verification = EmailVerification.objects.filter(user=user, code=code)
+            if email_verification.exists(): # and not email_verification.first().is_expired()
+                user.is_verified_email = True
+                user.save()
+                return super().get(request, *args, **kwargs)
+            else:
+                messages.error(request, "Неверный код подтверждения или пользователь не найден.")
+        except User.DoesNotExist:
+            messages.error(request, "Пользователь с данной электронной почтой не найден.")
+        return HttpResponseRedirect(reverse("main:index"))
+
+
+
+
+
+
 
 
 
@@ -193,3 +218,6 @@ def users_cart(requset):
 @login_required
 def create_order(request):
     pass
+
+def email_ver(requset):
+    return render(requset,"users/email_verification.html")

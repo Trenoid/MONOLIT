@@ -31,6 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+DOMAIN_NAME = 'http://localhost:8000'
 
 # Application definition
 
@@ -159,3 +160,10 @@ LOGIN_URL =  '/user/login/'
 
 #Sending emails
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+
+# EMAIL_HOST = "smtp.yandex.com"
+# EMAIL_PORT = 465
+# EMAIL_HOST_USER = "talipowram@yandex.ru"
+# EMAIL_HOST_PASSWORD = "kurgav-faqpod-7ruSzo"
+# EMAIL_USE_SSL = True

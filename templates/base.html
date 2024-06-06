@@ -18,6 +18,8 @@
     <!-- Обертка для сайта -->
     <div class="wrapper">
       <!-- Шапка -->
+      {% if title == 'Восстановление' or title == 'Квиз' %}
+      {% else %}
       <header class="header">
         <div class="header__inner container-header">
           <a href="{% url "main:index" %}" class="hidden-mobile">
@@ -195,12 +197,14 @@
           <a></a>
           {% endif %} {% endcomment %}
         </div>
+        
       </header>
+      {% endif %}
       <!-- Конец шапки -->
 
     {% block content %}
     {% endblock content %}
-      {% if title == 'Восстановление' %}
+      {% if title == 'Восстановление' or title == 'Квиз' %}
       {% else %}
       <!-- Подвал сайта (футер) -->
       <footer class="footer">

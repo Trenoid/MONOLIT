@@ -373,6 +373,7 @@ h4 {
 }
 
 .wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -2052,6 +2053,201 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+.quiz-section {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.quiz__wrapper {
+  display: flex;
+  align-items: center;
+}
+.quiz__content {
+  padding-block: 55px;
+  padding-right: 50px;
+}
+.quiz__content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.quiz__question-number {
+  margin-bottom: 20px;
+  color: rgb(11, 30, 72);
+  font-weight: 700;
+  font-size: clamp(30px, 9.0277777778vw, 130px);
+}
+.quiz__form-quistions {
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+}
+@media (max-width: 1023px) {
+  .quiz__image {
+    width: 50%;
+    height: auto;
+  }
+}
+
+.form-quistions__title-wrapper {
+  margin-bottom: 30px;
+}
+.form-quistions__title {
+  font-size: clamp(20px, 2.0833333333vw, 30px);
+}
+.form-quistions__input {
+  height: var(--input-height);
+  padding-left: 20px;
+}
+.form-quistions__answers-row {
+  display: flex;
+  gap: 30px;
+}
+.form-quistions__answers-row--checkbox {
+  flex-wrap: wrap;
+  row-gap: 30px;
+  column-gap: 10px;
+}
+.form-quistions__checkbox {
+  display: none;
+}
+.form-quistions__checkbox:checked ~ .form-quistions__custom-checkbox {
+  color: var(--color-white);
+  background-color: var(--color-accent);
+  border: none;
+}
+.form-quistions__checkbox--base {
+  display: inline-flex;
+}
+.form-quistions__checkbox-wrapper {
+  display: inline-flex;
+}
+.form-quistions__custom-checkbox {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  aspect-ratio: 1;
+  font-weight: 600;
+  color: var(--color-black);
+  border: 1px solid black;
+  font-size: clamp(18px, 1.7361111111vw, 25px);
+}
+.form-quistions__actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  font-size: 18px;
+}
+.form-quistions__button {
+  height: 58px;
+}
+.form-quistions__button:hover {
+  opacity: 0.7;
+}
+
+.button-back {
+  background-color: var(--color-white);
+  border: 1px solid black;
+  color: black;
+}
+
+.checkbox-base {
+  white-space: nowrap;
+  font-size: clamp(16px, 1.3888888889vw, 20px);
+  width: 45%;
+  gap: 10px;
+  display: flex;
+}
+@media (max-width: 1280px) {
+  .checkbox-base {
+    width: 50%;
+  }
+}
+@media (max-width: 1023px) {
+  .checkbox-base {
+    width: 100%;
+  }
+}
+
+.modal {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  max-width: 735px;
+  min-width: 375px;
+  padding-top: 35px;
+  padding-bottom: 60px;
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.14);
+  background-color: white;
+  color: var(--color-black);
+}
+@media (max-width: 1023px) {
+  .modal {
+    padding-top: 20px;
+    padding-bottom: 30px;
+  }
+}
+@media (max-width: 480px) {
+  .modal {
+    padding-top: 10px;
+    padding-bottom: 15px;
+  }
+}
+.modal__button-wrapper {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+.modal__button {
+  background-color: transparent;
+  border: none;
+  margin-right: 35px;
+}
+@media (max-width: 1023px) {
+  .modal__button {
+    margin-right: 20px;
+  }
+}
+.modal__content {
+  padding-inline: 65px;
+}
+@media (max-width: 1023px) {
+  .modal__content {
+    padding-inline: 30px;
+  }
+}
+@media (max-width: 480px) {
+  .modal__content {
+    padding-inline: 15px;
+  }
+}
+.modal__title {
+  font-size: clamp(20px, 2.0833333333vw, 30px);
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+.modal__discr {
+  overflow: scroll;
+  font-size: clamp(16px, 1.3888888889vw, 20px);
+  max-width: 600px;
+  font-weight: 400;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  background-color: grey;
+}
+
 .about {
   display: grid;
   row-gap: 40px;
@@ -2574,7 +2770,6 @@ input::-webkit-inner-spin-button {
   background-color: var(--color-white);
   box-shadow: var(--box-shadow-light);
 }/*# sourceMappingURL=main.css.map */
-
 .form-row {
   gap: 15px;
   display: grid;
