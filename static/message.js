@@ -1,7 +1,7 @@
 const messageSucceful = `
             <div class="message">
                 <div class="message__wrapper">
-                    <img width="48" height="48" src="{% static 'source/icons/message-succeful.svg' %}" alt="" class="message__image" />
+                    <img width="48" height="48" src="static/source/icons/message-succeful.svg" alt="" class="message__image" />
                     <h2 class="message__title">Спасибо за обращение!</h2>
                     <p class="message__descr">Мы свяжемся с вами в ближайшее время!</p>
                     <button class="message__button" data-action="message-close">Закрыть</button>
@@ -10,7 +10,7 @@ const messageSucceful = `
         const messageError = `
             <div class="message">
                 <div class="message__wrapper">
-                    <img width="48" height="48" src="{% static 'source/icons/message-error.svg' %}" alt="" class="message__image" />
+                    <img width="48" height="48" src="static/source/icons/message-error.svg" alt="" class="message__image" />
                     <h2 class="message__title">Что-то пошло не так...</h2>
                     <p class="message__descr">Попробуйте снова или свяжитесь с нами!</p>
                     <button class="message__button" data-action="message-close">Закрыть</button>
