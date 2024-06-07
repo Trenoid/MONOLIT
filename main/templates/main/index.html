@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% block src %}    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>{% endblock src %}
 {% block content %}
 {% load custom_tags %}
       <!-- Главный контент -->
@@ -408,13 +409,13 @@
                 src="{% static "source/icons/zanussi.svg" %}"
                 alt=""
               />
-              <img class="partners__image" src="./source/icons/lm.svg" alt="" />
+              <img class="partners__image" src="{% static "source/icons/lm.svg" %}" alt="" />
               <img
                 class="partners__image"
                 src="{% static "source/icons/absh.svg" %}"
                 alt=""
               />
-              <img class="partners__image" src="./source/icons/vb.svg" alt="" />
+              <img class="partners__image" src="{% static "source/icons/vb.svg" %}" alt="" />
               <img
                 class="partners__image"
                 src="{% static "source/icons/bork.svg" %}"
@@ -442,7 +443,7 @@
                 alt=""
                 class="payments__image"
               />
-              <img src="./source/icons/mc.svg" alt="" class="payments__image" />
+              <img src="{% static "source/icons/mc.svg" %}" alt="" class="payments__image" />
               <img
                 src="{% static "source/icons/sbp.svg" %}"
                 alt=""
@@ -457,5 +458,6 @@
 
       {% block js %}
       <script src="{% static "tabs.js" %}"></script>
+      <script src="{% static "message.js" %}"></script>
       {% endblock js %}
       

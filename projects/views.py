@@ -40,8 +40,8 @@ class CatalogView(TemplateView):
             "categories": categories,
         }
         
-        print(f"Final catalog: {list(catalog)}")
-        print(f"categories: {categories}")
+        # print(f"Final catalog: {list(catalog)}")
+        # print(f"categories: {categories}")
 
         return render(request, self.template_name, context)
 
@@ -81,8 +81,8 @@ def catalog(request):
         "categories": categories,
 
     }
-    print(f"Final catalog: {list(catalog)}")
-    print(f"categories: {categories}")
+    # print(f"Final catalog: {list(catalog)}")
+    # print(f"categories: {categories}")
 
     return render(request, "projects/catalog.html", context)
 

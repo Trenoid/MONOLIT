@@ -9,6 +9,14 @@ from django.utils.timezone import now
 
 from django.conf import settings
 
+
+# send_mail(
+#     'Тестовое письмо',
+#     'Это тестовое сообщение.',
+#     settings.EMAIL_HOST_USER,
+#     ['gcfhcjh@gmail.com'],
+#     fail_silently=False,
+# )
 # class User(AbstractUser):
 
 #     RECOMMENDATION_STATUS_CHOICES = [
@@ -138,10 +146,11 @@ class EmailVerification(models.Model):
         subject = f"Подтверждение учетной записи для {self.user.username}"
         message = f"Для подтверждения учетной записи для {self.user.email} перейдите по ссылке {verification_link}"
         
+
         send_mail(
             subject=subject,
             message=message,
-            from_email=settings.DEFAULT_FROM_EMAIL,
+            from_email=settings.EMAIL_HOST_USER,
             recipient_list=[self.user.email],
             fail_silently=False,
         )

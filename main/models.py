@@ -17,13 +17,14 @@ class FAQ(models.Model):
 class Contact_informations(models.Model):
     instagramm = models.CharField(max_length=512,verbose_name="Инстаграмм",default="None")
     vk = models.CharField(max_length=512,verbose_name="Вконтакте",default="None")
-    number = models.CharField(max_length=32, verbose_name = "Номер телефона",default="None")
+    number = models.CharField(max_length=32, verbose_name = "Номер телефона",default="88")
     mail_address = models.CharField(max_length=64, verbose_name="Почта",default="None")
     telegramm = models.CharField(max_length=64, verbose_name="Телеграмм",default="None")
 
     mail_for_from = models.CharField(max_length=64, verbose_name="Почта для писем из формы",default="None")
     
     
+
     def get_number(self):
         return self.number
     

@@ -28,9 +28,13 @@ def get_contact_info_vk():
 def get_contact_info_inst():
     return Contact_informations.objects.first().instagramm
 
+# @register.simple_tag()
+# def get_contact_info_number():
+#     return Contact_informations.objects.first().number
+
 @register.simple_tag()
 def get_contact_info_number():
-    return Contact_informations.objects.first().get_number()
+    return Contact_informations.objects.get(id=1).number
 
 @register.simple_tag()
 def get_contact_info_mail_address():
