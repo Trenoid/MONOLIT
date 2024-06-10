@@ -10,7 +10,8 @@
       <div class="quiz__content">
         <div class="quiz__content-wrapper">
           <!-- Форма -->
-          <form action="" class="quiz__form-quistions">
+          <form action="{% url 'main:quiz' %}" method="post"  class="quiz__form-quistions">
+            {% csrf_token %}
             <!-- Квиз 1 -->
             <div class="form-quistions">
               <div class="quiz__number-wrapper">
@@ -32,83 +33,44 @@
                   class="form-quistions__answers-row"
                   id="quiz-content-first"
                 >
-                  <label for="input" class="form-quistions__label">
+                  {% comment %} <label for="input" class="form-quistions__label">
                     <input
                       type="number"
                       id="input"
                       class="form-quistions__input"
                       placeholder=".....м²"
                       required
-                    />
+                    /> {% endcomment %}
+                    {{form.house_area}}
                   </label>
                 </div>
               </fieldset>
               <!-- 2-ая Секция с вопросами -->
-              <fieldset class="form-quistions__content">
-                <legend
-                  class="form-quistions__title-wrapper"
-                  id="title-second"
-                >
-                  <!-- Вопрос 2-й -->
-                  <h3 class="form-quistions__title">Этажность</h3>
+
+        
+            <fieldset class="form-quistions__content">
+                <legend class="form-quistions__title-wrapper" id="title-second">
+                    <!-- Вопрос 2-й -->
+                    <h3 class="form-quistions__title">Этажность</h3>
                 </legend>
-                <div
-                  class="form-quistions__answers-row"
-                  id="quiz-content-second"
-                >
-                  <div class="form-quistions__checkbox-wrapper">
-                    <label for="floor-one" class="form-quistions__label">
-                      <input
-                        type="checkbox"
-                        id="floor-one"
-                        class="form-quistions__checkbox"
-                      />
-                      <span class="form-quistions__custom-checkbox"
-                        >1</span
-                      >
-                    </label>
-                  </div>
-                  <div class="form-quistions__checkbox-wrapper">
-                    <label for="floor-two" class="form-quistions__label">
-                      <input
-                        type="checkbox"
-                        id="floor-two"
-                        class="form-quistions__checkbox"
-                      />
-                      <span class="form-quistions__custom-checkbox"
-                        >2</span
-                      >
-                    </label>
-                  </div>
-                  <div class="form-quistions__checkbox-wrapper">
-                    <label
-                      for="floor-three"
-                      class="form-quistions__label"
-                    >
-                      <input
-                        type="checkbox"
-                        id="floor-three"
-                        class="form-quistions__checkbox"
-                      />
-                      <span class="form-quistions__custom-checkbox"
-                        >3</span
-                      >
-                    </label>
-                  </div>
-                  <div class="form-quistions__checkbox-wrapper">
-                    <label for="floor-four" class="form-quistions__label">
-                      <input
-                        type="checkbox"
-                        id="floor-four"
-                        class="form-quistions__checkbox"
-                      />
-                      <span class="form-quistions__custom-checkbox"
-                        >4+</span
-                      >
-                    </label>
-                  </div>
+                <div class="form-quistions__answers-row" id="quiz-content-second">
+                    {% for id, name in form.floors.field.choices %}
+                        <div class="form-quistions__checkbox-wrapper">
+                            <label for="floor-{{ id }}" class="form-quistions__label">
+                                <input
+                                    type="radio"
+                                    id="floor-{{ id }}"
+                                    name="{{ form.floors.name }}"
+                                    value="{{ id }}"
+                                    class="form-quistions__checkbox"
+                                    {% if form.floors.value == id %}checked{% endif %}
+                                />
+                                <span class="form-quistions__custom-checkbox">{{ name }}</span>
+                            </label>
+                        </div>
+                    {% endfor %}
                 </div>
-              </fieldset>
+            </fieldset>
               <!-- Кнопки -->
               <div class="form-quistions__actions">
                 <button
@@ -126,99 +88,41 @@
               </div>
             </div>
             <!-- Квиз 2 -->
-            <div class="form-quistions" hidden>
-              <div class="quiz__number-wrapper">
-                <!-- Номер квиза -->
-                <p class="quiz__question-number" id="quiz-number">02</p>
-              </div>
-              <!-- 1-ая Секция с вопросами -->
-              <fieldset class="form-quistions__content">
-                <legend
-                  class="form-quistions__title-wrapper"
-                  id="title-first"
-                >
-                  <!-- Вопрос 1-ый -->
-                  <h3 class="form-quistions__title">Материал стен</h3>
-                </legend>
-                <!-- Ответы для 1-го вопроса -->
-                <div
-                  class="form-quistions__answers-row form-quistions__answers-row--checkbox"
-                  id="quiz-content-first"
-                >
-                  <label
-                    for="brick"
-                    class="form-quistions__label checkbox-base"
-                  >
-                    <input
-                      type="checkbox"
-                      id="brick"
-                      value="brick"
-                      class="form-quistions__checkbox form-quistions__checkbox--base"
-                    />
-                    Кирпич
+    <div class="form-quistions" hidden>
+      <div class="quiz__number-wrapper">
+          <!-- Номер квиза -->
+          <p class="quiz__question-number" id="quiz-number">02</p>
+      </div>
+      
+      <!-- 1-ая Секция с вопросами -->
+      <fieldset class="form-quistions__content">
+          <legend class="form-quistions__title-wrapper" id="title-first">
+              <!-- Вопрос 1-ый -->
+              <h3 class="form-quistions__title">Материал стен</h3>
+          </legend>
+          <!-- Ответы для 1-го вопроса -->
+          <div class="form-quistions__answers-row form-quistions__answers-row--checkbox" id="quiz-content-first">
+              {% for choice in form.materials %}
+                  <label class="form-quistions__label checkbox-base" for="{{ choice.id_for_label }}">
+                      {{ choice.tag }}
+                      {{ choice.choice_label }}
                   </label>
-                  <label
-                    for="tree"
-                    class="form-quistions__label checkbox-base"
-                  >
-                    <input
-                      type="checkbox"
-                      id="tree"
-                      value="tree"
-                      class="form-quistions__checkbox form-quistions__checkbox--base"
-                    />
-                    Дерево
-                  </label>
-                  <label
-                    for="gas-block"
-                    class="form-quistions__label checkbox-base"
-                  >
-                    <input
-                      type="checkbox"
-                      id="gas-block"
-                      value="gas-block"
-                      class="form-quistions__checkbox form-quistions__checkbox--base"
-                    />
-                    Газоблок
-                  </label>
-                  <label
-                    for="other"
-                    class="form-quistions__label checkbox-base"
-                  >
-                    <input
-                      type="checkbox"
-                      id="other"
-                      value="other"
-                      class="form-quistions__checkbox form-quistions__checkbox--base"
-                    />
-                    Другое
-                  </label>
-                </div>
-              </fieldset>
-              <!-- 2-ая Секция с вопросами -->
-              <fieldset class="form-quistions__content">
-                <legend
-                  class="form-quistions__title-wrapper"
-                  id="title-second"
-                >
-                  <!-- Вопрос 2-й -->
-                  <h3 class="form-quistions__title">Высота дома</h3>
-                </legend>
-                <div
-                  class="form-quistions__answers-row"
-                  id="quiz-content-second"
-                >
-                  <label for="input" class="form-quistions__label">
-                    <input
-                      type="number"
-                      id="input"
-                      class="form-quistions__input"
-                      placeholder="0-9 м"
-                      required
-                    />
-                  </label>
-                </div>
-              </fieldset>
+              {% endfor %}
+          </div>
+      </fieldset>
+
+      <!-- 2-ая Секция с вопросами -->
+      <fieldset class="form-quistions__content">
+          <legend class="form-quistions__title-wrapper" id="title-second">
+              <!-- Вопрос 2-й -->
+              <h3 class="form-quistions__title">Высота дома</h3>
+          </legend>
+          <div class="form-quistions__answers-row" id="quiz-content-second">
+              <label for="input" class="form-quistions__label">
+                  {{ form.house_height }}
+              </label>
+          </div>
+      </fieldset>
               <!-- Кнопки -->
               <div class="form-quistions__actions">
                 <button
@@ -242,132 +146,36 @@
                 <p class="quiz__question-number" id="quiz-number">03</p>
               </div>
               <!-- 1-ая Секция с вопросами -->
-              <fieldset class="form-quistions__content">
-                <legend
-                  class="form-quistions__title-wrapper"
-                  id="title-first"
-                >
-                  <!-- Вопрос 1-ый -->
-                  <h3 class="form-quistions__title">Отделка фасадов</h3>
-                </legend>
-                <!-- Ответы для 1-го вопроса -->
-                <div
-                  class="form-quistions__answers-row form-quistions__answers-row--checkbox"
-                  id="quiz-content-first"
-                >
-                  <label
-                    for="facing-brick"
-                    class="form-quistions__label checkbox-base"
-                  >
-                    <input
-                      type="checkbox"
-                      id="facing-brick"
-                      value="facing-brick"
-                      class="form-quistions__checkbox form-quistions__checkbox--base"
-                    />
-                    Кирпич облицовочный
+        <fieldset class="form-quistions__content">
+          <legend class="form-quistions__title-wrapper" id="title-first">
+              <!-- Вопрос 1-ый -->
+              <h3 class="form-quistions__title">Отделка фасадов</h3>
+          </legend>
+          <!-- Ответы для 1-го вопроса -->
+          <div class="form-quistions__answers-row form-quistions__answers-row--checkbox" id="quiz-content-first">
+              {% for choice in form.facades %}
+                  <label class="form-quistions__label checkbox-base" for="{{ choice.id_for_label }}">
+                      {{ choice.tag }}
+                      {{ choice.choice_label }}
                   </label>
-                  <label
-                    for="tree"
-                    class="form-quistions__label checkbox-base"
-                  >
-                    <input
-                      type="checkbox"
-                      id="tree"
-                      value="tree"
-                      class="form-quistions__checkbox form-quistions__checkbox--base"
-                    />
-                    Дерево
-                  </label>
-                  <label
-                    for="decorative-plaster"
-                    class="form-quistions__label checkbox-base"
-                  >
-                    <input
-                      type="checkbox"
-                      id="decorative-plaster"
-                      value="decorative-plaster"
-                      class="form-quistions__checkbox form-quistions__checkbox--base"
-                    />
-                    Декоративная штукатурка
-                  </label>
-                  <label
-                    for="other"
-                    class="form-quistions__label checkbox-base"
-                  >
-                    <input
-                      type="checkbox"
-                      id="other"
-                      value="other"
-                      class="form-quistions__checkbox form-quistions__checkbox--base"
-                    />
-                    Другое
-                  </label>
-                </div>
-              </fieldset>
+              {% endfor %}
+          </div>
+      </fieldset>
               <!-- 2-ая Секция с вопросами -->
-              <fieldset class="form-quistions__content">
-                <legend
-                  class="form-quistions__title-wrapper"
-                  id="title-second"
-                >
-                  <!-- Вопрос 2-й -->
-                  <h3 class="form-quistions__title">Фундамент</h3>
-                </legend>
-                <div
-                  class="form-quistions__answers-row form-quistions__answers-row--checkbox"
-                  id="quiz-content-second"
-                >
-                  <label
-                    for="tape"
-                    class="form-quistions__label checkbox-base"
-                  >
-                    <input
-                      type="checkbox"
-                      id="tape"
-                      value="tape"
-                      class="form-quistions__checkbox form-quistions__checkbox--base"
-                    />
-                    Ленточный
+        <fieldset class="form-quistions__content">
+          <legend class="form-quistions__title-wrapper" id="title-second">
+              <!-- Вопрос 2-й -->
+              <h3 class="form-quistions__title">Фундамент</h3>
+          </legend>
+          <div class="form-quistions__answers-row form-quistions__answers-row--checkbox" id="quiz-content-second">
+              {% for choice in form.foundation %}
+                  <label class="form-quistions__label checkbox-base" for="{{ choice.id_for_label }}">
+                      {{ choice.tag }}
+                      {{ choice.choice_label }}
                   </label>
-                  <label
-                    for="monolithic slab"
-                    class="form-quistions__label checkbox-base"
-                  >
-                    <input
-                      type="checkbox"
-                      id="monolithic-slab"
-                      value="monolithic-slab"
-                      class="form-quistions__checkbox form-quistions__checkbox--base"
-                    />
-                    Монолитная плита
-                  </label>
-                  <label
-                    for="belt-drill"
-                    class="form-quistions__label checkbox-base"
-                  >
-                    <input
-                      type="checkbox"
-                      id="belt-drill"
-                      value="belt-drill"
-                      class="form-quistions__checkbox form-quistions__checkbox--base"
-                    />
-                    Ленточный бурозабивной
-                  </label>
-                  <label
-                    for="screw"
-                    class="form-quistions__label checkbox-base"
-                  >
-                    <input
-                      type="checkbox"
-                      id="screw"
-                      value="screw"
-                      class="form-quistions__checkbox form-quistions__checkbox--base"
-                    />
-                    Винтовой
-                  </label>
-                </div>
-              </fieldset>
+              {% endfor %}
+          </div>
+      </fieldset>
               <!-- Кнопки -->
               <div class="form-quistions__actions">
                 <button
@@ -391,132 +199,37 @@
                 <p class="quiz__question-number" id="quiz-number">04</p>
               </div>
               <!-- 1-ая Секция с вопросами -->
-              <fieldset class="form-quistions__content">
-                <legend
-                  class="form-quistions__title-wrapper"
-                  id="title-first"
-                >
-                  <!-- Вопрос 1-ый -->
-                  <h3 class="form-quistions__title">Гараж</h3>
-                </legend>
-                <!-- Ответы для 1-го вопроса -->
-                <div
-                  class="form-quistions__answers-row form-quistions__answers-row--checkbox"
-                  id="quiz-content-first"
-                >
-                  <label
-                    for="in-house"
-                    class="form-quistions__label checkbox-base"
-                  >
-                    <input
-                      type="checkbox"
-                      id="in-house"
-                      value="in-house"
-                      class="form-quistions__checkbox form-quistions__checkbox--base"
-                    />
-                    В доме
+        <fieldset class="form-quistions__content">
+          <legend class="form-quistions__title-wrapper" id="title-first">
+              <!-- Вопрос 1-ый -->
+              <h3 class="form-quistions__title">Гараж</h3>
+          </legend>
+          <!-- Ответы для 1-го вопроса -->
+          <div class="form-quistions__answers-row form-quistions__answers-row--checkbox" id="quiz-content-first">
+              {% for choice in form.garage %}
+                  <label class="form-quistions__label checkbox-base" for="{{ choice.id_for_label }}">
+                      {{ choice.tag }}
+                      {{ choice.choice_label }}
                   </label>
-                  <label
-                    for="open-parking"
-                    class="form-quistions__label checkbox-base"
-                  >
-                    <input
-                      type="checkbox"
-                      id="open-parking"
-                      value="open-parking"
-                      class="form-quistions__checkbox form-quistions__checkbox--base"
-                    />
-                    Открытая парковка
+              {% endfor %}
+          </div>
+      </fieldset>
+
+      <!-- 2-ая Секция с вопросами -->
+      <fieldset class="form-quistions__content">
+          <legend class="form-quistions__title-wrapper" id="title-second">
+              <!-- Вопрос 2-й -->
+              <h3 class="form-quistions__title">Баня</h3>
+          </legend>
+          <div class="form-quistions__answers-row form-quistions__answers-row--checkbox" id="quiz-content-second">
+              {% for choice in form.bath %}
+                  <label class="form-quistions__label checkbox-base" for="{{ choice.id_for_label }}">
+                      {{ choice.tag }}
+                      {{ choice.choice_label }}
                   </label>
-                  <label
-                    for="not-needed"
-                    class="form-quistions__label checkbox-base"
-                  >
-                    <input
-                      type="checkbox"
-                      id="not-needed"
-                      value="not-needed"
-                      class="form-quistions__checkbox form-quistions__checkbox--base"
-                    />
-                    Не нужен
-                  </label>
-                  <label
-                    for="separately"
-                    class="form-quistions__label checkbox-base"
-                  >
-                    <input
-                      type="checkbox"
-                      id="separately"
-                      value="separately"
-                      class="form-quistions__checkbox form-quistions__checkbox--base"
-                    />
-                    Отдельно
-                  </label>
-                  <label
-                    for="parking-with-canopy"
-                    class="form-quistions__label checkbox-base"
-                  >
-                    <input
-                      type="checkbox"
-                      id="parking-with-canopy"
-                      value="parking-with-canopy"
-                      class="form-quistions__checkbox form-quistions__checkbox--base"
-                    />
-                    Парковка с навесом
-                  </label>
-                </div>
-              </fieldset>
-              <!-- 2-ая Секция с вопросами -->
-              <fieldset class="form-quistions__content">
-                <legend
-                  class="form-quistions__title-wrapper"
-                  id="title-second"
-                >
-                  <!-- Вопрос 2-й -->
-                  <h3 class="form-quistions__title">Баня</h3>
-                </legend>
-                <div
-                  class="form-quistions__answers-row form-quistions__answers-row--checkbox"
-                  id="quiz-content-second"
-                >
-                  <label
-                    for="bath-in-house"
-                    class="form-quistions__label checkbox-base"
-                  >
-                    <input
-                      type="checkbox"
-                      id="bath-in-house"
-                      value="bath-in-house"
-                      class="form-quistions__checkbox form-quistions__checkbox--base"
-                    />
-                    В доме
-                  </label>
-                  <label
-                    for="bath-no"
-                    class="form-quistions__label checkbox-base"
-                  >
-                    <input
-                      type="checkbox"
-                      id="bath-no"
-                      value="bath-no"
-                      class="form-quistions__checkbox form-quistions__checkbox--base"
-                    />
-                    Не нужна
-                  </label>
-                  <label
-                    for="bath-separately"
-                    class="form-quistions__label checkbox-base"
-                  >
-                    <input
-                      type="checkbox"
-                      id="bath-separately"
-                      value="bath-separately"
-                      class="form-quistions__checkbox form-quistions__checkbox--base"
-                    />
-                    Отдельно
-                  </label>
-                </div>
-              </fieldset>
+              {% endfor %}
+          </div>
+      </fieldset>
               <!-- Кнопки -->
               <div class="form-quistions__actions">
                 <button
@@ -540,108 +253,37 @@
                 <p class="quiz__question-number" id="quiz-number">05</p>
               </div>
               <!-- 1-ая Секция с вопросами -->
-              <fieldset class="form-quistions__content">
-                <legend
-                  class="form-quistions__title-wrapper"
-                  id="title-first"
-                >
-                  <!-- Вопрос 1-ый -->
-                  <h3 class="form-quistions__title">Терасса</h3>
-                </legend>
-                <!-- Ответы для 1-го вопроса -->
-                <div
-                  class="form-quistions__answers-row form-quistions__answers-row--checkbox"
-                  id="quiz-content-first"
-                >
-                  <label
-                    for="terrace-with-house"
-                    class="form-quistions__label checkbox-base"
-                  >
-                    <input
-                      type="checkbox"
-                      id="terrace-with-house"
-                      value="terrace-with-house"
-                      class="form-quistions__checkbox form-quistions__checkbox--base"
-                    />
-                    Слита с домом
+        <fieldset class="form-quistions__content">
+          <legend class="form-quistions__title-wrapper" id="title-first">
+              <!-- Вопрос 1-ый -->
+              <h3 class="form-quistions__title">Терасса</h3>
+          </legend>
+          <!-- Ответы для 1-го вопроса -->
+          <div class="form-quistions__answers-row form-quistions__answers-row--checkbox" id="quiz-content-first">
+              {% for choice in form.terrace %}
+                  <label class="form-quistions__label checkbox-base" for="{{ choice.id_for_label }}">
+                      {{ choice.tag }}
+                      {{ choice.choice_label }}
                   </label>
-                  <label
-                    for="terrace-separately"
-                    class="form-quistions__label checkbox-base"
-                  >
-                    <input
-                      type="checkbox"
-                      id="terrace-separately"
-                      value="terrace-separately"
-                      class="form-quistions__checkbox form-quistions__checkbox--base"
-                    />
-                    Отдельно от дома
+              {% endfor %}
+          </div>
+      </fieldset>
+
+      <!-- 2-ая Секция с вопросами -->
+      <fieldset class="form-quistions__content">
+          <legend class="form-quistions__title-wrapper" id="title-second">
+              <!-- Вопрос 2-й -->
+              <h3 class="form-quistions__title">Бассейн</h3>
+          </legend>
+          <div class="form-quistions__answers-row form-quistions__answers-row--checkbox" id="quiz-content-second">
+              {% for choice in form.pool %}
+                  <label class="form-quistions__label checkbox-base" for="{{ choice.id_for_label }}">
+                      {{ choice.tag }}
+                      {{ choice.choice_label }}
                   </label>
-                </div>
-              </fieldset>
-              <!-- 2-ая Секция с вопросами -->
-              <fieldset class="form-quistions__content">
-                <legend
-                  class="form-quistions__title-wrapper"
-                  id="title-second"
-                >
-                  <!-- Вопрос 2-й -->
-                  <h3 class="form-quistions__title">Бассейн</h3>
-                </legend>
-                <div
-                  class="form-quistions__answers-row form-quistions__answers-row--checkbox"
-                  id="quiz-content-second"
-                >
-                  <label
-                    for="pool-in-house"
-                    class="form-quistions__label checkbox-base"
-                  >
-                    <input
-                      type="checkbox"
-                      id="pool-in-house"
-                      value="pool-in-house"
-                      class="form-quistions__checkbox form-quistions__checkbox--base"
-                    />
-                    В доме
-                  </label>
-                  <label
-                    for="pool-close-street"
-                    class="form-quistions__label checkbox-base"
-                  >
-                    <input
-                      type="checkbox"
-                      id="pool-close-street"
-                      value="pool-close-street"
-                      class="form-quistions__checkbox form-quistions__checkbox--base"
-                    />
-                    На улице крытый
-                  </label>
-                  <label
-                    for="pool-open-street"
-                    class="form-quistions__label checkbox-base"
-                  >
-                    <input
-                      type="checkbox"
-                      id="pool-open-street"
-                      value="pool-open-street"
-                      class="form-quistions__checkbox form-quistions__checkbox--base"
-                    />
-                    На улице открытый
-                  </label>
-                  <label
-                    for="pool-no"
-                    class="form-quistions__label checkbox-base"
-                  >
-                    <input
-                      type="checkbox"
-                      id="pool-no"
-                      value="pool-no"
-                      class="form-quistions__checkbox form-quistions__checkbox--base"
-                    />
-                    Не нужен
-                  </label>
-                </div>
-              </fieldset>
+              {% endfor %}
+          </div>
+      </fieldset>
               <!-- Кнопки -->
               <div class="form-quistions__actions">
                 <button
@@ -665,32 +307,18 @@
                 <p class="quiz__question-number" id="quiz-number">06</p>
               </div>
               <!-- 1-ая Секция с вопросами -->
-              <fieldset class="form-quistions__content">
-                <legend
-                  class="form-quistions__title-wrapper"
-                  id="title-first"
-                >
-                  <!-- Вопрос 1-ый -->
-                  <h3 class="form-quistions__title">
-                    Предполагаемая площадь земельного участка
-                  </h3>
-                </legend>
-                <!-- Ответы для 1-го вопроса -->
-                <div
-                  class="form-quistions__answers-row"
-                  id="quiz-content-first"
-                >
-                  <label for="input" class="form-quistions__label">
-                    <input
-                      type="number"
-                      id="input"
-                      class="form-quistions__input"
-                      placeholder="0-999 соток"
-                      required
-                    />
-                  </label>
-                </div>
-              </fieldset>
+        <fieldset class="form-quistions__content">
+          <legend class="form-quistions__title-wrapper" id="title-first">
+              <!-- Вопрос 1-ый -->
+              <h3 class="form-quistions__title">Предполагаемая площадь земельного участка</h3>
+          </legend>
+          <!-- Ответы для 1-го вопроса -->
+          <div class="form-quistions__answers-row" id="quiz-content-first">
+              <label for="id_land_area" class="form-quistions__label">
+                  {{ form.land_area }}
+              </label>
+          </div>
+      </fieldset>
               <!-- Кнопки -->
               <div class="form-quistions__actions">
                 <button
@@ -722,45 +350,21 @@
                 </p>
                 <ul class="form__list">
                   <li class="form__list-item">
-                    <label for="name" class="form__label"></label>
-                    <!-- Поле ИМЯ -->
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      class="form__input"
-                      placeholder="Имя"
-                      autocomplete="off"
-                      required
-                    />
+                      <label for="{{ form.name.id_for_label }}" class="form__label"></label>
+                      <!-- Поле ИМЯ -->
+                      {{ form.name }}
                   </li>
                   <li class="form__list-item">
-                    <label for="phone-number" class="form__label"></label>
-                    <!-- Поле НОМЕР ТЕЛЕФОНА -->
-                    <input
-                      type="tel"
-                      id="phone-number"
-                      name="phone-number"
-                      class="form__input"
-                      placeholder="+ (   ) -- -- -- --"
-                      autocomplete="off"
-                      required
-                    />
+                      <label for="{{ form.phone_number.id_for_label }}" class="form__label"></label>
+                      <!-- Поле НОМЕР ТЕЛЕФОНА -->
+                      {{ form.phone_number }}
                   </li>
                   <li class="form__list-item">
-                    <label for="email" class="form__label"></label>
-                    <!-- Поле ПОЧТА -->
-                    <input
-                      type="text"
-                      id="email"
-                      name="email"
-                      class="form__input"
-                      placeholder="E-mail"
-                      autocomplete="off"
-                      required
-                    />
+                      <label for="{{ form.email.id_for_label }}" class="form__label"></label>
+                      <!-- Поле ПОЧТА -->
+                      {{ form.email }}
                   </li>
-                </ul>
+              </ul>
                 <!-- Кнопка отправить -->
                 <button
                   type="submit"
