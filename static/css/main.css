@@ -2082,6 +2082,11 @@ input::-webkit-inner-spin-button {
   padding-block: 55px;
   padding-right: 50px;
 }
+@media (max-width: 767px) {
+  .quiz__content {
+    padding-right: 0px;
+  }
+}
 .quiz__content-wrapper {
   display: flex;
   flex-direction: column;
@@ -2105,6 +2110,9 @@ input::-webkit-inner-spin-button {
   }
 }
 
+.form-quistions__content:not(:last-child) {
+  margin-bottom: 30px;
+}
 .form-quistions__title-wrapper {
   margin-bottom: 30px;
 }
@@ -2152,6 +2160,7 @@ input::-webkit-inner-spin-button {
 .form-quistions__actions {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  margin-top: 30px;
   gap: 15px;
   font-size: 18px;
 }
@@ -2177,7 +2186,7 @@ input::-webkit-inner-spin-button {
 }
 @media (max-width: 1280px) {
   .checkbox-base {
-    width: 50%;
+    width: 45%;
   }
 }
 @media (max-width: 1023px) {
@@ -2842,6 +2851,10 @@ input::-webkit-inner-spin-button {
   background-color: var(--color-white);
   box-shadow: var(--box-shadow-light);
 }/*# sourceMappingURL=main.css.map */
+
+
+
+
 .form-row {
   gap: 15px;
   display: grid;
