@@ -2847,3 +2847,9 @@ input::-webkit-inner-spin-button {
   display: grid;
   grid-template-columns: minmax(100px,125px) minmax(100px,1fr);
 }
+
+.basket-page {
+  position: relative; 
+margin-top: 130px; 
+margin-bottom: 90px;
+  }

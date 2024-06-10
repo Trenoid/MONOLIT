@@ -48,19 +48,19 @@
   <!-- Конец: Секция "Добавьте в корзину"  -->
 
   <!-- Начало: Секция "Форма" -->
-  {% include "main/includes/included_form.html" %}
+   <section>{% include "main/includes/included_form.html" %}</section>
   <!-- Конец: Секция "Форма"  -->
 </main>
+
  
 {% endblock content %}
 
 {% block js %}
-<script src="{% static "copy.js" %}"></script>
 
+<script src="{% static "copy.js" %}"></script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src = "{% static "cart_del.js" %}">
-
-</script>
+<script src="{% static "message.js" %}"></script>
+<script src = "{% static "cart_del.js" %}"></script>
 {% endblock js %}

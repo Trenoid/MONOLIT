@@ -13,6 +13,7 @@ from users.forms import UserLoginForm, UserRegistrationForm
 from carts.models import Cart
 from common.views import TitleMixin
 from users.models import User, EmailVerification
+from main.forms import ContactForm
 
 
 
@@ -200,6 +201,7 @@ def logout(request):
         'title' : 'Главная страница'
     }
 
+    return HttpResponseRedirect(reverse("main:index"))
     return render(request, "main/index.html", context)
 
 
@@ -211,9 +213,13 @@ def recovery_account(request):
     return redirect(reverse("main:index"))
 
 
-def users_cart(requset):
-    return render(requset,"users/user_cart.html")
-
+def users_cart(request):
+    form = ContactForm()
+    context = {
+        'title': 'Корзина',
+        'form': form,
+    }
+    return render(request, "users/user_cart.html", context)
 
 @login_required
 def create_order(request):
