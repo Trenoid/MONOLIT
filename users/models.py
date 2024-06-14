@@ -118,8 +118,8 @@ class User(AbstractUser):
     )
     phone = models.CharField(max_length=20, blank=True, null=True, verbose_name="Номер телефона")
     city = models.CharField(max_length=100, blank=True, null=True, verbose_name="Город")
-    referal_code = models.CharField(max_length=30, blank=True, null=True, verbose_name="Реферальный код")
-    referal_code_used = models.PositiveIntegerField(default=0, verbose_name="Число использований реферального кода пользователя")
+    referral_code = models.OneToOneField('ReferralCode', on_delete=models.SET_NULL, null=True, blank=True, related_name='user')
+    referral_code_used = models.PositiveIntegerField(default=0, verbose_name="Число использований реферального кода пользователя")
     is_verified_email = models.BooleanField(default=False, verbose_name="Подтвержден ли email")
 
     class Meta:
@@ -130,16 +130,14 @@ class User(AbstractUser):
     def __str__(self):
         return self.username
 
-class PromoCode(models.Model):
+class ReferralCode(models.Model):
     code = models.CharField(max_length=50, unique=True)
-    discount = models.DecimalField(max_digits=5, decimal_places=2)  # Скидка в процентах, например, 10.00 для 10%
+    discount = models.DecimalField(max_digits=5, decimal_places=2, default=5.00)  # 5% скидка
     active = models.BooleanField(default=True)
-    valid_from = models.DateTimeField()
-    valid_to = models.DateTimeField()
+    uses_count = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.code
-
 
 
 class EmailVerification(models.Model):

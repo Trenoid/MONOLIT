@@ -12,9 +12,10 @@ from django.contrib.messages.views import SuccessMessageMixin
 from users.forms import UserLoginForm, UserRegistrationForm
 from carts.models import Cart
 from common.views import TitleMixin
-from users.models import User, EmailVerification
+from users.models import User, EmailVerification, ReferralCode
 from main.forms import ContactForm
 
+import string, random
 
 
 class LoginView(TitleMixin,FormView):
@@ -52,6 +53,32 @@ class LoginView(TitleMixin,FormView):
 
 
 
+# class RegistrationView(CreateView, SuccessMessageMixin):
+#     template_name = 'users/authorization_register.html'
+#     form_class = UserRegistrationForm
+#     success_message = "Вы успешно зарегестрировались"
+
+#     def form_valid(self, form):
+#         user = form.save()
+#         session_key = self.request.session.session_key
+
+#         auth_login(self.request, user)
+
+#         if session_key:
+#             Cart.objects.filter(session_key=session_key).update(user=user)
+
+#         messages.success(self.request, f"{user.username} Вы успешно зарегистрированы и вошли в аккаунт")
+#         return HttpResponseRedirect(self.get_success_url())
+
+#     def get_success_url(self):
+#         return reverse("main:index")
+
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['title'] = 'Регистрация'
+#         context['login_method'] = 'register'
+#         return context
+
 class RegistrationView(CreateView, SuccessMessageMixin):
     template_name = 'users/authorization_register.html'
     form_class = UserRegistrationForm
@@ -59,8 +86,16 @@ class RegistrationView(CreateView, SuccessMessageMixin):
 
     def form_valid(self, form):
         user = form.save()
-        session_key = self.request.session.session_key
 
+        # Создание уникального реферального кода
+        code = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
+        while ReferralCode.objects.filter(code=code).exists():
+            code = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
+        referral_code = ReferralCode.objects.create(code=code)
+        user.referral_code = referral_code
+        user.save()
+
+        session_key = self.request.session.session_key
         auth_login(self.request, user)
 
         if session_key:
@@ -77,6 +112,8 @@ class RegistrationView(CreateView, SuccessMessageMixin):
         context['title'] = 'Регистрация'
         context['login_method'] = 'register'
         return context
+
+
 
 class EmailVerificationView(TitleMixin, TemplateView):
     title = "Подтверждение электронной почты"
