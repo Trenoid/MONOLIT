@@ -211,6 +211,7 @@ svg * {
 }
 
 .button--accent {
+  color: var(--color-white);
   background-color: var(--color-accent);
 }
 
@@ -312,6 +313,11 @@ svg * {
   color: var(--color-accent);
   background-color: var(--color-white);
   box-shadow: var(--box-shadow-light);
+}
+
+.button--base {
+  color: var(--color-black);
+  background-color: var(--color-white);
 }
 
 body {
@@ -2329,6 +2335,111 @@ input::-webkit-inner-spin-button {
   }
 }
 
+.pay-section {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(181, 181, 181);
+}
+
+.pay-form {
+  padding: 25px;
+  background-color: var(--color-white);
+}
+@media (max-width: 767px) {
+  .pay-form {
+    padding: 15px;
+    width: 400px;
+  }
+}
+.pay-form__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.pay-form__image {
+  margin-bottom: 20px;
+}
+.pay-form__fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+@media (max-width: 767px) {
+  .pay-form__fieldset {
+    margin-bottom: 15px;
+  }
+}
+.pay-form__title-wrapper {
+  margin-bottom: 20px;
+}
+.pay-form__title {
+  font-size: 18px;
+}
+.pay-form__label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+}
+.pay-form__input {
+  width: 100%;
+  height: 44px;
+  font-size: 16px;
+  padding-left: 15px;
+}
+.pay-form__input--small {
+  width: 112px;
+}
+.pay-form__wrapper-row {
+  display: grid;
+  grid-template-columns: minmax(312px, 1fr) 112px;
+  gap: 16px;
+}
+@media (max-width: 767px) {
+  .pay-form__wrapper-row {
+    grid-template-columns: 1fr;
+  }
+}
+.pay-form__actions {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 12px;
+  margin-top: 30px;
+}
+@media (max-width: 767px) {
+  .pay-form__actions {
+    margin-top: 10px;
+  }
+}
+.pay-form__button {
+  width: 50%;
+  font-size: 16px;
+  border: 1px solid rgb(208, 213, 221);
+  height: 44px;
+}
+@media (hover: hover) {
+  .pay-form__button:hover {
+    opacity: 0.7;
+  }
+}
+@media (hover: none) {
+  .pay-form__button:active {
+    opacity: 0.7;
+  }
+}
+
+.wrapper-grey {
+  background-color: rgb(181, 181, 181);
+}
+
 .about {
   display: grid;
   row-gap: 40px;
@@ -2851,7 +2962,6 @@ input::-webkit-inner-spin-button {
   background-color: var(--color-white);
   box-shadow: var(--box-shadow-light);
 }/*# sourceMappingURL=main.css.map */
-
 
 
 

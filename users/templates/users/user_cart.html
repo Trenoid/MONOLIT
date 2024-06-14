@@ -26,14 +26,14 @@
             <span class="order-price__total-title">Итого</span>
             <span class="order-price__total-price"><b>{{carts.total_price}} ₽</b></span>
           </div>
-          <input
+          {% comment %} <input
             type="text"
             class="order-price__promo"
             placeholder="Промокод"
           />
-          <!-- Кнопка - ОФОРМИТЬ ПОКУПКУ -->
+          <!-- Кнопка - ОФОРМИТЬ ПОКУПКУ --> {% endcomment %}
           {% if carts %}
-          <a href="#" class="order-price__button button--accent">
+          <a href="{% url "users:pay"%}" class="order-price__button button--accent">
             Оформить покупку
           </a>
           {% endif %}

@@ -227,3 +227,9 @@ def create_order(request):
 
 def email_ver(requset):
     return render(requset,"users/email_verification.html")
+
+def pay(request):
+    context = {
+        'title' : 'Покупка',
+    }
+    return render(request,'users/pay.html',context)

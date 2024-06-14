@@ -130,6 +130,17 @@ class User(AbstractUser):
     def __str__(self):
         return self.username
 
+class PromoCode(models.Model):
+    code = models.CharField(max_length=50, unique=True)
+    discount = models.DecimalField(max_digits=5, decimal_places=2)  # Скидка в процентах, например, 10.00 для 10%
+    active = models.BooleanField(default=True)
+    valid_from = models.DateTimeField()
+    valid_to = models.DateTimeField()
+
+    def __str__(self):
+        return self.code
+
+
 
 class EmailVerification(models.Model):
     code = models.UUIDField(unique=True)

@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static "css/main.css" %}" />
+    <title>Оплата</title>
+  </head>
+  <body>
+    <div class="wrapper wrapper-grey">
+      <div class="pay-section container">
+        <form class="pay-form" action="">
+          <div class="pay-form__wrapper">
+            <img
+              width="48"
+              height="48"
+              class="pay-form__image"
+              src="{% static "source/icons/pay-icon.svg" %}"
+              alt=""
+            />
+            <fieldset class="pay-form__fieldset">
+              <legend class="pay-form__title-wrapper">
+                <h2 class="pay-form__title">Введите данные карты для оплаты</h2>
+              </legend>
+              <label class="pay-form__label" for="name">
+                Имя
+                <input
+                  type="text"
+                  id="name"
+                  class="pay-form__input"
+                  placeholder="Artem Zaitsev"
+                  required
+                />
+              </label>
+              <label class="pay-form__label" for="email">
+                Почта
+                <input
+                  type="email"
+                  id="email"
+                  class="pay-form__input"
+                  placeholder="Artemzaitsev@gmail.com"
+                  inputmode="email"
+                  required
+                />
+              </label>
+              <div class="pay-form__wrapper-row">
+                <label class="pay-form__label" for="name-in-card">
+                  Имя на карте
+                  <input
+                    type="text"
+                    id="name-in-card"
+                    class="pay-form__input"
+                    placeholder="Artem Zaitsev"
+                    autocomplete="cc-name"
+                    required
+                  />
+                </label>
+                <label class="pay-form__label" for="card-date">
+                  М/Г
+                  <input
+                    type="text"
+                    id="card-date"
+                    class="pay-form__input pay-form__input--small"
+                    placeholder="00 / 0000"
+                    autocomplete="cc-exp"
+                    inputmode="numeric"
+                    minlength="6"
+                    maxlength="7"
+                    required
+                  />
+                </label>
+              </div>
+              <div class="pay-form__wrapper-row">
+                <label class="pay-form__label" for="card-number">
+                  Номер карты
+                  <input
+                    type=""
+                    id="card-number"
+                    class="pay-form__input"
+                    placeholder="1234 1234 1234 1234"
+                    autocomplete="cc-number"
+                    inputmode="numeric"
+                    pattern="[0-9 ]+"
+                    required
+                  />
+                </label>
+                <label class="pay-form__label" for="cvv">
+                  CVV
+                  <input
+                    type="password"
+                    id="cvv"
+                    class="pay-form__input pay-form__input--small"
+                    placeholder="•••"
+                    inputmode="numeric"
+                    minlength="3"
+                    maxlength="4"
+                    required
+                  />
+                </label>
+              </div>
+            </fieldset>
+            <label class="pay-form__label" for="promo">
+              Промокод
+              <input
+                type="text"
+                id="promo"
+                class="pay-form__input"
+                placeholder="ZOOA123"
+              />
+            </label>
+            <div class="pay-form__actions">
+              <button
+                type="button"
+                class="pay-form__button button button--base"
+              >
+                Закрыть
+              </button>
+              <button
+                type="submit"
+                class="pay-form__button button button--accent"
+              >
+                Оплатить
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="{% static "pay.js" %}"></script>
+  </body>
+</html>

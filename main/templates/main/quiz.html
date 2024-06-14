@@ -1,8 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% block src %}<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>{% endblock src %}
 {% block content %}
-
-
 <section class="quiz-section container">
   <!-- квиз 1 -->
   <div class="quiz">
@@ -10,7 +9,7 @@
       <div class="quiz__content">
         <div class="quiz__content-wrapper">
           <!-- Форма -->
-          <form action="{% url 'main:quiz' %}" method="post"  class="quiz__form-quistions">
+          <form action="{% url 'main:quiz' %}" method="post" id = "quizform" class="quiz__form-quistions">
             {% csrf_token %}
             <!-- Квиз 1 -->
             <div class="form-quistions">
@@ -379,6 +378,7 @@
               </fieldset>
             </div>
           </form>
+          
         </div>
       </div>
       <!-- изображение -->
@@ -392,8 +392,73 @@
     </div>
   </div>
 </section>
+
+
+<div id="static-files" data-success-icon="{% static 'source/icons/message-succeful.svg' %}" data-error-icon="{% static 'source/icons/message-error.svg' %}" hidden></div>
+<div class="overlay" style="display: none;"></div>
 {% endblock content %}
 {% block js %}
 <script src="{% static "quiz.js" %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    const form = $('#quizform');
+    const divWrapper = $(".wrapper");
+    const overlay = $(".overlay");
+
+    const staticFiles = $('#static-files');
+    const successIcon = staticFiles.data('success-icon');
+    const errorIcon = staticFiles.data('error-icon');
+
+    const messageSucceful = `
+        <div class="message">
+            <div class="message__wrapper">
+                <img width="48" height="48" src="${successIcon}" alt="" class="message__image" />
+                <h2 class="message__title">Спасибо за обращение!</h2>
+                <p class="message__descr">Мы свяжемся с вами в ближайшее время!</p>
+                <button class="message__button" data-action="message-close">Закрыть</button>
+            </div>
+        </div>`;
+
+    const messageError = `
+        <div class="message">
+            <div class="message__wrapper">
+                <img width="48" height="48" src="${errorIcon}" alt="" class="message__image" />
+                <h2 class="message__title">Что-то пошло не так...</h2>
+                <p class="message__descr">Попробуйте снова или свяжитесь с нами!</p>
+                <button class="message__button" data-action="message-close">Закрыть</button>
+            </div>
+        </div>`;
+
+    form.on("submit", function(event) {
+        event.preventDefault();
+        const formData = form.serialize();
+
+        $.ajax({
+            type: "POST",
+            url: form.attr('action'),
+            data: formData,
+            success: function(response) {
+                if (response.status === 'success') {
+                    divWrapper.append(messageSucceful);
+                } else {
+                    divWrapper.append(messageError);
+                }
+                overlay.show();
+            },
+            error: function() {
+                divWrapper.append(messageError);
+                overlay.show();
+            }
+        });
+    });
+
+    $('body').on('click', '[data-action="message-close"], .overlay', function() {
+        divWrapper.children('.message').remove();
+        overlay.hide();
+    });
+});
+</script>
 {% endblock js %}
     
