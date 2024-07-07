@@ -3,6 +3,7 @@
 
 {% user_carts request as carts%}
       <ul class="basket__list">
+        {% if carts %}
         {% for cart in carts  %}
         <li class="basket__list-item">
           <div class="basket__list-item-wrapper">
@@ -43,6 +44,14 @@
           </div>
         </li>
         {% endfor %}
+        {% else %}
+        <a
+              href="{% url "catalog:index" %}"
+              class="calculate-section__button button-show"
+            >
+              Корзина пуста. Нажми сюда что бы перейти в каталог проектов
+            </a>
+        {% endif %}
         
       </ul>
 

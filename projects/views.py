@@ -5,7 +5,10 @@ from django.views.generic.list import ListView
 from django.views import View
 from django.views.generic.base import TemplateView
 from django.shortcuts import render
+from django.core.cache import cache
+
 from projects.models import Categories, Projects
+
 
 
 
@@ -24,15 +27,31 @@ class CatalogView(TemplateView):
         if order_by and order_by != "default":
             catalog = catalog.order_by(order_by)
 
-        categories = []
-        for category in Categories.objects.all():
-            category_projects = catalog.filter(floor=category)
-            categories.append(
-                {
-                    'category': category,
-                    'projects': category_projects,
-                }
-            )
+        # categories = []
+        # for category in Categories.objects.all():
+        #     category_projects = catalog.filter(floor=category)
+        #     categories.append(
+        #         {
+        #             'category': category,
+        #             'projects': category_projects,
+        #         }
+        #     )
+
+
+        categories = cache.get('categories')
+
+        if not categories:
+            categories = []
+            for category in Categories.objects.all():
+                category_projects = catalog.filter(floor=category)
+                categories.append(
+                    {
+                        'category': category,
+                        'projects': category_projects,
+                    }
+                )
+            cache.set('categories',categories,30)
+            
 
         context = {
             "title": "Каталог проектов",

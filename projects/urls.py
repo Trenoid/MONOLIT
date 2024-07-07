@@ -2,6 +2,7 @@ from django.urls import path
 
 from projects.views import catalog, project
 from projects.views import CatalogView
+from django.views.decorators.cache import cache_page    
 
 app_name = "projects"
 
@@ -13,7 +14,7 @@ app_name = "projects"
 
 #class views
 urlpatterns = [
-    path('', CatalogView.as_view() , name='index'),
+    path('',(CatalogView.as_view()) , name='index'),
     path('project/<slug:project_slug>/', project, name='project'),
 ]
 

@@ -9,7 +9,7 @@ from django.views.generic import FormView, TemplateView
 from django.contrib.auth import login as auth_login
 from django.contrib.messages.views import SuccessMessageMixin
 
-from users.forms import UserLoginForm, UserRegistrationForm
+from users.forms import UserLoginForm, UserRegistrationForm, OrderForm
 from carts.models import Cart
 from common.views import TitleMixin
 from users.models import User, EmailVerification, ReferralCode
@@ -60,8 +60,16 @@ class LoginView(TitleMixin,FormView):
 
 #     def form_valid(self, form):
 #         user = form.save()
-#         session_key = self.request.session.session_key
 
+#         # Создание уникального реферального кода
+#         code = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
+#         while ReferralCode.objects.filter(code=code).exists():
+#             code = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
+#         referral_code = ReferralCode.objects.create(code=code)
+#         user.referral_code = referral_code
+#         user.save()
+
+#         session_key = self.request.session.session_key
 #         auth_login(self.request, user)
 
 #         if session_key:
@@ -82,10 +90,10 @@ class LoginView(TitleMixin,FormView):
 class RegistrationView(CreateView, SuccessMessageMixin):
     template_name = 'users/authorization_register.html'
     form_class = UserRegistrationForm
-    success_message = "Вы успешно зарегестрировались"
+    success_message = "Вы успешно зарегистрировались"
 
     def form_valid(self, form):
-        user = form.save()
+        user = form.save(commit=False)
 
         # Создание уникального реферального кода
         code = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
@@ -93,6 +101,7 @@ class RegistrationView(CreateView, SuccessMessageMixin):
             code = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
         referral_code = ReferralCode.objects.create(code=code)
         user.referral_code = referral_code
+        user.set_password(form.cleaned_data['password1'])
         user.save()
 
         session_key = self.request.session.session_key
@@ -112,7 +121,6 @@ class RegistrationView(CreateView, SuccessMessageMixin):
         context['title'] = 'Регистрация'
         context['login_method'] = 'register'
         return context
-
 
 
 class EmailVerificationView(TitleMixin, TemplateView):
@@ -267,6 +275,15 @@ def email_ver(requset):
 
 def pay(request):
     context = {
-        'title' : 'Покупка',
+        'title' : 'Оформление заказа',
     }
     return render(request,'users/pay.html',context)
+
+class OrderCreateView(CreateView):
+    template_name = "users/pay.html"
+
+    form_class = OrderForm
+    # def get_context_data(self, **kwargs):
+    #     context =  super(AccountView,self).get_context_data()
+    #     context['title'] = 'Оформление заказа'
+    #     return context
