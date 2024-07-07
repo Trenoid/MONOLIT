@@ -14,7 +14,7 @@ from main.models import FAQ
 from main.models import Contact_informations
 from users.models import EmailVerification
 from django.views.decorators.csrf import csrf_exempt
-
+from .tasks import send_email_task
 
 logger = logging.getLogger(__name__)
 
@@ -79,12 +79,10 @@ class IndexView(TemplateView):
             recipient_list = [Contact_informations.objects.first().mail_for_from]
 
             try:
-                send_mail(
-                    "Новая заявка с сайта Monolit",
+                send_email_task.delay(
+                    "Новая заявка на сайте Monolith",
                     message,
-                    settings.EMAIL_HOST_USER,
                     recipient_list,
-                    fail_silently=False,
                 )
                 return JsonResponse({'status': 'success'})
             except Exception as e:
@@ -93,7 +91,6 @@ class IndexView(TemplateView):
         else:
             logger.error(f"Form errors: {form.errors}")
         return JsonResponse({'status': 'error', 'errors': form.errors})
-
 
 
 def index(request):
@@ -137,12 +134,10 @@ def services(request):
             message = f"Имя: {name}\nНомер телефона: {phone_number}\nГород: {city}"
             recipient_list = [settings.EMAIL_HOST_USER]  # ваш email адрес
 
-            send_mail(
+            send_email_task.delay(
                 subject,
                 message,
-                settings.DEFAULT_FROM_EMAIL,
                 recipient_list,
-                fail_silently=False,
             )
 
             return JsonResponse({'status': 'success'})
@@ -156,7 +151,6 @@ def services(request):
     }
 
     return render(request, "main/services.html", context)
-
 
 # def quiz(request):
 #     if request.method == 'POST':
@@ -288,13 +282,11 @@ def quiz(request):
             """
             
             try:
-                send_mail(
-                     subject,
-                     message,
-                     settings.EMAIL_HOST_USER,
-                     recipient_list,
-                     fail_silently=False,
-                 )
+                send_email_task.delay(
+            subject,
+            message,
+            recipient_list,
+        )
                 return JsonResponse({'status': 'success'})
             except Exception as e:
                 print(f"Error sending email: {e}")

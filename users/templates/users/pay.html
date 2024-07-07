@@ -54,9 +54,11 @@
             <input type="text" id="promo" class="pay-form__input" placeholder="ZOOA123" />
           </label>
           <div class="pay-form__actions">
-            <button type="button" class="pay-form__button button button--base">Закрыть</button>
-            <button type="submit" class="pay-form__button button button--accent">Оплатить</button>
+            <a href="{% url "users:users_cart" %}" class="pay-form__button button button--base" >Закрыть</a>
+            <a href="#" class="pay-form__button button button--accent">Оплатить</a>
           </div>
+          
+          
         </div>
       </form>
       

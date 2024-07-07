@@ -11,27 +11,29 @@ from projects.models import Projects
 
 
 
+
 class CartAddView(View):
     def post(self, request, project_slug):
         project = Projects.objects.get(slug=project_slug)
-        added = False
+        
+        # Определение ключа пользователя или сессии
+        user = request.user if request.user.is_authenticated else None
+        session_key = request.session.session_key if not request.user.is_authenticated else None
+        
+        # Обеспечение наличия session_key для неаутентифицированных пользователей
+        if not user and not session_key:
+            request.session.create()
+            session_key = request.session.session_key
 
-        if request.user.is_authenticated:
-            carts = Cart.objects.filter(user=request.user, project=project)
+        # Использование get_or_create для уменьшения количества запросов
+        cart, created = Cart.objects.get_or_create(
+            user=user,
+            session_key=session_key,
+            project=project,
+        )
 
-            if not carts.exists():
-                Cart.objects.create(user=request.user, project=project)
-                added = True
-        else:
-            if not request.session.session_key:
-                request.session.create()
-            carts = Cart.objects.filter(session_key=request.session.session_key, project=project)
-
-            if not carts.exists():
-                Cart.objects.create(session_key=request.session.session_key, project=project)
-                added = True
-
-        response_data = {'added': added}
+        # Если корзина была только что создана, added будет True
+        response_data = {'added': created}
         return JsonResponse(response_data)
     
 
