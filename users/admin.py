@@ -2,7 +2,7 @@ from atexit import register
 from django.contrib import admin
 
 from carts.admin import CartTabAdmin
-from users.models import User, EmailVerification,ReferralCode
+from users.models import User, EmailVerification,ReferralCode,Order
 
 # admin.site.register(User)
 
@@ -27,3 +27,12 @@ class EmailVerificationAdmin(admin.ModelAdmin):
 
 
 admin.site.register(ReferralCode)
+
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ["name", "email", "promocod", "created"]
+    search_fields = ["name", "email", "promocod", "created"]
+    list_filter = ["created"]
+    readonly_fields = ("created",)
+

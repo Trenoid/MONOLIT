@@ -1,3 +1,4 @@
+import email
 import uuid
 from datetime import timedelta
 from typing import Any
@@ -91,6 +92,21 @@ class UserRegistrationForm(forms.ModelForm):
 
 
 class OrderForm(forms.ModelForm):
+    name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={
+        'class': 'pay-form__input',
+        'placeholder': 'Имя',
+        'required': 'required'
+    }))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={
+        'class': 'pay-form__input',
+        'placeholder': 'E-mail',
+        'required': 'required'
+    }))
+    promocod = forms.CharField(required=False,widget=forms.TextInput(attrs={
+        'class': 'pay-form__input',
+        'placeholder': 'Промокод',  
+    }))
+
     class Meta:
         model = Order
         fields = ('name','email','promocod')

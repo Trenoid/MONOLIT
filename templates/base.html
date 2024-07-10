@@ -2,6 +2,7 @@
 {% load custom_tags %}
 {% load carts_tag %}
 {% user_carts request as carts%}
+{%get_all_contact_info as contact_info%}
 <!DOCTYPE html>
 <html lang="rus">
   <head>
@@ -13,8 +14,10 @@
     <link rel="stylesheet" href= {% static "css/main.css" %} />
     {% block src %}
     {% endblock src %}
+    
   </head>
   <body>
+    
     <!-- Обертка для сайта -->
     <div class="wrapper">
       <!-- Шапка -->
@@ -258,21 +261,21 @@
                   <li class="footer__list-item">Как с нами связаться</li>
                   <li class="footer__list-item">
                     <a href="#" class="footer__list-link" title="Phone-number"
-                      >{%get_contact_info_number%}</a
+                      >{{contact_info.number}}</a
                     >
                   </li>
                   <li class="footer__list-item">
                     <a href="#" class="footer__list-link" title="Gmail"
-                      >{%get_contact_info_mail_address%}</a
+                      >{{contact_info.mail_address}}</a
                     >
                   </li>
                   <li class="footer__list-item">
-                    <a href="{% get_contact_info_vk %}" class="footer__list-link" title="Vkontakte"
+                    <a href="{{contact_info.vk}}" class="footer__list-link" title="Vkontakte"
                       >Вконтакте</a
                     >
                   </li>
                   <li class="footer__list-item">
-                    <a href="{%get_contact_info_inst%}" class="footer__list-link" title="Instagram"
+                    <a href="{{contact_info.instagramm}}" class="footer__list-link" title="Instagram"
                       >Instagram</a
                     >
                   </li>
@@ -286,14 +289,14 @@
                 Copyright © 2023 Все права защищены
               </p>
               <div class="footer__links">
-                <a href="{%get_contact_info_inst%}" class="footer__link">
+                <a href="{{contact_info.instagramm}}" class="footer__link">
                   <img
                     class="footer__link-icon"
                     src="{% static "source/icons/in-icon.svg" %}"
                     alt="in"
                   />
                 </a>
-                <a href="{% get_contact_info_vk %}" class="footer__link">
+                <a href="{{ contact_info.vk }}" class="footer__link">
                   <img
                     class="footer__link-icon"
                     src="{% static "source/icons/vk-icon.svg" %}"

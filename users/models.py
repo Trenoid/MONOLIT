@@ -188,15 +188,10 @@ class Order(models.Model):
     created = models.DateTimeField(auto_now_add=True,blank=True,null=True,)
     status = models.SmallIntegerField(default=CREATED,choices=STATUSES)
     initiator = models.ForeignKey(to=User, on_delete=models.CASCADE,blank=True,default=None)
+    
 
     def __str__(self) -> str:
         return f'Order #{self.id} {self.name}'
-
-
-
-
-
-
 
 
 

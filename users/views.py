@@ -1,6 +1,7 @@
 from re import template
 from django.contrib.auth.decorators import login_required
 from django.contrib import auth, messages
+from django.forms import BaseModelForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
@@ -279,11 +280,19 @@ def pay(request):
     }
     return render(request,'users/pay.html',context)
 
-class OrderCreateView(CreateView):
-    template_name = "users/pay.html"
 
+class OrderCreateView(TitleMixin,CreateView):
+    title = "Оформление заказа"
+    template_name = "users/pay.html"
     form_class = OrderForm
+    success_url = reverse_lazy("users:pay")
+
     # def get_context_data(self, **kwargs):
     #     context =  super(AccountView,self).get_context_data()
     #     context['title'] = 'Оформление заказа'
     #     return context
+
+    def form_valid(self, form):
+        form.instance.initiator = self.request.user
+        return super(OrderCreateView, self).form_valid(form)
+    

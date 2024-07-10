@@ -1,6 +1,7 @@
 from urllib import request
 from django.utils.http import urlencode
 from django import template
+from django.core.cache import cache
 
 from main.models import Contact_informations
 
@@ -43,3 +44,12 @@ def get_contact_info_mail_address():
 @register.simple_tag()
 def get_contact_info_mail_telegramm():
     return Contact_informations.objects.first().telegramm
+
+@register.simple_tag()
+def get_all_contact_info():
+    contact_info = cache.get('contact_ifno')
+    if not contact_info:
+        contact_info = Contact_informations.objects.first()
+        cache.set('contact_ifno', contact_info, 60*60)
+
+    return contact_info

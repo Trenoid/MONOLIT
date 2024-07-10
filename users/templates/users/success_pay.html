@@ -1,11 +1,27 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Успешная оплата</title>
+    <link rel="stylesheet" href= {% static "css/email_ver.css" %} />
+    <link rel="stylesheet" href= {% static "css/main.css" %} />
 </head>
 <body>
-    <div>Успешно оплачено</div>
+    <div class="confirmation-wrapper">
+        <div class="confirmation-box">
+            <div class="confirmation-header">
+                <img src= {% static "source/images/check.png" %} alt="Успех" class="success-icon">
+            </div>
+            <div class="confirmation-body">
+                <p>Ваша оплата прошла успешно</p>
+                <p>Спасибо за покупку!</p>
+            </div>
+            <div class="confirmation-footer">
+                <a href="{% url "main:index" %}" class="btn-close">Закрыть</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

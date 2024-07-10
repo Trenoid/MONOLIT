@@ -11,21 +11,32 @@
   <div class="wrapper wrapper-grey">
     <div class="pay-section container">
 
-      <form class="pay-form" action="">
+      <form class="pay-form" action="{% url "users:pay" %}" method = "post">
+        {% csrf_token %}
         <div class="pay-form__wrapper">
           <img width="48" height="48" class="pay-form__image" src="{% static "source/icons/pay-icon.svg" %}" alt="" />
           <fieldset class="pay-form__fieldset">
             <legend class="pay-form__title-wrapper">
               <h2 class="pay-form__title">Введите данные для оформления заказа</h2>
             </legend>
-            <label class="pay-form__label" for="name">
+
+            <label class="pay-form__label" for="{{form.name.id_for_label}}">
               Имя
-              <input type="text" id="name" class="pay-form__input" placeholder="Artem Zaitsev" required />
+              {% comment %} <input type="text" id="name" class="pay-form__input" placeholder="Artem Zaitsev" required /> {% endcomment %}
+              {{form.name}}
             </label>
-            <label class="pay-form__label" for="email">
+            <label class="pay-form__label" for="{{form.email.id_for_label}}">
               Почта
-              <input type="email" id="email" class="pay-form__input" placeholder="Artemzaitsev@gmail.com" inputmode="email" required />
+              {% comment %} <input type="email" id="email" class="pay-form__input" placeholder="Artemzaitsev@gmail.com" inputmode="email" required /> {% endcomment %}
+              {{form.email}}
             </label>
+            <label class="pay-form__label" for="{{form.promocod.id_for_label}}">
+              Промокод
+              {% comment %} <input type="text" id="promo" class="pay-form__input" placeholder="ZOOA123" /> {% endcomment %}
+              {{form.promocod}}
+            </label>
+          </fieldset>
+          
             {% comment %}
               <div class="pay-form__wrapper-row">
                 <label class="pay-form__label" for="name-in-card">
@@ -48,14 +59,9 @@
                 </label>
               </div>
             {% endcomment %}
-          </fieldset>
-          <label class="pay-form__label" for="promo">
-            Промокод
-            <input type="text" id="promo" class="pay-form__input" placeholder="ZOOA123" />
-          </label>
           <div class="pay-form__actions">
             <a href="{% url "users:users_cart" %}" class="pay-form__button button button--base" >Закрыть</a>
-            <a href="#" class="pay-form__button button button--accent">Оплатить</a>
+            <button type="submit" class="pay-form__button button button--accent">Оплатить</button>
           </div>
           
           
